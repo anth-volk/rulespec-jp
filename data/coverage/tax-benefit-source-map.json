@@ -6,7 +6,7 @@
   "surfaces": [
     {"id": "national-pit-rate-schedule", "wave": 1, "status": "encoded-pilot"},
     {"id": "reconstruction-special-income-tax", "wave": 1, "status": "encoded-pilot"},
-    {"id": "employment-income-and-deduction", "wave": 1, "status": "source-identified"},
+    {"id": "employment-income-and-deduction", "wave": 1, "status": "encoded-2017-baseline", "remaining": "later tax-year amendments and independent oracle comparison"},
     {"id": "public-pension-income-and-deduction", "wave": 1, "status": "source-identified"},
     {"id": "personal-and-family-deductions", "wave": 1, "status": "source-identified"},
     {"id": "child-allowance", "wave": 1, "status": "source-identified"},

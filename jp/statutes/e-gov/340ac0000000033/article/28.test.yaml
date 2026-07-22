@@ -1,0 +1,105 @@
+- name: no_employment_receipts
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 0
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 0
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 0
+- name: schedule_zero_last_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 650999
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 0
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 650999
+- name: schedule_linear_first_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 651000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1000
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 650000
+- name: schedule_linear_last_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1618999
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 968999
+- name: schedule_special_969
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1619000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 969000
+- name: schedule_special_970
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1620000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 970000
+- name: schedule_special_972
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1622000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 972000
+- name: schedule_special_974
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1624000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 974000
+- name: first_rounded_band
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1628000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 976800
+- name: first_rounded_band_last_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1631999
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 976800
+- name: article_first_bracket_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1800000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1080000
+- name: article_second_bracket_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 3600000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 2340000
+- name: schedule_last_yen_below_6_6m
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 6599999
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 4736800
+- name: article_formula_at_6_6m
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 6600000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 4740000
+- name: deduction_cap_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 10000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 7800000
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 2200000
+- name: above_deduction_cap
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 10000001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 7800001
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 2200000

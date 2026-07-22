@@ -42,6 +42,7 @@ def _run(engine: Path, *args: str, input_payload: dict | None = None) -> dict:
     [
         "jp/policies/jps/national-pension/contribution-history.yaml",
         "jp/policies/mhlw/employment-insurance/fy2017-rates.yaml",
+        "jp/statutes/e-gov/340ac0000000033/article/28.yaml",
         "jp/statutes/e-gov/340ac0000000033/article/89.yaml",
         "jp/statutes/e-gov/423ac0000000117/article/13.yaml",
     ],
@@ -108,9 +109,9 @@ def test_toolchain_pins_exact_experimental_manifest_and_waiver_bytes():
     import tomllib
 
     toolchain = tomllib.loads((ROOT / ".axiom/toolchain.toml").read_text())["toolchain"]
-    assert toolchain["axiom_corpus_release"] == "jp-wave1-2017-04-01-v0-2-0"
+    assert toolchain["axiom_corpus_release"] == "jp-wave1-2017-04-01-v0-3-0"
     assert toolchain["axiom_corpus_release_content_sha256"] == (
-        "4b309b9dd13bca20d11314fccf41e853aa3937d9edcb201e8d9e98e0a993285e"
+        "5b68ad6da94dacbe0946052c94b8a6a79909bc0ecdb0588aa43e6a2e8a8f2577"
     )
     waiver = (ROOT / "known-validation-gaps.yaml").read_bytes()
     assert hashlib.sha256(waiver).hexdigest() == toolchain["validation_waiver_set_sha256"]

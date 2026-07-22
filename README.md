@@ -12,7 +12,10 @@ send issues, branches, pull requests, releases, or signing material upstream.
 The repository is an experimental `v0.x` implementation. The first executable
 vertical slice covers:
 
-- Income Tax Act article 89: the national progressive rate schedule; and
+- Income Tax Act article 28 and statutory Schedule 5: employment income and
+  the employment-income deduction, including the exact low-income rows and
+  JPY 4,000 table bands below JPY 6.6 million;
+- Income Tax Act article 89: the national progressive rate schedule;
 - Reconstruction Funding Special Measures Act article 13: the 2.1% special
   reconstruction income tax;
 - the Japan Pension Service's five National Pension contribution amounts for
@@ -55,7 +58,7 @@ AXIOM_RULES_ENGINE_BIN=../axiom-rules-engine/target/debug/axiom-rules-engine \
 ```
 
 The `.axiom/toolchain.toml` pin identifies the fork-owned, unsigned
-`jp-wave1-2017-04-01-v0-2-0` experimental corpus object. It is deliberately not
+`jp-wave1-2017-04-01-v0-3-0` experimental corpus object. It is deliberately not
 represented as an Axiom Foundation signed corpus release and cannot satisfy the
 protected canonical apply path.
 

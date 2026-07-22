@@ -2,26 +2,26 @@
   "as_of": "2026-07-22",
   "jurisdiction": "jp",
   "inclusive_start": "2017-04-01",
-  "release": "jp-wave1-2017-04-01-v0-2-0",
+  "release": "jp-wave1-2017-04-01-v0-3-0",
   "checks": {
     "repository_pytest": {
       "status": "passed",
-      "tests": 15
+      "tests": 16
     },
     "axiom_encode_test": {
       "status": "passed",
-      "companion_files": 4,
-      "cases": 14,
-      "compiled_programs": 4
+      "companion_files": 5,
+      "cases": 30,
+      "compiled_programs": 5
     },
     "axiom_compose_then_engine_compile": {
       "status": "passed",
       "program": "jp/programs/national-income-tax-2017.yaml",
-      "derived_outputs": 3
+      "derived_outputs": 5
     },
     "corpus_full_pytest": {
       "status": "passed",
-      "passed": 4069,
+      "passed": 4090,
       "skipped": 74,
       "deselected": 208
     },
@@ -29,7 +29,7 @@
     "corpus_mypy": {"status": "passed"},
     "oracle_coverage_pending_ratchet": {
       "status": "passed",
-      "declared": 31,
+      "declared": 58,
       "problems": 0
     },
     "protected_proof_validate": {

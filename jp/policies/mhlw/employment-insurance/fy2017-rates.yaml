@@ -5,7 +5,7 @@ module:
     parameter slice identifies the applicable employee rate; payroll
     aggregation and sub-yen collection rounding remain unencoded.
   source_verification:
-    corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+    corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
     source_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
   proof_validation:
     required: true
@@ -23,7 +23,7 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
               excerpt: 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
     versions:
       - effective_from: '2017-04-01'
@@ -37,7 +37,7 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
               excerpt: 農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000
     versions:
       - effective_from: '2017-04-01'
@@ -51,7 +51,7 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
               excerpt: 建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000
     versions:
       - effective_from: '2017-04-01'

@@ -44,6 +44,7 @@ def test_national_income_tax_program_composes_and_compiles(tmp_path):
     payload = yaml.safe_load(composed.read_text())
     assert payload["module"]["kind"] == "composition"
     assert payload["imports"] == [
+        "jp:statutes/e-gov/340ac0000000033/article/28",
         "jp:statutes/e-gov/340ac0000000033/article/89",
         "jp:statutes/e-gov/423ac0000000117/article/13",
     ]

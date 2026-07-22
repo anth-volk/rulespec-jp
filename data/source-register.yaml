@@ -79,6 +79,29 @@ agency_sources:
     snapshot_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
     citation_root: jp/guidance/mhlw/employment-insurance/rates/fy2017
 proof_provisions:
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - 収入金額が百八十万円以下である場合
+      - 当該収入金額の百分の四十に相当する金額
+      - 当該金額が六十五万円に満たない場合には、六十五万円
+      - 収入金額が百八十万円を超え三百六十万円以下である場合
+      - 七十二万円と当該収入金額から百八十万円を控除した金額の百分の三十に相当する金額との合計額
+      - 収入金額が三百六十万円を超え六百六十万円以下である場合
+      - 百二十六万円と当該収入金額から三百六十万円を控除した金額の百分の二十に相当する金額との合計額
+      - 収入金額が六百六十万円を超え千万円以下である場合
+      - 百八十六万円と当該収入金額から六百六十万円を控除した金額の百分の十に相当する金額との合計額
+      - 収入金額が千万円を超える場合二百二十万円
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - ６５１，０００円未満 | ０
+      - ６５１，０００ | １，６１９，０００ | 給与等の金額から６５０，０００円を控除した金額
+      - １，６１９，０００ | １，６２０，０００ | ９６９，０００
+      - １，６２０，０００ | １，６２２，０００ | ９７０，０００
+      - １，６２２，０００ | １，６２４，０００ | ９７２，０００
+      - １，６２４，０００ | １，６２８，０００ | ９７４，０００
+      - １，６２８，０００ | １，６３２，０００ | ９７６，８００
   - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
     snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
     excerpts:
@@ -97,7 +120,7 @@ proof_provisions:
     snapshot_sha256: 90f854c5f1b90e5b3c7a2d81f09163548eb2904ad28684cd1efda451e90b7bf7
     excerpts:
       - 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
-  - citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+  - citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
     snapshot_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
     excerpts:
       - 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
