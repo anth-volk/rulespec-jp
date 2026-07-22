@@ -1,0 +1,49 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/89
+module:
+  summary: >-
+    Reconstruction Funding Special Measures Act article 13 applies a 2.1%
+    special income tax to the individual's base income-tax amount.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13
+    source_sha256: cf477c7e21dd8a5076edb466e262b0abb6c69d7365dcc34c7cc5d36df7ebc264
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_reconstruction_special_income_tax_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13
+              excerpt: 個人に対して課する復興特別所得税の額は、その個人のその年分の基準所得税額に百分の二・一の税率を乗じて計算した金額とする。
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.021'
+  - name: japan_reconstruction_special_income_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(japan_national_income_tax_article_89_base_tax * japan_reconstruction_special_income_tax_rate)
+  - name: japan_national_income_tax_including_reconstruction_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_income_tax_article_89_base_tax + japan_reconstruction_special_income_tax

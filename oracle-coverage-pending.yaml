@@ -1,0 +1,128 @@
+version: 1
+issue: null
+ceiling: 31
+entries:
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax
+    source: manual
+    since: '2026-07-22'
+    note: OECD TaxBEN executable access and a pinned Japan comparison fixture are pending.
+  - legal_id: jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax
+    source: manual
+    since: '2026-07-22'
+    note: OECD TaxBEN executable access and a pinned Japan comparison fixture are pending.
+  - legal_id: jp:statutes/e-gov/423ac0000000117/article/13#japan_national_income_tax_including_reconstruction_tax
+    source: manual
+    since: '2026-07-22'
+    note: OECD TaxBEN executable access and a pinned Japan comparison fixture are pending.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_standard_monthly_contribution
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison is pending; the Japan Pension Service table is conformance evidence only.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison is pending; the Japan Pension Service table is conformance evidence only.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_half_payment_monthly_contribution
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison is pending; the Japan Pension Service table is conformance evidence only.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_quarter_payment_monthly_contribution
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison is pending; the Japan Pension Service table is conformance evidence only.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_three_quarter_payment_monthly_contribution
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison is pending; the Japan Pension Service table is conformance evidence only.
+  - legal_id: jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate
+    source: manual
+    since: '2026-07-22'
+    note: Independent-model comparison and payroll-rounding coverage are pending; the MHLW rate notice is conformance evidence only.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution_amount
+    source: manual
+    since: '2026-07-22'
+    note: National Pension parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_full_monthly_contribution_amount
+    source: manual
+    since: '2026-07-22'
+    note: National Pension parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_half_payment_monthly_amount
+    source: manual
+    since: '2026-07-22'
+    note: National Pension parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_quarter_payment_monthly_amount
+    source: manual
+    since: '2026-07-22'
+    note: National Pension parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_three_quarter_payment_monthly_amount
+    source: manual
+    since: '2026-07-22'
+    note: National Pension parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_agriculture_fisheries_sake_employee_rate
+    source: manual
+    since: '2026-07-22'
+    note: Employment Insurance parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_construction_business_employee_rate
+    source: manual
+    since: '2026-07-22'
+    note: Employment Insurance parameter awaits an independent-model mapping.
+  - legal_id: jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_general_business_employee_rate
+    source: manual
+    since: '2026-07-22'
+    note: Employment Insurance parameter awaits an independent-model mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_fifth_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_fifth_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_first_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_first_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_fourth_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_fourth_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_second_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_second_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_sixth_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_sixth_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_third_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_third_bracket_upper_threshold
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_pit_top_bracket_rate
+    source: manual
+    since: '2026-07-22'
+    note: Income-tax parameter awaits the OECD TaxBEN mapping.
+  - legal_id: jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax_rate
+    source: manual
+    since: '2026-07-22'
+    note: Reconstruction surtax parameter awaits the OECD TaxBEN mapping.

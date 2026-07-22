@@ -1,0 +1,34 @@
+{
+  "jurisdiction": "jp",
+  "inclusive_start": "2017-04-01",
+  "source_freeze": "2026-07-22",
+  "release_status": "experimental",
+  "surfaces": [
+    {"id": "national-pit-rate-schedule", "wave": 1, "status": "encoded-pilot"},
+    {"id": "reconstruction-special-income-tax", "wave": 1, "status": "encoded-pilot"},
+    {"id": "employment-income-and-deduction", "wave": 1, "status": "source-identified"},
+    {"id": "public-pension-income-and-deduction", "wave": 1, "status": "source-identified"},
+    {"id": "personal-and-family-deductions", "wave": 1, "status": "source-identified"},
+    {"id": "child-allowance", "wave": 1, "status": "source-identified"},
+    {"id": "child-rearing-allowance", "wave": 1, "status": "source-identified"},
+    {"id": "special-child-rearing-allowance", "wave": 1, "status": "source-identified"},
+    {"id": "disabled-child-welfare-allowance", "wave": 1, "status": "source-identified"},
+    {"id": "special-disability-allowance", "wave": 1, "status": "source-identified"},
+    {"id": "national-pension-contribution", "wave": 1, "status": "encoded-2017-amounts-only", "remaining": "exemption eligibility and later fiscal years"},
+    {"id": "employees-pension-employee-contribution", "wave": 1, "status": "source-identified"},
+    {"id": "employment-insurance-employee-contribution", "wave": 1, "status": "encoded-2017-rates-only", "remaining": "payroll base, sub-yen collection rounding, and later fiscal years"}
+  ],
+  "explicit_skips": [
+    "individual-inhabitant-tax",
+    "national-health-insurance-premiums",
+    "employees-health-insurance-premiums",
+    "long-term-care-insurance-premiums",
+    "public-assistance-cash-amounts",
+    "municipal-childcare-and-family-benefits",
+    "local-housing-assistance",
+    "property-and-other-local-taxes",
+    "employer-specific-benefits",
+    "corporate-and-business-tax",
+    "non-deterministic-emergency-payments"
+  ]
+}

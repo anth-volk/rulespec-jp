@@ -1,0 +1,18 @@
+- name: reconstruction_tax_low_income
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 100000
+  output:
+    jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax: 105
+    jp:statutes/e-gov/423ac0000000117/article/13#japan_national_income_tax_including_reconstruction_tax: 5105
+- name: reconstruction_tax_fractional_yen_is_discarded
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 2000000
+  output:
+    jp:statutes/e-gov/423ac0000000117/article/13#japan_reconstruction_special_income_tax: 2152
+    jp:statutes/e-gov/423ac0000000117/article/13#japan_national_income_tax_including_reconstruction_tax: 104652

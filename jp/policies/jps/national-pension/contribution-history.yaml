@@ -1,0 +1,136 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Japan Pension Service historical monthly National Pension contribution
+    amounts for 平成29年度 (2017-04-01 through 2018-03-31). Eligibility for
+    contribution exemptions is outside this parameter slice.
+  source_verification:
+    corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+    source_sha256: 90f854c5f1b90e5b3c7a2d81f09163548eb2904ad28684cd1efda451e90b7bf7
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_national_pension_full_monthly_contribution_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '16490'
+  - name: japan_national_pension_additional_monthly_contribution_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '400'
+  - name: japan_national_pension_half_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '8250'
+  - name: japan_national_pension_quarter_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '4120'
+  - name: japan_national_pension_three_quarter_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '12370'
+  - name: japan_national_pension_standard_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_full_monthly_contribution_amount
+  - name: japan_national_pension_additional_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_additional_monthly_contribution_amount
+  - name: japan_national_pension_half_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_half_payment_monthly_amount
+  - name: japan_national_pension_quarter_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_quarter_payment_monthly_amount
+  - name: japan_national_pension_three_quarter_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_three_quarter_payment_monthly_amount

@@ -1,0 +1,73 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Employee Employment Insurance contribution rates for 平成29年度. This
+    parameter slice identifies the applicable employee rate; payroll
+    aggregation and sub-yen collection rounding remain unencoded.
+  source_verification:
+    corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+    source_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_employment_insurance_general_business_employee_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              excerpt: 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.003'
+  - name: japan_employment_insurance_agriculture_fisheries_sake_employee_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              excerpt: 農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.004'
+  - name: japan_employment_insurance_construction_business_employee_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+              excerpt: 建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.004'
+  - name: japan_employment_insurance_employee_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Month
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_employment_insurance_is_construction_business:
+              japan_employment_insurance_construction_business_employee_rate
+          else:
+              if japan_employment_insurance_is_agriculture_fisheries_or_sake_business:
+                  japan_employment_insurance_agriculture_fisheries_sake_employee_rate
+              else:
+                  japan_employment_insurance_general_business_employee_rate

@@ -1,0 +1,42 @@
+name: repository-checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out rulespec-jp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Check out forked rules engine
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: anth-volk/axiom-rules-engine
+          ref: e5e40d40353f8459da4e46a9feae7279c2fecccc
+          path: axiom-rules-engine
+
+      - name: Check out forked composer
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: anth-volk/axiom-compose
+          ref: 9a514aca29c85a4a5f30a63f2275f9a362dd2b7a
+          path: axiom-compose
+
+      - name: Build forked rules engine
+        run: cargo build --manifest-path axiom-rules-engine/Cargo.toml --locked
+
+      - name: Install repository test dependencies
+        run: python -m pip install --disable-pip-version-check pytest==8.4.2 PyYAML==6.0.2 ./axiom-compose
+
+      - name: Run repository and executable RuleSpec checks
+        env:
+          AXIOM_RULES_ENGINE_BIN: ${{ github.workspace }}/axiom-rules-engine/target/debug/axiom-rules-engine
+          AXIOM_COMPOSE_BIN: axiom-compose
+        run: python -m pytest -q

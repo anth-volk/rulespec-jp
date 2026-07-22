@@ -1,0 +1,49 @@
+{
+  "as_of": "2026-07-22",
+  "jurisdiction": "jp",
+  "inclusive_start": "2017-04-01",
+  "release": "jp-wave1-2017-04-01-v0-2-0",
+  "checks": {
+    "repository_pytest": {
+      "status": "passed",
+      "tests": 15
+    },
+    "axiom_encode_test": {
+      "status": "passed",
+      "companion_files": 4,
+      "cases": 14,
+      "compiled_programs": 4
+    },
+    "axiom_compose_then_engine_compile": {
+      "status": "passed",
+      "program": "jp/programs/national-income-tax-2017.yaml",
+      "derived_outputs": 3
+    },
+    "corpus_full_pytest": {
+      "status": "passed",
+      "passed": 4069,
+      "skipped": 74,
+      "deselected": 208
+    },
+    "corpus_ruff": {"status": "passed"},
+    "corpus_mypy": {"status": "passed"},
+    "oracle_coverage_pending_ratchet": {
+      "status": "passed",
+      "declared": 31,
+      "problems": 0
+    },
+    "protected_proof_validate": {
+      "status": "blocked-as-designed",
+      "reason": "The unsigned experimental corpus is not attached to Axiom's protected signing broker."
+    },
+    "independent_oracle": {
+      "status": "pending",
+      "reason": "OECD TaxBEN executable access and Japan variable mapping remain unconfirmed."
+    },
+    "gitnexus_impact_and_change_detection": {
+      "status": "unavailable",
+      "fallback": "Manual repository search, exact staged diff review, and full tests."
+    }
+  },
+  "canonical_axiom_apply": false
+}

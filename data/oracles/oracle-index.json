@@ -1,0 +1,11 @@
+{
+  "jurisdiction": "jp",
+  "status": "pending-executable-access",
+  "primary_candidate": "OECD TaxBEN",
+  "fallback_conformance_sources": [
+    "National Tax Agency 2017 income tax guide",
+    "National Tax Agency 2017 withholding guide",
+    "responsible-agency worked examples"
+  ],
+  "validated_release_blocked": true
+}

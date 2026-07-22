@@ -1,0 +1,105 @@
+jurisdiction: jp
+inclusive_start: '2017-04-01'
+inclusive_start_original: 平成二十九年四月一日
+source_freeze: '2026-07-22'
+calendar_contract:
+  execution_calendar: gregorian
+  original_calendar_preserved: true
+  supported_eras: [meiji, taisho, showa, heisei, reiwa]
+  fiscal_year_example:
+    original: 平成29年度
+    normalized_start: '2017-04-01'
+    normalized_end: '2018-03-31'
+sources:
+  - law_id: 340AC0000000033
+    title: 所得税法
+    law_number: 昭和四十年法律第三十三号
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    citation_root: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01
+  - law_id: 332AC0000000026
+    title: 租税特別措置法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: d9a1fa7290b36d691e082332cce1536fd5d716f27ad9ed041f2ea9390b02ab91
+    citation_root: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01
+  - law_id: 423AC0000000117
+    title: 東日本大震災からの復興のための施策を実施するために必要な財源の確保に関する特別措置法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: cf477c7e21dd8a5076edb466e262b0abb6c69d7365dcc34c7cc5d36df7ebc264
+    citation_root: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01
+  - law_id: 346AC0000000073
+    title: 児童手当法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: 860134e1e91a749ac43c1719265fc1c4c793a3a2a9f8b3dcbca958f0e6dd3298
+    citation_root: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01
+  - law_id: 336AC0000000238
+    title: 児童扶養手当法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: 6c9f245a08cae67b4acc8b50dbf1b50039c3221d443464f4a62aa203ed081827
+    citation_root: jp/statute/e-gov/336ac0000000238/as-of/2017-04-01
+  - law_id: 339AC0000000134
+    title: 特別児童扶養手当等の支給に関する法律
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: bea6198464da316bbcf2dd8f9e0e13ac098236dd9fcb417b0b9fb61c401d3d3e
+    citation_root: jp/statute/e-gov/339ac0000000134/as-of/2017-04-01
+  - law_id: 334AC0000000141
+    title: 国民年金法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: ab51e2f8a5b311612a8fa92edfc35e26456e121593d8ee29fad355d6c5993ac6
+    citation_root: jp/statute/e-gov/334ac0000000141/as-of/2017-04-01
+  - law_id: 329AC0000000115
+    title: 厚生年金保険法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: ee144fcc1c622b3d067afdb944ee1505321ff5663988250b50279c02547714d2
+    citation_root: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01
+  - law_id: 349AC0000000116
+    title: 雇用保険法
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: b251a1764116a9fad54509d029a012ea0cbfec0dcdad627af808c0a67d7e6e75
+    citation_root: jp/statute/e-gov/349ac0000000116/as-of/2017-04-01
+agency_sources:
+  - source_id: jp-jps-national-pension-contribution-history
+    title: 国民年金保険料の変遷
+    source_authority: Japan Pension Service
+    source_url: https://www.nenkin.go.jp/service/kokunen/hokenryo/hensen.html
+    source_as_of: '2026-07-22'
+    original_period: 平成29年4月～平成30年3月
+    normalized_start: '2017-04-01'
+    normalized_end: '2018-03-31'
+    snapshot_sha256: 90f854c5f1b90e5b3c7a2d81f09163548eb2904ad28684cd1efda451e90b7bf7
+    citation_root: jp/guidance/jps/national-pension/contribution-history
+  - source_id: jp-mhlw-employment-insurance-rates-fy2017
+    title: 平成29年度の雇用保険料率
+    source_authority: Ministry of Health, Labour and Welfare
+    source_url: https://www.mhlw.go.jp/file/04-Houdouhappyou-11607000-Shokugyouanteikyoku-Koyouhokenka/0000159614.pdf
+    source_as_of: '2026-07-22'
+    original_period: 平成29年度
+    normalized_start: '2017-04-01'
+    normalized_end: '2018-03-31'
+    snapshot_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
+    citation_root: jp/guidance/mhlw/employment-insurance/rates/fy2017
+proof_provisions:
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - 百九十五万円以下の金額百分の五
+      - 百九十五万円を超え三百三十万円以下の金額百分の十
+      - 三百三十万円を超え六百九十五万円以下の金額百分の二十
+      - 六百九十五万円を超え九百万円以下の金額百分の二十三
+      - 九百万円を超え千八百万円以下の金額百分の三十三
+      - 千八百万円を超え四千万円以下の金額百分の四十
+      - 四千万円を超える金額百分の四十五
+  - citation_path: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13
+    snapshot_sha256: cf477c7e21dd8a5076edb466e262b0abb6c69d7365dcc34c7cc5d36df7ebc264
+    excerpts:
+      - 個人に対して課する復興特別所得税の額は、その個人のその年分の基準所得税額に百分の二・一の税率を乗じて計算した金額とする。
+  - citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+    snapshot_sha256: 90f854c5f1b90e5b3c7a2d81f09163548eb2904ad28684cd1efda451e90b7bf7
+    excerpts:
+      - 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+  - citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/page-1
+    snapshot_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
+    excerpts:
+      - 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
+      - 農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000
+      - 建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000

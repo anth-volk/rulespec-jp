@@ -1,0 +1,8 @@
+program: jp/national-income-tax
+period: '2017-04-01'
+outputs:
+  - japan_national_income_tax_article_89_base_tax
+  - japan_reconstruction_special_income_tax
+  - japan_national_income_tax_including_reconstruction_tax
+scope:
+  jurisdictions: [jp]

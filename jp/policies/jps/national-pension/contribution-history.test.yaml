@@ -1,0 +1,12 @@
+- name: heisei_29_fiscal_year_amounts
+  period:
+    period_kind: month
+    start: '2017-04-01'
+    end: '2017-05-01'
+  input: {}
+  output:
+    jp:policies/jps/national-pension/contribution-history#japan_national_pension_standard_monthly_contribution: 16490
+    jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution: 400
+    jp:policies/jps/national-pension/contribution-history#japan_national_pension_half_payment_monthly_contribution: 8250
+    jp:policies/jps/national-pension/contribution-history#japan_national_pension_quarter_payment_monthly_contribution: 4120
+    jp:policies/jps/national-pension/contribution-history#japan_national_pension_three_quarter_payment_monthly_contribution: 12370

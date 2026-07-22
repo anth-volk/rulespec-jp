@@ -1,0 +1,24 @@
+- name: general_business
+  period: &fy2017_month
+    period_kind: month
+    start: '2017-04-01'
+    end: '2017-05-01'
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.003
+- name: agriculture_fisheries_or_sake_business
+  period: *fy2017_month
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: true
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.004
+- name: construction_business
+  period: *fy2017_month
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: true
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.004
