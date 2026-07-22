@@ -15,6 +15,11 @@ jobs:
       - name: Check out rulespec-jp
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
+      - name: Set up Python 3.14
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.14"
+
       - name: Check out forked rules engine
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
