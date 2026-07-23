@@ -1,0 +1,12 @@
+- name: bonus rounds down below one thousand yen
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 1234567
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#japan_employees_pension_standard_bonus_amount: 1234000
+- name: bonus is capped per month
+  period: {period_kind: month, start: '2025-12-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 2000000
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#japan_employees_pension_standard_bonus_amount: 1500000

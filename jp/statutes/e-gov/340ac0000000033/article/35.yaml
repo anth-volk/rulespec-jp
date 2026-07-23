@@ -1,0 +1,192 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Income Tax Act article 35 public-pension miscellaneous income in the law
+    consolidated on 2017-04-01. This module calculates the article 35
+    deduction before the age-65 minimum-deduction special rule in Special
+    Taxation Measures Act article 41-15-3.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_public_pension_article_35_fixed_deduction_component
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 一五十万円
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '500000'
+  - name: japan_public_pension_article_35_first_residual_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 当該残額が三百六十万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '3600000'
+  - name: japan_public_pension_article_35_second_residual_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 当該残額が三百六十万円を超え、七百二十万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '7200000'
+  - name: japan_public_pension_article_35_first_residual_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 当該残額の百分の二十五に相当する金額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.25'
+  - name: japan_public_pension_article_35_second_residual_fixed_component
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 九十万円と当該残額から三百六十万円を控除した金額の百分の十五に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '900000'
+  - name: japan_public_pension_article_35_second_residual_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 九十万円と当該残額から三百六十万円を控除した金額の百分の十五に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.15'
+  - name: japan_public_pension_article_35_third_residual_fixed_component
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 百四十四万円と当該残額から七百二十万円を控除した金額の百分の五に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1440000'
+  - name: japan_public_pension_article_35_third_residual_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 百四十四万円と当該残額から七百二十万円を控除した金額の百分の五に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.05'
+  - name: japan_public_pension_article_35_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+              excerpt: 当該合計額が七十万円に満たないときは、七十万円とする
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '700000'
+  - name: japan_public_pension_article_35_residual_receipts
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_public_pension_gross_receipts - japan_public_pension_article_35_fixed_deduction_component)
+  - name: japan_public_pension_article_35_calculated_deduction_before_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_public_pension_article_35_residual_receipts <= japan_public_pension_article_35_first_residual_upper_threshold:
+              japan_public_pension_article_35_fixed_deduction_component + japan_public_pension_article_35_residual_receipts * japan_public_pension_article_35_first_residual_rate
+          else:
+              if japan_public_pension_article_35_residual_receipts <= japan_public_pension_article_35_second_residual_upper_threshold:
+                  japan_public_pension_article_35_fixed_deduction_component + japan_public_pension_article_35_second_residual_fixed_component + (japan_public_pension_article_35_residual_receipts - japan_public_pension_article_35_first_residual_upper_threshold) * japan_public_pension_article_35_second_residual_rate
+              else:
+                  japan_public_pension_article_35_fixed_deduction_component + japan_public_pension_article_35_third_residual_fixed_component + (japan_public_pension_article_35_residual_receipts - japan_public_pension_article_35_second_residual_upper_threshold) * japan_public_pension_article_35_third_residual_rate
+  - name: japan_public_pension_income_article_35_before_age_special_rule
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(max(0, japan_public_pension_gross_receipts - max(japan_public_pension_article_35_minimum_deduction, japan_public_pension_article_35_calculated_deduction_before_minimum)))
+  - name: japan_public_pension_deduction_article_35_before_age_special_rule
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_public_pension_gross_receipts - japan_public_pension_income_article_35_before_age_special_rule)

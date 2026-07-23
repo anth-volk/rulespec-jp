@@ -1,0 +1,345 @@
+format: rulespec/v1
+imports:
+  - jp:regulations/e-gov/336co0000000405/article/2-2
+module:
+  summary: >-
+    Child-Rearing Allowance claimant and supporter income limits, treatment of
+    child support, partial-payment coefficients, statutory ten-yen rounding,
+    and final monthly amount from 平成29年4月. The family-status input represents
+    the factual conditions in the Act; this module determines the monetary and
+    income-test consequences.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4
+    source_sha256: 4dca7cf10d4c42970241870640c0f56dca47fd11b0715c6614a2e74106dcf846
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_child_rearing_allowance_full_payment_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 扶養親族等及び児童がないときは、十九万円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-08-01/article/2-4, excerpt: 扶養親族等及び児童がないときは、四十九万円}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-11-01/article/2-4, excerpt: 及び生計維持児童（法第九条第一項に規定する児童をいう。次号及び次項第一号において同じ。）がないとき六十九万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '190000'}
+      - {effective_from: '2018-08-01', formula: '490000'}
+      - {effective_from: '2024-11-01', formula: '690000'}
+  - name: japan_child_rearing_allowance_partial_payment_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 一、九二〇、〇〇〇円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-11-01/article/2-4, excerpt: 生計維持児童がないとき二百八万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '1920000'}
+      - {effective_from: '2024-11-01', formula: '2080000'}
+  - name: japan_child_rearing_allowance_income_limit_ordinary_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 一人につき三八〇、〇〇〇円を加算した額}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+  - name: japan_child_rearing_allowance_income_limit_elderly_extra
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 一人につき一〇〇、〇〇〇円を}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '100000'}
+  - name: japan_child_rearing_allowance_income_limit_specified_extra
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 一人につき一五〇、〇〇〇円をその額に加算した額}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '150000'}
+  - name: japan_child_rearing_allowance_supporter_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 扶養親族等及び児童がないときは、二百三十六万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '2360000'}
+  - name: japan_child_rearing_allowance_supporter_elderly_extra
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 老人扶養親族一人につき}}
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 六〇、〇〇〇円を加算した額}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '60000'}
+  - name: japan_child_rearing_allowance_child_support_inclusion_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 費用の金額の百分の八十に相当する金額}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '0.80'}
+  - name: japan_child_rearing_allowance_basic_partial_reduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 〇・〇一八六七〇五}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-4, excerpt: 〇・〇一八七六三〇}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-08-01/article/2-4, excerpt: 〇・〇二二六九九三}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-4, excerpt: 〇・〇二二九二三一}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-4, excerpt: 〇・〇二三〇五五九}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2022-04-01/article/2-4, excerpt: 〇・〇二三〇〇七〇}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-4, excerpt: 〇・〇二三五八〇四}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-4, excerpt: 〇・〇二四三〇〇七}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-11-01/article/2-4, excerpt: 〇・〇二五}}
+          - {path: "versions[9].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-4, excerpt: 〇・〇二五六六一九}}
+          - {path: "versions[10].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-4, excerpt: 〇・〇二六四〇二九}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '0.0186705'}
+      - {effective_from: '2018-04-01', formula: '0.0187630'}
+      - {effective_from: '2018-08-01', formula: '0.0226993'}
+      - {effective_from: '2019-04-01', formula: '0.0229231'}
+      - {effective_from: '2020-04-01', formula: '0.0230559'}
+      - {effective_from: '2022-04-01', formula: '0.0230070'}
+      - {effective_from: '2023-04-01', formula: '0.0235804'}
+      - {effective_from: '2024-04-01', formula: '0.0243007'}
+      - {effective_from: '2024-11-01', formula: '0.025'}
+      - {effective_from: '2025-04-01', formula: '0.0256619'}
+      - {effective_from: '2026-04-01', formula: '0.0264029'}
+  - name: japan_child_rearing_allowance_first_addition_partial_reduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 〇・〇〇二八七八六}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-4, excerpt: 〇・〇〇二八九六〇}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-08-01/article/2-4, excerpt: 〇・〇〇三五〇三五}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-4, excerpt: 〇・〇〇三五三八五}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-4, excerpt: 〇・〇〇三五五二四}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2022-04-01/article/2-4, excerpt: 〇・〇〇三五四五五}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-4, excerpt: 〇・〇〇三六三六四}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-4, excerpt: 〇・〇〇三七四八三}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-11-01/article/2-4, excerpt: 〇・〇〇三八五六一}}
+          - {path: "versions[9].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-4, excerpt: 〇・〇〇三九五六八}}
+          - {path: "versions[10].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-4, excerpt: 〇・〇〇四〇七一九}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '0.0028786'}
+      - {effective_from: '2018-04-01', formula: '0.0028960'}
+      - {effective_from: '2018-08-01', formula: '0.0035035'}
+      - {effective_from: '2019-04-01', formula: '0.0035385'}
+      - {effective_from: '2020-04-01', formula: '0.0035524'}
+      - {effective_from: '2022-04-01', formula: '0.0035455'}
+      - {effective_from: '2023-04-01', formula: '0.0036364'}
+      - {effective_from: '2024-04-01', formula: '0.0037483'}
+      - {effective_from: '2024-11-01', formula: '0.0038561'}
+      - {effective_from: '2025-04-01', formula: '0.0039568'}
+      - {effective_from: '2026-04-01', formula: '0.0040719'}
+  - name: japan_child_rearing_allowance_later_addition_partial_reduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 〇・〇〇一七二二五}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-4, excerpt: 〇・〇〇一七三四一}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-08-01/article/2-4, excerpt: 〇・〇〇二〇九七九}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-4, excerpt: 〇・〇〇二一一八九}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-4, excerpt: 〇・〇〇二一二五九}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-4, excerpt: 〇・〇〇二一七四八}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-4, excerpt: 〇・〇〇二二四四八}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-11-01/article/2-4, excerpt: 〇・〇〇三八五六一}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-4, excerpt: 〇・〇〇三九五六八}}
+          - {path: "versions[9].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-4, excerpt: 〇・〇〇四〇七一九}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '0.0017225'}
+      - {effective_from: '2018-04-01', formula: '0.0017341'}
+      - {effective_from: '2018-08-01', formula: '0.0020979'}
+      - {effective_from: '2019-04-01', formula: '0.0021189'}
+      - {effective_from: '2020-04-01', formula: '0.0021259'}
+      - {effective_from: '2023-04-01', formula: '0.0021748'}
+      - {effective_from: '2024-04-01', formula: '0.0022448'}
+      - {effective_from: '2024-11-01', formula: '0.0038561'}
+      - {effective_from: '2025-04-01', formula: '0.0039568'}
+      - {effective_from: '2026-04-01', formula: '0.0040719'}
+  - name: japan_child_rearing_allowance_rounding_band
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 五円以上十円未満の端数}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '10'}
+  - name: japan_child_rearing_allowance_rounding_half_band
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-4, excerpt: 五円未満の端数}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '5'}
+  - name: japan_child_rearing_allowance_full_payment_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_rearing_allowance_full_payment_income_base
+          + japan_child_rearing_allowance_income_limit_ordinary_increment
+          * japan_child_rearing_allowance_income_limit_person_count
+          + japan_child_rearing_allowance_income_limit_elderly_extra
+          * japan_child_rearing_allowance_elderly_dependent_count
+          + japan_child_rearing_allowance_income_limit_specified_extra
+          * japan_child_rearing_allowance_specified_dependent_count
+  - name: japan_child_rearing_allowance_partial_payment_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_rearing_allowance_partial_payment_income_base
+          + japan_child_rearing_allowance_income_limit_ordinary_increment
+          * japan_child_rearing_allowance_income_limit_person_count
+          + japan_child_rearing_allowance_income_limit_elderly_extra
+          * japan_child_rearing_allowance_elderly_dependent_count
+          + japan_child_rearing_allowance_income_limit_specified_extra
+          * japan_child_rearing_allowance_specified_dependent_count
+  - name: japan_child_rearing_allowance_supporter_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_child_rearing_allowance_supporter_dependent_count == japan_child_rearing_allowance_supporter_elderly_dependent_count:
+              japan_child_rearing_allowance_supporter_income_base + japan_child_rearing_allowance_income_limit_ordinary_increment * japan_child_rearing_allowance_supporter_dependent_count + japan_child_rearing_allowance_supporter_elderly_extra * max(0, japan_child_rearing_allowance_supporter_elderly_dependent_count - 1)
+          else:
+              japan_child_rearing_allowance_supporter_income_base + japan_child_rearing_allowance_income_limit_ordinary_increment * japan_child_rearing_allowance_supporter_dependent_count + japan_child_rearing_allowance_supporter_elderly_extra * japan_child_rearing_allowance_supporter_elderly_dependent_count
+  - name: japan_child_rearing_allowance_assessed_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_rearing_allowance_adjusted_prior_year_income
+          + floor(japan_child_rearing_allowance_child_support_received
+          * japan_child_rearing_allowance_child_support_inclusion_rate + 0.5)
+  - name: japan_child_rearing_allowance_basic_partial_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          floor(((japan_child_rearing_allowance_assessed_income
+          - japan_child_rearing_allowance_full_payment_income_limit)
+          * japan_child_rearing_allowance_basic_partial_reduction_rate
+          + japan_child_rearing_allowance_rounding_half_band)
+          / japan_child_rearing_allowance_rounding_band)
+          * japan_child_rearing_allowance_rounding_band
+          + japan_child_rearing_allowance_rounding_band
+  - name: japan_child_rearing_allowance_first_addition_partial_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          floor(((japan_child_rearing_allowance_assessed_income
+          - japan_child_rearing_allowance_full_payment_income_limit)
+          * japan_child_rearing_allowance_first_addition_partial_reduction_rate
+          + japan_child_rearing_allowance_rounding_half_band)
+          / japan_child_rearing_allowance_rounding_band)
+          * japan_child_rearing_allowance_rounding_band
+          + japan_child_rearing_allowance_rounding_band
+  - name: japan_child_rearing_allowance_later_addition_partial_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          floor(((japan_child_rearing_allowance_assessed_income
+          - japan_child_rearing_allowance_full_payment_income_limit)
+          * japan_child_rearing_allowance_later_addition_partial_reduction_rate
+          + japan_child_rearing_allowance_rounding_half_band)
+          / japan_child_rearing_allowance_rounding_band)
+          * japan_child_rearing_allowance_rounding_band
+          + japan_child_rearing_allowance_rounding_band
+  - name: japan_child_rearing_allowance_monthly
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if not japan_child_rearing_allowance_meets_family_conditions:
+              0
+          else:
+              if japan_child_rearing_allowance_qualifying_child_count <= 0:
+                  0
+              else:
+                  if japan_child_rearing_allowance_highest_supporter_adjusted_income >= japan_child_rearing_allowance_supporter_income_limit:
+                      0
+                  else:
+                      if japan_child_rearing_allowance_assessed_income < japan_child_rearing_allowance_full_payment_income_limit:
+                          japan_child_rearing_allowance_full_monthly_amount
+                      else:
+                          if japan_child_rearing_allowance_assessed_income >= japan_child_rearing_allowance_partial_payment_income_limit:
+                              0
+                          else:
+                              max(0, japan_child_rearing_allowance_basic_monthly_amount - japan_child_rearing_allowance_basic_partial_reduction)
+                              + min(1, max(0, japan_child_rearing_allowance_qualifying_child_count - 1))
+                              * max(0, japan_child_rearing_allowance_first_additional_child_monthly_amount - japan_child_rearing_allowance_first_addition_partial_reduction)
+                              + max(0, japan_child_rearing_allowance_qualifying_child_count - 2)
+                              * max(0, japan_child_rearing_allowance_later_additional_child_monthly_amount - japan_child_rearing_allowance_later_addition_partial_reduction)

@@ -1,0 +1,292 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/35
+module:
+  summary: >-
+    Public-pension miscellaneous income from the 2017-04-01 boundary. It
+    applies the pre-2020 age-65 special minimum and the complete 2020-and-later
+    table, whose deduction depends on age, receipts, and non-pension income.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+    source_sha256: d9a1fa7290b36d691e082332cce1536fd5d716f27ad9ed041f2ea9390b02ab91
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_public_pension_age_special_rule_threshold
+    kind: parameter
+    dtype: Integer
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+              excerpt: 年齢が六十五歳以上である個人
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '65'
+  - name: japan_public_pension_age_65_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+              excerpt: 同法第三十五条第四項中「七十万円」とあるのは、「百二十万円」とする
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1200000'
+  - name: japan_public_pension_effective_minimum_deduction_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_public_pension_recipient_age_at_statutory_test_date >= japan_public_pension_age_special_rule_threshold:
+              japan_public_pension_age_65_minimum_deduction
+          else:
+              japan_public_pension_article_35_minimum_deduction
+  - name: japan_public_pension_income_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(max(0, japan_public_pension_gross_receipts - max(japan_public_pension_effective_minimum_deduction_2017_rules, japan_public_pension_article_35_calculated_deduction_before_minimum)))
+  - name: japan_public_pension_deduction_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_public_pension_gross_receipts - japan_public_pension_income_2017_rules)
+  - name: japan_public_pension_modern_other_income_first_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "10,000,000円まで 20,000,000 円まで 20,000,001 円以上"}}
+    versions: [{effective_from: '2020-01-01', formula: '10000000'}]
+  - name: japan_public_pension_modern_other_income_second_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "20,000,000 円まで 20,000,001 円以上"}}
+    versions: [{effective_from: '2020-01-01', formula: '20000000'}]
+  - name: japan_public_pension_modern_other_income_deduction_step
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "600,000 円 500,000 円 400,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '100000'}]
+  - name: japan_public_pension_modern_under_65_first_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,299,999 円まで 100％ 600,000 円 500,000 円 400,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '1300000'}]
+  - name: japan_public_pension_modern_age_65_first_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "3,299,999 円まで 100％ 1,100,000 円 1,000,000 円 900,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '3300000'}]
+  - name: japan_public_pension_modern_second_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "4,099,999 円まで 75％ 275,000 円 175,000 円 75,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '4100000'}]
+  - name: japan_public_pension_modern_third_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "7,699,999 円まで 85％ 685,000 円 585,000 円 485,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '7700000'}]
+  - name: japan_public_pension_modern_fourth_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "9,999,999 円まで 95％ 1,455,000 円 1,355,000 円 1,255,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '10000000'}]
+  - name: japan_public_pension_modern_under_65_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "100％ 600,000 円 500,000 円 400,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '600000'}]
+  - name: japan_public_pension_modern_age_65_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "100％ 1,100,000 円 1,000,000 円 900,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '1100000'}]
+  - name: japan_public_pension_modern_75_percent_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "75％ 275,000 円 175,000 円 75,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '0.75'}]
+  - name: japan_public_pension_modern_75_percent_offset
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "75％ 275,000 円 175,000 円 75,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '275000'}]
+  - name: japan_public_pension_modern_85_percent_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "85％ 685,000 円 585,000 円 485,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '0.85'}]
+  - name: japan_public_pension_modern_85_percent_offset
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "85％ 685,000 円 585,000 円 485,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '685000'}]
+  - name: japan_public_pension_modern_95_percent_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "95％ 1,455,000 円 1,355,000 円 1,255,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '0.95'}]
+  - name: japan_public_pension_modern_95_percent_offset
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "95％ 1,455,000 円 1,355,000 円 1,255,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '1455000'}]
+  - name: japan_public_pension_modern_cap_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "100％ 1,955,000 円 1,855,000 円 1,755,000 円"}}
+    versions: [{effective_from: '2020-01-01', formula: '1955000'}]
+  - name: japan_public_pension_modern_other_income_deduction_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          if japan_public_pension_other_income_excluding_public_pension <= japan_public_pension_modern_other_income_first_upper:
+              0
+          else:
+              if japan_public_pension_other_income_excluding_public_pension <= japan_public_pension_modern_other_income_second_upper:
+                  japan_public_pension_modern_other_income_deduction_step
+              else:
+                  japan_public_pension_modern_other_income_deduction_step * 2
+  - name: japan_public_pension_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_public_pension_income_2017_rules
+      - effective_from: '2020-01-01'
+        formula: |-
+          if japan_public_pension_recipient_age_at_statutory_test_date < japan_public_pension_age_special_rule_threshold:
+              if japan_public_pension_gross_receipts < japan_public_pension_modern_under_65_first_upper:
+                  max(0, japan_public_pension_gross_receipts - (japan_public_pension_modern_under_65_minimum_deduction - japan_public_pension_modern_other_income_deduction_reduction))
+              else:
+                  if japan_public_pension_gross_receipts < japan_public_pension_modern_second_upper:
+                      floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_75_percent_rate - (japan_public_pension_modern_75_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                  else:
+                      if japan_public_pension_gross_receipts < japan_public_pension_modern_third_upper:
+                          floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_85_percent_rate - (japan_public_pension_modern_85_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                      else:
+                          if japan_public_pension_gross_receipts < japan_public_pension_modern_fourth_upper:
+                              floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_95_percent_rate - (japan_public_pension_modern_95_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                          else:
+                              max(0, japan_public_pension_gross_receipts - (japan_public_pension_modern_cap_deduction - japan_public_pension_modern_other_income_deduction_reduction))
+          else:
+              if japan_public_pension_gross_receipts < japan_public_pension_modern_age_65_first_upper:
+                  max(0, japan_public_pension_gross_receipts - (japan_public_pension_modern_age_65_minimum_deduction - japan_public_pension_modern_other_income_deduction_reduction))
+              else:
+                  if japan_public_pension_gross_receipts < japan_public_pension_modern_second_upper:
+                      floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_75_percent_rate - (japan_public_pension_modern_75_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                  else:
+                      if japan_public_pension_gross_receipts < japan_public_pension_modern_third_upper:
+                          floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_85_percent_rate - (japan_public_pension_modern_85_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                      else:
+                          if japan_public_pension_gross_receipts < japan_public_pension_modern_fourth_upper:
+                              floor(max(0, japan_public_pension_gross_receipts * japan_public_pension_modern_95_percent_rate - (japan_public_pension_modern_95_percent_offset - japan_public_pension_modern_other_income_deduction_reduction)))
+                          else:
+                              max(0, japan_public_pension_gross_receipts - (japan_public_pension_modern_cap_deduction - japan_public_pension_modern_other_income_deduction_reduction))
+  - name: japan_public_pension_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_public_pension_gross_receipts - japan_public_pension_income)

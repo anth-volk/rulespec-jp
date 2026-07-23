@@ -1,0 +1,56 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Basic Income Tax Act residence and liability gate for the ordinary
+    domestic-income path. Residence under article 2 and any non-resident
+    domestic-source treatment are factual/legal classifications supplied by
+    the caller. This Wave 1 path computes the resident case; non-resident
+    article 164 methods remain outside it.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/5
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_standard_resident_liability_applies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: formula, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/2, excerpt: 居住者国内に住所を有し、又は現在まで引き続いて一年以上居所を有する個人}}
+          - {path: "versions[0].formula", kind: formula, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/5, excerpt: 居住者は、この法律により、所得税を納める義務がある}}
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_is_resident_under_article_2 == true
+  - name: japan_pit_ordinary_domestic_income_is_in_scope
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: formula, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/7, excerpt: 非永住者以外の居住者全ての所得}}
+          - {path: "versions[0].formula", kind: formula, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/7, excerpt: 非永住者}}
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_pit_standard_resident_liability_applies
+          and japan_pit_income_is_ordinary_domestic_source == true
+  - name: japan_pit_ordinary_domestic_income_scope_flag
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Year
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_pit_ordinary_domestic_income_is_in_scope:
+              1
+          else:
+              0

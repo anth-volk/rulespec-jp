@@ -1,0 +1,45 @@
+- name: resident_basic_deduction
+  period:
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 380000
+- name: 2020 full statutory amount
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 24000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 480000
+- name: 2020 first taper
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 24000001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 320000
+- name: 2025 full amount ends at 23.5 million
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 23500000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 580000
+- name: no statutory basic deduction above 25 million
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 25000001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 0
+- name: enacted 2026 statutory amount
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 23500000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 620000

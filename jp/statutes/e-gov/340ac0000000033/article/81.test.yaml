@@ -1,0 +1,40 @@
+- name: 2018 special widow
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/81#japan_pit_widow_widower_or_single_parent_deduction: 350000
+- name: 2018 widower
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: false
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/81#japan_pit_widow_widower_or_single_parent_deduction: 270000
+- name: 2020 single parent
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_single_parent: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow: false
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/81#japan_pit_widow_widower_or_single_parent_deduction: 350000
+- name: 2020 ordinary widow
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_single_parent: false
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/81#japan_pit_widow_widower_or_single_parent_deduction: 270000
+- name: enacted 2027 single-parent increase
+  period: {period_kind: tax_year, start: '2027-01-01', end: '2027-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_single_parent: true
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow: false
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/81#japan_pit_widow_widower_or_single_parent_deduction: 380000

@@ -1,0 +1,110 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Monthly Child-Rearing Allowance amounts under Enforcement Order article
+    2-2 from 平成29年4月 through 令和8年4月, including the November 2024
+    unification of every second-and-later-child addition.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2
+    source_sha256: 4dca7cf10d4c42970241870640c0f56dca47fd11b0715c6614a2e74106dcf846
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_child_rearing_allowance_basic_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2, excerpt: 四万二千二百九十円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-2, excerpt: 四万二千五百円}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-2, excerpt: 四万二千九百十円}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-2, excerpt: 四万三千百六十円}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2022-04-01/article/2-2, excerpt: 四万三千七十円}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-2, excerpt: 四万四千百四十円}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-2, excerpt: 四万五千五百円}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-2, excerpt: 四万六千六百九十円}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-2, excerpt: 四万八千五十円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '42290'}
+      - {effective_from: '2018-04-01', formula: '42500'}
+      - {effective_from: '2019-04-01', formula: '42910'}
+      - {effective_from: '2020-04-01', formula: '43160'}
+      - {effective_from: '2022-04-01', formula: '43070'}
+      - {effective_from: '2023-04-01', formula: '44140'}
+      - {effective_from: '2024-04-01', formula: '45500'}
+      - {effective_from: '2025-04-01', formula: '46690'}
+      - {effective_from: '2026-04-01', formula: '48050'}
+  - name: japan_child_rearing_allowance_first_additional_child_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2, excerpt: 九千九百九十円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-2, excerpt: 一万四十円}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-2, excerpt: 一万百四十円}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-2, excerpt: 一万百九十円}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2022-04-01/article/2-2, excerpt: 一万百七十円}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-2, excerpt: 一万四百二十円}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-2, excerpt: 一万七百五十円}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-2, excerpt: 一万千三十円}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-2, excerpt: 一万千三百五十円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '9990'}
+      - {effective_from: '2018-04-01', formula: '10040'}
+      - {effective_from: '2019-04-01', formula: '10140'}
+      - {effective_from: '2020-04-01', formula: '10190'}
+      - {effective_from: '2022-04-01', formula: '10170'}
+      - {effective_from: '2023-04-01', formula: '10420'}
+      - {effective_from: '2024-04-01', formula: '10750'}
+      - {effective_from: '2025-04-01', formula: '11030'}
+      - {effective_from: '2026-04-01', formula: '11350'}
+  - name: japan_child_rearing_allowance_later_additional_child_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2017-04-01/article/2-2, excerpt: 五千九百九十円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2018-04-01/article/2-2, excerpt: 六千二十円}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2019-04-01/article/2-2, excerpt: 六千八十円}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2020-04-01/article/2-2, excerpt: 六千百十円}}
+          - {path: "versions[4].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2022-04-01/article/2-2, excerpt: 六千百円}}
+          - {path: "versions[5].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2023-04-01/article/2-2, excerpt: 六千二百五十円}}
+          - {path: "versions[6].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2024-04-01/article/2-2, excerpt: 六千四百五十円}}
+          - {path: "versions[7].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/336ac0000000238/as-of/2024-11-01/article/5, excerpt: 監護等児童のうちの一人以外の監護等児童につきそれぞれ一万七百五十円}}
+          - {path: "versions[8].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2025-04-01/article/2-2, excerpt: 一万千三十円}}
+          - {path: "versions[9].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/336co0000000405/as-of/2026-04-01/article/2-2, excerpt: 一万千三百五十円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '5990'}
+      - {effective_from: '2018-04-01', formula: '6020'}
+      - {effective_from: '2019-04-01', formula: '6080'}
+      - {effective_from: '2020-04-01', formula: '6110'}
+      - {effective_from: '2022-04-01', formula: '6100'}
+      - {effective_from: '2023-04-01', formula: '6250'}
+      - {effective_from: '2024-04-01', formula: '6450'}
+      - {effective_from: '2024-11-01', formula: '10750'}
+      - {effective_from: '2025-04-01', formula: '11030'}
+      - {effective_from: '2026-04-01', formula: '11350'}
+  - name: japan_child_rearing_allowance_full_monthly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_rearing_allowance_basic_monthly_amount
+          + min(1, max(0, japan_child_rearing_allowance_qualifying_child_count - 1))
+          * japan_child_rearing_allowance_first_additional_child_monthly_amount
+          + max(0, japan_child_rearing_allowance_qualifying_child_count - 2)
+          * japan_child_rearing_allowance_later_additional_child_monthly_amount

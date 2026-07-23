@@ -1,0 +1,28 @@
+- name: all deductible dependent categories
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count: 1
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84#japan_pit_dependent_deduction: 2070000
+- name: 2025 dependent income limit
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_candidate_dependent_total_income: 580000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84#japan_pit_dependent_income_qualifies_flag: 1
+- name: 2025 dependent above income limit
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_candidate_dependent_total_income: 580001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84#japan_pit_dependent_income_qualifies_flag: 0
+- name: enacted 2026 dependent income limit
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_candidate_dependent_total_income: 620000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84#japan_pit_dependent_income_qualifies_flag: 1

@@ -1,0 +1,233 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Income Tax Act article 89 progressive national income-tax schedule in the
+    consolidated law effective 2017-04-01. The supplied taxable general income
+    is assumed to have already undergone the Act's income aggregation,
+    deductions, and statutory taxable-income rounding.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_pit_first_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 百九十五万円以下の金額百分の五
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1950000'
+  - name: japan_pit_second_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 百九十五万円を超え三百三十万円以下の金額百分の十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '3300000'
+  - name: japan_pit_third_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 三百三十万円を超え六百九十五万円以下の金額百分の二十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '6950000'
+  - name: japan_pit_fourth_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 六百九十五万円を超え九百万円以下の金額百分の二十三
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '9000000'
+  - name: japan_pit_fifth_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 九百万円を超え千八百万円以下の金額百分の三十三
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '18000000'
+  - name: japan_pit_sixth_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 千八百万円を超え四千万円以下の金額百分の四十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '40000000'
+  - name: japan_pit_first_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 百九十五万円以下の金額百分の五
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.05'
+  - name: japan_pit_second_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 百九十五万円を超え三百三十万円以下の金額百分の十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.10'
+  - name: japan_pit_third_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 三百三十万円を超え六百九十五万円以下の金額百分の二十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.20'
+  - name: japan_pit_fourth_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 六百九十五万円を超え九百万円以下の金額百分の二十三
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.23'
+  - name: japan_pit_fifth_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 九百万円を超え千八百万円以下の金額百分の三十三
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.33'
+  - name: japan_pit_sixth_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 千八百万円を超え四千万円以下の金額百分の四十
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.40'
+  - name: japan_pit_top_bracket_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
+              excerpt: 四千万円を超える金額百分の四十五
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.45'
+  - name: japan_national_income_tax_article_89_base_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_pit_taxable_general_income <= japan_pit_first_bracket_upper_threshold:
+              japan_pit_taxable_general_income * japan_pit_first_bracket_rate
+          else:
+              if japan_pit_taxable_general_income <= japan_pit_second_bracket_upper_threshold:
+                  japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_taxable_general_income - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate
+              else:
+                  if japan_pit_taxable_general_income <= japan_pit_third_bracket_upper_threshold:
+                      japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_second_bracket_upper_threshold - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate + (japan_pit_taxable_general_income - japan_pit_second_bracket_upper_threshold) * japan_pit_third_bracket_rate
+                  else:
+                      if japan_pit_taxable_general_income <= japan_pit_fourth_bracket_upper_threshold:
+                          japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_second_bracket_upper_threshold - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate + (japan_pit_third_bracket_upper_threshold - japan_pit_second_bracket_upper_threshold) * japan_pit_third_bracket_rate + (japan_pit_taxable_general_income - japan_pit_third_bracket_upper_threshold) * japan_pit_fourth_bracket_rate
+                      else:
+                          if japan_pit_taxable_general_income <= japan_pit_fifth_bracket_upper_threshold:
+                              japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_second_bracket_upper_threshold - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate + (japan_pit_third_bracket_upper_threshold - japan_pit_second_bracket_upper_threshold) * japan_pit_third_bracket_rate + (japan_pit_fourth_bracket_upper_threshold - japan_pit_third_bracket_upper_threshold) * japan_pit_fourth_bracket_rate + (japan_pit_taxable_general_income - japan_pit_fourth_bracket_upper_threshold) * japan_pit_fifth_bracket_rate
+                          else:
+                              if japan_pit_taxable_general_income <= japan_pit_sixth_bracket_upper_threshold:
+                                  japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_second_bracket_upper_threshold - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate + (japan_pit_third_bracket_upper_threshold - japan_pit_second_bracket_upper_threshold) * japan_pit_third_bracket_rate + (japan_pit_fourth_bracket_upper_threshold - japan_pit_third_bracket_upper_threshold) * japan_pit_fourth_bracket_rate + (japan_pit_fifth_bracket_upper_threshold - japan_pit_fourth_bracket_upper_threshold) * japan_pit_fifth_bracket_rate + (japan_pit_taxable_general_income - japan_pit_fifth_bracket_upper_threshold) * japan_pit_sixth_bracket_rate
+                              else:
+                                  japan_pit_first_bracket_upper_threshold * japan_pit_first_bracket_rate + (japan_pit_second_bracket_upper_threshold - japan_pit_first_bracket_upper_threshold) * japan_pit_second_bracket_rate + (japan_pit_third_bracket_upper_threshold - japan_pit_second_bracket_upper_threshold) * japan_pit_third_bracket_rate + (japan_pit_fourth_bracket_upper_threshold - japan_pit_third_bracket_upper_threshold) * japan_pit_fourth_bracket_rate + (japan_pit_fifth_bracket_upper_threshold - japan_pit_fourth_bracket_upper_threshold) * japan_pit_fifth_bracket_rate + (japan_pit_sixth_bracket_upper_threshold - japan_pit_fifth_bracket_upper_threshold) * japan_pit_sixth_bracket_rate + (japan_pit_taxable_general_income - japan_pit_sixth_bracket_upper_threshold) * japan_pit_top_bracket_rate

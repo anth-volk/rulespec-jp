@@ -1,0 +1,74 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
+  - jp:statutes/e-gov/340ac0000000033/article/89
+module:
+  summary: >-
+    One-year 2024 national fixed income-tax credit. It is available to
+    residents with total income not exceeding JPY 18.05 million, at JPY 30,000
+    for the taxpayer and each qualifying resident same-livelihood spouse or
+    dependent, limited to gross national income tax. Other common credits need
+    expenditure, investment, foreign-income, or housing-loan inputs and are
+    outside Wave 1.
+  source_verification:
+    corpus_citation_path: jp/guidance/nta/income-tax/fixed-credit/2024/document-1
+    source_sha256: 89ed31ba787d175bbcea8b2f1336b82e6f8f18733595834df1dae11bd79089c3
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_2024_fixed_income_tax_credit_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/fixed-credit/2024/document-1, excerpt: "合計所得金額（注１）が1,805万円以下である居住者"}}
+    versions:
+      - {effective_from: '2024-01-01', formula: '18050000'}
+  - name: japan_2024_fixed_income_tax_credit_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/fixed-credit/2024/document-1, excerpt: "本人分 ３万円"}}
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/fixed-credit/2024/document-1, excerpt: "同一生計配偶者又は扶養親族（注１、２） １人につき３万円"}}
+    versions:
+      - {effective_from: '2024-01-01', formula: '30000'}
+  - name: japan_2024_fixed_income_tax_credit_potential
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - {effective_from: '2017-04-01', formula: '0'}
+      - effective_from: '2024-01-01'
+        formula: |-
+          if japan_pit_standard_resident_liability_applies and japan_pit_total_income_amount <= japan_2024_fixed_income_tax_credit_income_limit:
+              japan_2024_fixed_income_tax_credit_per_person * (1 + japan_2024_fixed_credit_qualifying_family_member_count)
+          else:
+              0
+      - {effective_from: '2025-01-01', formula: '0'}
+  - name: japan_2024_fixed_income_tax_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: min(japan_national_income_tax_article_89_base_tax, japan_2024_fixed_income_tax_credit_potential)
+  - name: japan_national_income_tax_after_common_credits
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_national_income_tax_article_89_base_tax - japan_2024_fixed_income_tax_credit)

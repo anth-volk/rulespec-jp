@@ -1,0 +1,14 @@
+- name: no defense surtax before 2027
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 1950000
+  output:
+    jp:policies/nta/defense-special-income-tax/2027#japan_defense_special_income_tax: 0
+    jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes: 99547
+- name: enacted 2027 split preserves aggregate 2.1 percent
+  period: {period_kind: tax_year, start: '2027-01-01', end: '2027-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 1950000
+  output:
+    jp:policies/nta/defense-special-income-tax/2027#japan_defense_special_income_tax: 975
+    jp:policies/nta/defense-special-income-tax/2027#japan_national_income_tax_including_national_surtaxes: 99547

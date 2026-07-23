@@ -1,0 +1,52 @@
+- name: zero_taxable_income
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 0
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 0
+- name: first_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 1950000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 97500
+- name: second_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 3300000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 232500
+- name: third_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 6950000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 962500
+- name: fourth_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 9000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 1434000
+- name: fifth_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 18000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 4404000
+- name: sixth_bracket_upper_boundary
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 40000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 13204000
+- name: top_bracket
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 50000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax: 17704000

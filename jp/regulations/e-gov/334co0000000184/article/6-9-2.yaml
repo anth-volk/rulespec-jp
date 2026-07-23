@@ -1,0 +1,43 @@
+format: rulespec/v1
+imports:
+  - jp:regulations/e-gov/334co0000000184/article/6-8-2
+module:
+  summary: >-
+    National Pension one-quarter exemption (three-quarter payment) income
+    limit under Enforcement Order article 6-9-2 from 平成29年度.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9-2
+    source_sha256: ed967347b61a984af7aa3b8117f86ad39cef9228c8d91853b04fd849b6bf1f60
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_national_pension_one_quarter_exemption_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/334co0000000184/as-of/2017-04-01/article/6-9-2, excerpt: ないときは百五十八万円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/334co0000000184/as-of/2021-04-01/article/6-9-2, excerpt: ないときは百六十八万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '1580000'}
+      - {effective_from: '2021-04-01', formula: '1680000'}
+  - name: japan_national_pension_one_quarter_exemption_applicant_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_national_pension_one_quarter_exemption_income_base
+          + japan_national_pension_partial_exemption_ordinary_dependent_increment
+          * japan_national_pension_ordinary_dependent_count
+          + japan_national_pension_partial_exemption_elderly_dependent_increment
+          * japan_national_pension_elderly_dependent_count
+          + japan_national_pension_partial_exemption_specified_dependent_increment
+          * japan_national_pension_specified_dependent_count

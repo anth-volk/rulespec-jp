@@ -1,0 +1,28 @@
+version: 1
+allowed_root_directories:
+  - .axiom
+  - .github
+  - data
+  - tests
+  - jp
+allowed_root_files:
+  - .gitignore
+  - AGENTS.md
+  - LICENSE
+  - README.md
+  - known-missing-money-atoms.yaml
+  - known-validation-gaps.yaml
+  - oracle-coverage-pending.yaml
+  - variables.toml
+path_rules:
+  - patterns: [".axiom/**"]
+    allow_extensions: [".json", ".toml", ".yaml", ".yml"]
+  - patterns: [".github/**"]
+    allow_extensions: [".yaml", ".yml"]
+  - patterns: ["data/**"]
+    allow_extensions: [".json", ".jsonl", ".yaml", ".yml"]
+  - patterns: ["tests/**"]
+    allow_extensions: [".py"]
+  - patterns: ["jp/**"]
+    allow_extensions: [".yaml"]
+    allow_filenames: [".gitkeep"]

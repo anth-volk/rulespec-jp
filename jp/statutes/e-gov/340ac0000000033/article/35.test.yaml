@@ -1,0 +1,55 @@
+- name: no_public_pension_receipts
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 0
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 0
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_deduction_article_35_before_age_special_rule: 0
+- name: base_minimum_last_zero_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 700000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 0
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_deduction_article_35_before_age_special_rule: 700000
+- name: base_minimum_first_positive_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 700001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 1
+- name: minimum_meets_formula_at_1_3m
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 1300000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 600000
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_deduction_article_35_before_age_special_rule: 700000
+- name: historical_under_65_example
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 3000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 1875000
+- name: first_formula_boundary_at_4_1m
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 4100000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 2700000
+- name: second_formula_boundary_at_7_7m
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 7700000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 5760000
+- name: fractional_yen_above_7_7m_is_discarded
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/35#input.japan_public_pension_gross_receipts: 7700001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule: 5760000

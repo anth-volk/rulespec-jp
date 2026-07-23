@@ -1,0 +1,183 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Japan Pension Service historical monthly National Pension contribution
+    amounts from 平成29年度 through 令和8年度.
+  source_verification:
+    corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+    source_sha256: 90f854c5f1b90e5b3c7a2d81f09163548eb2904ad28684cd1efda451e90b7bf7
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_national_pension_full_monthly_contribution_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms: &np_history_amount_atoms
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+          - path: versions[1].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '平成30年4月～平成31年3月 ￥16,340 ￥400 ￥8,170 ￥4,090 ￥12,260'}
+          - path: versions[2].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '平成31年4月～令和2年3月 ￥16,410 ￥400 ￥8,210 ￥4,100 ￥12,310'}
+          - path: versions[3].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和2年4月～令和3年3月 ￥16,540 ￥400 ￥8,270 ￥4,140 ￥12,410'}
+          - path: versions[4].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和3年4月～令和4年3月 ￥16,610 ￥400 ￥8,310 ￥4,150 ￥12,460'}
+          - path: versions[5].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和4年4月～令和5年3月 ￥16,590 ￥400 ￥8,300 ￥4,150 ￥12,440'}
+          - path: versions[6].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和5年4月～令和6年3月 ￥16,520 ￥400 ￥8,260 ￥4,130 ￥12,390'}
+          - path: versions[7].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和6年4月～令和7年3月 ￥16,980 ￥400 ￥8,490 ￥4,250 ￥12,740'}
+          - path: versions[8].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和7年4月～令和8年3月 ￥17,510 ￥400 ￥8,760 ￥4,380 ￥13,130'}
+          - path: versions[9].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1, excerpt: '令和8年4月～令和9年3月 ￥17,920 ￥400 ￥8,960 ￥4,480 ￥13,440'}
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '16490'
+      - {effective_from: '2018-04-01', formula: '16340'}
+      - {effective_from: '2019-04-01', formula: '16410'}
+      - {effective_from: '2020-04-01', formula: '16540'}
+      - {effective_from: '2021-04-01', formula: '16610'}
+      - {effective_from: '2022-04-01', formula: '16590'}
+      - {effective_from: '2023-04-01', formula: '16520'}
+      - {effective_from: '2024-04-01', formula: '16980'}
+      - {effective_from: '2025-04-01', formula: '17510'}
+      - {effective_from: '2026-04-01', formula: '17920'}
+  - name: japan_national_pension_additional_monthly_contribution_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/jps/national-pension/contribution-history/block-1
+              excerpt: 平成29年4月～平成30年3月 ￥16,490 ￥400 ￥8,250 ￥4,120 ￥12,370
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '400'
+  - name: japan_national_pension_half_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms: *np_history_amount_atoms
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '8250'
+      - {effective_from: '2018-04-01', formula: '8170'}
+      - {effective_from: '2019-04-01', formula: '8210'}
+      - {effective_from: '2020-04-01', formula: '8270'}
+      - {effective_from: '2021-04-01', formula: '8310'}
+      - {effective_from: '2022-04-01', formula: '8300'}
+      - {effective_from: '2023-04-01', formula: '8260'}
+      - {effective_from: '2024-04-01', formula: '8490'}
+      - {effective_from: '2025-04-01', formula: '8760'}
+      - {effective_from: '2026-04-01', formula: '8960'}
+  - name: japan_national_pension_quarter_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms: *np_history_amount_atoms
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '4120'
+      - {effective_from: '2018-04-01', formula: '4090'}
+      - {effective_from: '2019-04-01', formula: '4100'}
+      - {effective_from: '2020-04-01', formula: '4140'}
+      - {effective_from: '2021-04-01', formula: '4150'}
+      - {effective_from: '2022-04-01', formula: '4150'}
+      - {effective_from: '2023-04-01', formula: '4130'}
+      - {effective_from: '2024-04-01', formula: '4250'}
+      - {effective_from: '2025-04-01', formula: '4380'}
+      - {effective_from: '2026-04-01', formula: '4480'}
+  - name: japan_national_pension_three_quarter_payment_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms: *np_history_amount_atoms
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '12370'
+      - {effective_from: '2018-04-01', formula: '12260'}
+      - {effective_from: '2019-04-01', formula: '12310'}
+      - {effective_from: '2020-04-01', formula: '12410'}
+      - {effective_from: '2021-04-01', formula: '12460'}
+      - {effective_from: '2022-04-01', formula: '12440'}
+      - {effective_from: '2023-04-01', formula: '12390'}
+      - {effective_from: '2024-04-01', formula: '12740'}
+      - {effective_from: '2025-04-01', formula: '13130'}
+      - {effective_from: '2026-04-01', formula: '13440'}
+  - name: japan_national_pension_standard_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_full_monthly_contribution_amount
+  - name: japan_national_pension_additional_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_additional_monthly_contribution_amount
+  - name: japan_national_pension_half_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_half_payment_monthly_amount
+  - name: japan_national_pension_quarter_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_quarter_payment_monthly_amount
+  - name: japan_national_pension_three_quarter_payment_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_national_pension_three_quarter_payment_monthly_amount

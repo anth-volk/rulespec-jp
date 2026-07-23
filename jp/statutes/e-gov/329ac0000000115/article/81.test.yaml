@@ -1,0 +1,41 @@
+- name: April 2017 ordinary employee rate
+  period: &april_2017 {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 300000
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 0
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: false
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee: true
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution: 27273
+- name: September 2017 permanent rate
+  period: {period_kind: month, start: '2017-09-01', end: '2017-09-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 300000
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 0
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: false
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee: true
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution: 27450
+- name: payroll withholding rounds exact half-yen down
+  period: {period_kind: month, start: '2025-04-01', end: '2025-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 1000
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: false
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_contribution: 91
+- name: cash payment rounds exact half-yen up
+  period: {period_kind: month, start: '2025-04-01', end: '2025-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 1000
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: true
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_bonus_contribution: 92
+- name: uncovered worker owes zero
+  period: *april_2017
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 300000
+    jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 0
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: false
+    jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee: false
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/81#japan_employees_pension_employee_total_contribution: 0

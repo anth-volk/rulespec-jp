@@ -1,0 +1,75 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
+module:
+  summary: >-
+    Widow, widower, and single-parent deductions, with the 令和2年 tax-year
+    gender-neutral single-parent reform. Legal family-status classification is
+    an explicit factual input.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/81
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_widow_or_widower_deduction_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/81, excerpt: 寡婦又は寡夫である場合には}}
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/81, excerpt: 二十七万円を控除する}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2021-01-01/article/80, excerpt: 二十七万円を控除する}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '270000'}
+      - {effective_from: '2020-01-01', formula: '270000'}
+  - name: japan_pit_special_widow_or_single_parent_deduction_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/widow/no-1170/block-5, excerpt: 特別の寡婦 35万円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2021-01-01/article/81, excerpt: ひとり親である場合には}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2021-01-01/article/81, excerpt: 三十五万円を控除する}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "控除額が38万円（改正前：35万円）に引き上げられました"}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '350000'}
+      - {effective_from: '2020-01-01', formula: '350000'}
+      - {effective_from: '2027-01-01', formula: '380000'}
+  - name: japan_pit_widow_widower_or_single_parent_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if japan_pit_is_special_widow:
+                  japan_pit_special_widow_or_single_parent_deduction_amount
+              else:
+                  if japan_pit_is_widow_or_widower:
+                      japan_pit_widow_or_widower_deduction_amount
+                  else:
+                      0
+      - effective_from: '2020-01-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if japan_pit_is_single_parent:
+                  japan_pit_special_widow_or_single_parent_deduction_amount
+              else:
+                  if japan_pit_is_widow:
+                      japan_pit_widow_or_widower_deduction_amount
+                  else:
+                      0

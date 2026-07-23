@@ -1,0 +1,16 @@
+- name: no dependents at start
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count: 0
+  output:
+    jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_claimant_income_limit: 3604000
+- name: new 令和7 base and all dependent classes
+  period: {period_kind: month, start: '2025-08-01', end: '2025-08-31'}
+  input:
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count: 1
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count: 1
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count: 1
+  output:
+    jp:regulations/e-gov/350co0000000207/article/7#japan_individual_disability_allowance_claimant_income_limit: 5151000

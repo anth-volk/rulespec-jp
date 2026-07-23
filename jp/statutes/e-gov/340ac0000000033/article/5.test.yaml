@@ -1,0 +1,14 @@
+- name: resident with ordinary domestic income is in scope
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_income_is_ordinary_domestic_source: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/5#japan_pit_ordinary_domestic_income_scope_flag: 1
+- name: nonresident is outside ordinary resident calculation
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: false
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_income_is_ordinary_domestic_source: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/5#japan_pit_ordinary_domestic_income_scope_flag: 0

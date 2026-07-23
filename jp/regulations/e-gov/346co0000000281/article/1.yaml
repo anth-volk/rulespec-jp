@@ -1,0 +1,60 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Child Allowance ordinary income limit for an individual recipient from
+    平成29年4月 through the abolition of the income test in 令和6年10月.
+    The assessed-income amount is calculated under Order articles 2 and 3 and
+    supplied to the benefit module.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1
+    source_sha256: 53ad32bd99a121aa71cbc98264be80fba650803c01788fe9e43389516c6b7573
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_child_allowance_ordinary_income_limit_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1, excerpt: 扶養親族等及び児童がないときは、六百二十二万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '6220000'}
+  - name: japan_child_allowance_income_limit_per_dependent
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1, excerpt: 一人につき三十八万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+  - name: japan_child_allowance_elderly_dependent_extra
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/346co0000000281/as-of/2017-04-01/article/1, excerpt: 一人につき四十四万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '60000'}
+  - name: japan_child_allowance_ordinary_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_allowance_ordinary_income_limit_base
+          + japan_child_allowance_income_limit_per_dependent
+          * (japan_child_allowance_ordinary_dependent_count
+          + japan_child_allowance_elderly_dependent_count)
+          + japan_child_allowance_elderly_dependent_extra
+          * japan_child_allowance_elderly_dependent_count

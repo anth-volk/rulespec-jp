@@ -1,0 +1,786 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Income Tax Act article 28 employment income from the 2017-04-01 boundary
+    through the latest enacted rules, including the separate 2028-onward
+    minimum. Gross employment receipts
+    below JPY 6.6 million use statutory Schedule 5 and its JPY 4,000 bands.
+    The module includes the 2020 schedule and cap reform, the 2025 minimum
+    deduction increase, and the enacted 2026 minimum and transition table.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_employment_income_schedule_zero_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: ６５１，０００円未満 | ０
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '651000'
+  - name: japan_employment_income_schedule_linear_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: ６５１，０００ | １，６１９，０００ | 給与等の金額から６５０，０００円を控除した金額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1619000'
+  - name: japan_employment_income_schedule_969_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６１９，０００ | １，６２０，０００ | ９６９，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1620000'
+  - name: japan_employment_income_schedule_970_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２０，０００ | １，６２２，０００ | ９７０，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1622000'
+  - name: japan_employment_income_schedule_972_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２２，０００ | １，６２４，０００ | ９７２，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1624000'
+  - name: japan_employment_income_schedule_974_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２４，０００ | １，６２８，０００ | ９７４，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1628000'
+  - name: japan_employment_income_schedule_rounding_band
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２８，０００ | １，６３２，０００ | ９７６，８００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '4000'
+  - name: japan_employment_income_first_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 収入金額が百八十万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1800000'
+  - name: japan_employment_income_second_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 収入金額が百八十万円を超え三百六十万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '3600000'
+  - name: japan_employment_income_third_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 収入金額が三百六十万円を超え六百六十万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '6600000'
+  - name: japan_employment_income_fourth_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 収入金額が六百六十万円を超え千万円以下である場合
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '10000000'
+  - name: japan_employment_income_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 当該金額が六十五万円に満たない場合には、六十五万円
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '650000'
+  - name: japan_employment_income_first_deduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 当該収入金額の百分の四十に相当する金額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.40'
+  - name: japan_employment_income_second_deduction_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 七十二万円と当該収入金額から百八十万円を控除した金額の百分の三十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '720000'
+  - name: japan_employment_income_second_deduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 七十二万円と当該収入金額から百八十万円を控除した金額の百分の三十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.30'
+  - name: japan_employment_income_third_deduction_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 百二十六万円と当該収入金額から三百六十万円を控除した金額の百分の二十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1260000'
+  - name: japan_employment_income_third_deduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 百二十六万円と当該収入金額から三百六十万円を控除した金額の百分の二十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.20'
+  - name: japan_employment_income_fourth_deduction_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 百八十六万円と当該収入金額から六百六十万円を控除した金額の百分の十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1860000'
+  - name: japan_employment_income_fourth_deduction_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 百八十六万円と当該収入金額から六百六十万円を控除した金額の百分の十に相当する金額との合計額
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '0.10'
+  - name: japan_employment_income_deduction_cap
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
+              excerpt: 収入金額が千万円を超える場合二百二十万円
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '2200000'
+  - name: japan_employment_income_modern_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "1,625,000円まで 550,000円"}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2025/document-1, excerpt: "55万円の最低保障額が65万円に引き上げられました"}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "65万円の最低保障額が74万円に引き上げられました"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '550000'}
+      - {effective_from: '2025-01-01', formula: '650000'}
+      - {effective_from: '2026-01-01', formula: '740000'}
+  - name: japan_employment_income_2020_zero_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "550,999 円まで"}}
+    versions: [{effective_from: '2020-01-01', formula: '551000'}]
+  - name: japan_employment_income_2020_linear_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "551,000 円 1,618,999"}}
+    versions: [{effective_from: '2020-01-01', formula: '1619000'}]
+  - name: japan_employment_income_2020_special_1069_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,619,000 1,619,999 1,069,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1620000'}]
+  - name: japan_employment_income_2020_special_1070_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,620,000 1,621,999 1,070,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1622000'}]
+  - name: japan_employment_income_2020_special_1072_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,622,000 1,623,999 1,072,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1624000'}]
+  - name: japan_employment_income_2020_special_1074_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,624,000 1,627,999 1,074,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1628000'}]
+  - name: japan_employment_income_2020_special_1069_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,619,000 1,619,999 1,069,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1069000'}]
+  - name: japan_employment_income_2020_special_1070_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,620,000 1,621,999 1,070,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1070000'}]
+  - name: japan_employment_income_2020_special_1072_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,622,000 1,623,999 1,072,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1072000'}]
+  - name: japan_employment_income_2020_special_1074_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/tables/2020/document-1, excerpt: "1,624,000 1,627,999 1,074,000"}}
+    versions: [{effective_from: '2020-01-01', formula: '1074000'}]
+  - name: japan_employment_income_modern_minimum_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "1,625,000円まで 550,000円"}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-4, excerpt: "1,900,000円まで 650,000円"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '1625000'}
+      - {effective_from: '2025-01-01', formula: '1900000'}
+  - name: japan_employment_income_modern_first_offset
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "収入金額×40％-100,000円"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '100000'}
+  - name: japan_employment_income_modern_second_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "収入金額×30％+80,000円"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '80000'}
+  - name: japan_employment_income_modern_third_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "収入金額×20％+440,000円"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '440000'}
+  - name: japan_employment_income_modern_fourth_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "収入金額×10％+1,100,000円"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '1100000'}
+  - name: japan_employment_income_modern_cap_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "8,500,001円以上 1,950,000円（上限）"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '8500000'}
+  - name: japan_employment_income_modern_deduction_cap
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/employment-income/no-1410/block-5, excerpt: "1,950,000円（上限）"}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '1950000'}
+  - name: japan_employment_income_2026_transition_first_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "74 万1,000 円未満"}}
+    versions: [{effective_from: '2026-01-01', formula: '741000'}]
+  - name: japan_employment_income_2026_transition_second_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "219 万1,000 円未満"}}
+    versions: [{effective_from: '2026-01-01', formula: '2191000'}]
+  - name: japan_employment_income_2026_transition_third_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "219 万3,000 円未満"}}
+    versions: [{effective_from: '2026-01-01', formula: '2193000'}]
+  - name: japan_employment_income_2026_transition_fourth_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "219 万6,000 円未満"}}
+    versions: [{effective_from: '2026-01-01', formula: '2196000'}]
+  - name: japan_employment_income_2026_transition_fifth_upper_exclusive
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "220万円未満"}}
+    versions: [{effective_from: '2026-01-01', formula: '2200000'}]
+  - name: japan_employment_income_2026_transition_fixed_1451
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "145 万1,000 円"}}
+    versions: [{effective_from: '2026-01-01', formula: '1451000'}]
+  - name: japan_employment_income_2026_transition_fixed_1453
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "145 万3,000 円"}}
+    versions: [{effective_from: '2026-01-01', formula: '1453000'}]
+  - name: japan_employment_income_2026_transition_fixed_1456
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "145 万6,000 円"}}
+    versions: [{effective_from: '2026-01-01', formula: '1456000'}]
+  - name: japan_employment_income_2028_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "令和10 年分以後 190 万円以下 74 万円（注１） その収入金額×30％＋８万円 （69 万円未満となる場合は、69 万円）"}}
+    versions: [{effective_from: '2028-01-01', formula: '690000'}]
+  - name: japan_employment_income_2028_special_formula_upper
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "190 万円超 220 万円以下 その収入金額×30％＋８万円"}}
+    versions: [{effective_from: '2028-01-01', formula: '2200000'}]
+  - name: japan_employment_income_schedule_969_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６１９，０００ | １，６２０，０００ | ９６９，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '969000'
+  - name: japan_employment_income_schedule_970_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２０，０００ | １，６２２，０００ | ９７０，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '970000'
+  - name: japan_employment_income_schedule_972_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２２，０００ | １，６２４，０００ | ９７２，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '972000'
+  - name: japan_employment_income_schedule_974_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/appendix-table/5
+              excerpt: １，６２４，０００ | １，６２８，０００ | ９７４，０００
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '974000'
+  - name: japan_employment_income_schedule_rounded_receipts
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(japan_employment_gross_cash_earnings / japan_employment_income_schedule_rounding_band) * japan_employment_income_schedule_rounding_band
+  - name: japan_employment_income_article_28
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings < japan_employment_income_schedule_zero_upper_exclusive:
+              0
+          else:
+              if japan_employment_gross_cash_earnings < japan_employment_income_schedule_linear_upper_exclusive:
+                  japan_employment_gross_cash_earnings - japan_employment_income_minimum_deduction
+              else:
+                  if japan_employment_gross_cash_earnings < japan_employment_income_schedule_969_upper_exclusive:
+                      japan_employment_income_schedule_969_amount
+                  else:
+                      if japan_employment_gross_cash_earnings < japan_employment_income_schedule_970_upper_exclusive:
+                          japan_employment_income_schedule_970_amount
+                      else:
+                          if japan_employment_gross_cash_earnings < japan_employment_income_schedule_972_upper_exclusive:
+                              japan_employment_income_schedule_972_amount
+                          else:
+                              if japan_employment_gross_cash_earnings < japan_employment_income_schedule_974_upper_exclusive:
+                                  japan_employment_income_schedule_974_amount
+                              else:
+                                  if japan_employment_gross_cash_earnings < japan_employment_income_first_bracket_upper_threshold:
+                                      japan_employment_income_schedule_rounded_receipts - japan_employment_income_schedule_rounded_receipts * japan_employment_income_first_deduction_rate
+                                  else:
+                                      if japan_employment_gross_cash_earnings < japan_employment_income_second_bracket_upper_threshold:
+                                          japan_employment_income_schedule_rounded_receipts - (japan_employment_income_second_deduction_base + (japan_employment_income_schedule_rounded_receipts - japan_employment_income_first_bracket_upper_threshold) * japan_employment_income_second_deduction_rate)
+                                      else:
+                                          if japan_employment_gross_cash_earnings < japan_employment_income_third_bracket_upper_threshold:
+                                              japan_employment_income_schedule_rounded_receipts - (japan_employment_income_third_deduction_base + (japan_employment_income_schedule_rounded_receipts - japan_employment_income_second_bracket_upper_threshold) * japan_employment_income_third_deduction_rate)
+                                          else:
+                                              if japan_employment_gross_cash_earnings <= japan_employment_income_fourth_bracket_upper_threshold:
+                                                  floor(japan_employment_gross_cash_earnings - (japan_employment_income_fourth_deduction_base + (japan_employment_gross_cash_earnings - japan_employment_income_third_bracket_upper_threshold) * japan_employment_income_fourth_deduction_rate))
+                                              else:
+                                                  japan_employment_gross_cash_earnings - japan_employment_income_deduction_cap
+      - effective_from: '2020-01-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings < japan_employment_income_2020_zero_upper_exclusive:
+              0
+          else:
+              if japan_employment_gross_cash_earnings < japan_employment_income_2020_linear_upper_exclusive:
+                  japan_employment_gross_cash_earnings - japan_employment_income_modern_minimum_deduction
+              else:
+                  if japan_employment_gross_cash_earnings < japan_employment_income_2020_special_1069_upper_exclusive:
+                      japan_employment_income_2020_special_1069_amount
+                  else:
+                      if japan_employment_gross_cash_earnings < japan_employment_income_2020_special_1070_upper_exclusive:
+                          japan_employment_income_2020_special_1070_amount
+                      else:
+                          if japan_employment_gross_cash_earnings < japan_employment_income_2020_special_1072_upper_exclusive:
+                              japan_employment_income_2020_special_1072_amount
+                          else:
+                              if japan_employment_gross_cash_earnings < japan_employment_income_2020_special_1074_upper_exclusive:
+                                  japan_employment_income_2020_special_1074_amount
+                              else:
+                                  if japan_employment_gross_cash_earnings <= japan_employment_income_first_bracket_upper_threshold:
+                                      japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_first_deduction_rate - japan_employment_income_modern_first_offset)
+                                  else:
+                                      if japan_employment_gross_cash_earnings <= japan_employment_income_second_bracket_upper_threshold:
+                                          japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_second_deduction_rate + japan_employment_income_modern_second_base)
+                                      else:
+                                          if japan_employment_gross_cash_earnings < japan_employment_income_third_bracket_upper_threshold:
+                                              japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_third_deduction_rate + japan_employment_income_modern_third_base)
+                                          else:
+                                              if japan_employment_gross_cash_earnings <= japan_employment_income_modern_cap_threshold:
+                                                  floor(japan_employment_gross_cash_earnings - (japan_employment_gross_cash_earnings * japan_employment_income_fourth_deduction_rate + japan_employment_income_modern_fourth_base))
+                                              else:
+                                                  japan_employment_gross_cash_earnings - japan_employment_income_modern_deduction_cap
+      - effective_from: '2025-01-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings <= japan_employment_income_modern_minimum_upper_threshold:
+              max(0, japan_employment_gross_cash_earnings - japan_employment_income_modern_minimum_deduction)
+          else:
+              if japan_employment_gross_cash_earnings <= japan_employment_income_second_bracket_upper_threshold:
+                  japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_second_deduction_rate + japan_employment_income_modern_second_base)
+              else:
+                  if japan_employment_gross_cash_earnings < japan_employment_income_third_bracket_upper_threshold:
+                      japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_third_deduction_rate + japan_employment_income_modern_third_base)
+                  else:
+                      if japan_employment_gross_cash_earnings <= japan_employment_income_modern_cap_threshold:
+                          floor(japan_employment_gross_cash_earnings - (japan_employment_gross_cash_earnings * japan_employment_income_fourth_deduction_rate + japan_employment_income_modern_fourth_base))
+                      else:
+                          japan_employment_gross_cash_earnings - japan_employment_income_modern_deduction_cap
+      - effective_from: '2026-01-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings < japan_employment_income_2026_transition_first_upper_exclusive:
+              0
+          else:
+              if japan_employment_gross_cash_earnings < japan_employment_income_2026_transition_second_upper_exclusive:
+                  japan_employment_gross_cash_earnings - japan_employment_income_modern_minimum_deduction
+              else:
+                  if japan_employment_gross_cash_earnings < japan_employment_income_2026_transition_third_upper_exclusive:
+                      japan_employment_income_2026_transition_fixed_1451
+                  else:
+                      if japan_employment_gross_cash_earnings < japan_employment_income_2026_transition_fourth_upper_exclusive:
+                          japan_employment_income_2026_transition_fixed_1453
+                      else:
+                          if japan_employment_gross_cash_earnings < japan_employment_income_2026_transition_fifth_upper_exclusive:
+                              japan_employment_income_2026_transition_fixed_1456
+                          else:
+                              if japan_employment_gross_cash_earnings <= japan_employment_income_second_bracket_upper_threshold:
+                                  japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_second_deduction_rate + japan_employment_income_modern_second_base)
+                              else:
+                                  if japan_employment_gross_cash_earnings < japan_employment_income_third_bracket_upper_threshold:
+                                      japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_third_deduction_rate + japan_employment_income_modern_third_base)
+                                  else:
+                                      if japan_employment_gross_cash_earnings <= japan_employment_income_modern_cap_threshold:
+                                          floor(japan_employment_gross_cash_earnings - (japan_employment_gross_cash_earnings * japan_employment_income_fourth_deduction_rate + japan_employment_income_modern_fourth_base))
+                                      else:
+                                          japan_employment_gross_cash_earnings - japan_employment_income_modern_deduction_cap
+      - effective_from: '2028-01-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings <= japan_employment_income_2028_special_formula_upper:
+              floor(max(0, japan_employment_gross_cash_earnings - max(japan_employment_income_2028_minimum_deduction, japan_employment_gross_cash_earnings * japan_employment_income_second_deduction_rate + japan_employment_income_modern_second_base)))
+          else:
+              if japan_employment_gross_cash_earnings < japan_employment_income_third_bracket_upper_threshold:
+                  japan_employment_income_schedule_rounded_receipts - (japan_employment_income_schedule_rounded_receipts * japan_employment_income_third_deduction_rate + japan_employment_income_modern_third_base)
+              else:
+                  if japan_employment_gross_cash_earnings <= japan_employment_income_modern_cap_threshold:
+                      floor(japan_employment_gross_cash_earnings - (japan_employment_gross_cash_earnings * japan_employment_income_fourth_deduction_rate + japan_employment_income_modern_fourth_base))
+                  else:
+                      japan_employment_gross_cash_earnings - japan_employment_income_modern_deduction_cap
+  - name: japan_employment_income_deduction_article_28
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_employment_gross_cash_earnings - japan_employment_income_article_28)

@@ -1,0 +1,43 @@
+- name: pre-reform regular amount
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: &pre_reform_regular
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_meets_nonfinancial_conditions: true
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income: 3000000
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count: 0
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count: 1
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_first_or_second_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count: 1
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_first_or_second_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count: 1
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_third_or_later_count: 0
+  output:
+    jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly: 40000
+- name: pre-upper-limit special benefit
+  period: {period_kind: month, start: '2021-07-01', end: '2021-07-31'}
+  input:
+    <<: *pre_reform_regular
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income: 10000000
+  output:
+    jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly: 15000
+- name: 2022 upper limit excludes claimant
+  period: {period_kind: month, start: '2022-06-01', end: '2022-06-30'}
+  input:
+    <<: *pre_reform_regular
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income: 8580000
+  output:
+    jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly: 0
+- name: 2024 universal expansion and third-child rate
+  period: {period_kind: month, start: '2024-10-01', end: '2024-10-31'}
+  input:
+    <<: *pre_reform_regular
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income: 50000000
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count: 1
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count: 0
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count: 1
+    jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count: 1
+  output:
+    jp:statutes/e-gov/346ac0000000073/article/6#japan_child_allowance_monthly: 70000

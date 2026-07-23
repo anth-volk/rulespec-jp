@@ -1,0 +1,30 @@
+- name: 2024 taxpayer and two family members
+  period: {period_kind: tax_year, start: '2024-01-01', end: '2024-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_pit_total_income_amount: 10000000
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_2024_fixed_credit_qualifying_family_member_count: 2
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 3300000
+  output:
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_2024_fixed_income_tax_credit: 90000
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_national_income_tax_after_common_credits: 142500
+- name: 2024 credit is limited to gross income tax
+  period: {period_kind: tax_year, start: '2024-01-01', end: '2024-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_pit_total_income_amount: 1000000
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_2024_fixed_credit_qualifying_family_member_count: 3
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 100000
+  output:
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_2024_fixed_income_tax_credit: 5000
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_national_income_tax_after_common_credits: 0
+- name: one-year credit expires after 2024
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_pit_total_income_amount: 1000000
+    jp:policies/nta/fixed-income-tax-credit/2024#input.japan_2024_fixed_credit_qualifying_family_member_count: 3
+    jp:statutes/e-gov/340ac0000000033/article/89#input.japan_pit_taxable_general_income: 100000
+  output:
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_2024_fixed_income_tax_credit: 0
+    jp:policies/nta/fixed-income-tax-credit/2024#japan_national_income_tax_after_common_credits: 5000

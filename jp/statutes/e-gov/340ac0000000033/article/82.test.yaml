@@ -1,0 +1,36 @@
+- name: 2018 working student at income limits
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 650000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 100000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/82#japan_pit_working_student_deduction: 270000
+- name: 2020 increased income limit
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 750000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 0
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/82#japan_pit_working_student_deduction: 270000
+- name: excess non-labor income
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 800000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 100001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/82#japan_pit_working_student_deduction: 0
+- name: enacted 2026 working-student income threshold
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 890000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 100000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/82#japan_pit_working_student_deduction: 270000

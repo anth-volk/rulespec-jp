@@ -1,0 +1,61 @@
+name: Wave 1 complete annual component validation for a 2018 working parent
+period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+scope_note: >-
+  This is a component ledger, not disposable income. Individual inhabitant
+  tax and nonuniform health and long-term-care premiums are explicit skips.
+annual_tax_inputs:
+  jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 3600000
+  jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 0
+  jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 40
+  jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 340200
+  jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_ordinary_disabled_person_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_special_disabled_person_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_cohabiting_special_disabled_person_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: false
+  jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: false
+  jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: false
+  jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 2340000
+  jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 0
+  jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: false
+  jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 0
+  jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+  jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 2340000
+  jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: false
+  jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count: 0
+  jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count: 0
+monthly_employees_pension_inputs:
+  jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 300000
+  jp:statutes/e-gov/329ac0000000115/article/24-4#input.japan_employees_pension_gross_bonus: 0
+  jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_employee_pays_share_in_cash: false
+  jp:statutes/e-gov/329ac0000000115/article/81#input.japan_employees_pension_is_ordinary_covered_employee: true
+monthly_employment_insurance_inputs:
+  jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+  jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+  jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_covered_wages_paid: 300000
+  jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_withheld_from_wages: true
+monthly_child_allowance_inputs:
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_meets_nonfinancial_conditions: true
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_assessed_income: 2340000
+  jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count: 0
+  jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_first_or_second_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_under_three_third_or_later_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_first_or_second_count: 1
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_primary_age_third_or_later_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_first_or_second_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_junior_high_third_or_later_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_first_or_second_count: 0
+  jp:statutes/e-gov/346ac0000000073/article/6#input.japan_child_allowance_high_school_third_or_later_count: 0
+expected_components:
+  employment_income: 2340000
+  employees_pension_employee_contribution: 329400
+  employment_insurance_employee_contribution: 10800
+  nationally_uniform_employee_contributions: 340200
+  taxable_general_income: 1619000
+  base_national_income_tax: 80950
+  reconstruction_special_income_tax: 1699
+  national_income_tax_including_surtax: 82649
+  child_allowance: 120000

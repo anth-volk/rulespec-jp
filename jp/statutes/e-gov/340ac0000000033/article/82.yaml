@@ -1,0 +1,74 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
+module:
+  summary: >-
+    Working-student deduction and its total-income/non-labour-income tests.
+    Educational-course qualification and the presence of labour income are
+    supplied as a non-income factual input.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/82
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_working_student_deduction_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/82, excerpt: 二十七万円を控除する}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '270000'}
+  - name: japan_pit_working_student_total_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/2, excerpt: 合計所得金額が六十五万円以下}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/working-student/no-1175/block-5, excerpt: 合計所得金額 が75万円以下}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/working-student/no-1175/block-5, excerpt: 金額は「85万円以下」です}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "勤労学生 89 万円以下"}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '650000'}
+      - {effective_from: '2020-01-01', formula: '750000'}
+      - {effective_from: '2025-01-01', formula: '850000'}
+      - {effective_from: '2026-01-01', formula: '890000'}
+  - name: japan_pit_working_student_non_labor_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/2, excerpt: 給与所得等以外の所得に係る部分の金額が十万円以下}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '100000'}
+  - name: japan_pit_working_student_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if not japan_pit_meets_working_student_nonincome_conditions:
+                  0
+              else:
+                  if japan_pit_total_income_amount > japan_pit_working_student_total_income_limit:
+                      0
+                  else:
+                      if japan_pit_non_labor_income_amount > japan_pit_working_student_non_labor_income_limit:
+                          0
+                      else:
+                          japan_pit_working_student_deduction_amount

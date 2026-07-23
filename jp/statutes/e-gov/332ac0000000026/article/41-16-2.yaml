@@ -1,0 +1,183 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/86
+module:
+  summary: >-
+    Temporary enhancement of the resident basic deduction. It preserves the
+    令和7年 schedule, the enacted 令和8・9年 schedule, and the separate 令和10年
+    onward low-income addition.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2
+    source_sha256: daa6461acc5ea08bc6e685704514d20930142060a0cf8674e0d86d011fc544e9
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_basic_deduction_special_addition_lowest
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 百三十二万円以下である場合三十七万円}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '370000'}
+  - name: japan_pit_basic_deduction_special_addition_second
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 三百三十六万円以下である場合三十万円}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '300000'}
+  - name: japan_pit_basic_deduction_special_addition_third
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 四百八十九万円以下である場合十万円}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '100000'}
+  - name: japan_pit_basic_deduction_special_addition_fourth
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 四百八十九万円を超える場合五万円}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '50000'}
+  - name: japan_pit_basic_deduction_special_first_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 百三十二万円以下}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '1320000'}
+  - name: japan_pit_basic_deduction_special_second_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 三百三十六万円以下}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '3360000'}
+  - name: japan_pit_basic_deduction_special_third_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 四百八十九万円以下}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '4890000'}
+  - name: japan_pit_basic_deduction_special_eligibility_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2025-12-01/article/41-16-2, excerpt: 合計所得金額（所得税法第二条第一項第三十号の合計所得金額をいう。第一号において同じ。）が六百五十五万円}}
+    versions:
+      - {effective_from: '2025-01-01', formula: '6550000'}
+  - name: japan_pit_basic_deduction_2026_addition_large
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "62万円にそれぞれ、42万円、５万円、37万円を加算"}}
+    versions:
+      - {effective_from: '2026-01-01', formula: '420000'}
+  - name: japan_pit_basic_deduction_2026_addition_small
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "62万円にそれぞれ、42万円、５万円、37万円を加算"}}
+    versions:
+      - {effective_from: '2026-01-01', formula: '50000'}
+  - name: japan_pit_basic_deduction_2028_addition
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "令和10 年分以後 令和８年分 令和９年分以後 132 万円以下 (206 万円以下) 104 万円（注２） 99 万円（注２） 95 万円"}}
+    versions:
+      - {effective_from: '2028-01-01', formula: '370000'}
+  - name: japan_pit_basic_deduction_special_addition
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - {effective_from: '2017-04-01', formula: '0'}
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if japan_pit_total_income_amount > japan_pit_basic_deduction_special_eligibility_income_limit:
+                  0
+              else:
+                  if japan_pit_total_income_amount <= japan_pit_basic_deduction_special_first_income_limit:
+                      japan_pit_basic_deduction_special_addition_lowest
+                  else:
+                      if japan_pit_total_income_amount <= japan_pit_basic_deduction_special_second_income_limit:
+                          japan_pit_basic_deduction_special_addition_second
+                      else:
+                          if japan_pit_total_income_amount <= japan_pit_basic_deduction_special_third_income_limit:
+                              japan_pit_basic_deduction_special_addition_third
+                          else:
+                          japan_pit_basic_deduction_special_addition_fourth
+      - effective_from: '2026-01-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if japan_pit_total_income_amount <= japan_pit_basic_deduction_special_second_income_limit:
+                  japan_pit_basic_deduction_2026_addition_large
+              else:
+                  if japan_pit_total_income_amount > japan_pit_basic_deduction_special_third_income_limit and japan_pit_total_income_amount <= japan_pit_basic_deduction_special_eligibility_income_limit:
+                      japan_pit_basic_deduction_2026_addition_small
+                  else:
+                      0
+      - effective_from: '2028-01-01'
+        formula: |-
+          if japan_pit_standard_resident_liability_applies and japan_pit_total_income_amount <= japan_pit_basic_deduction_special_first_income_limit:
+              japan_pit_basic_deduction_2028_addition
+          else:
+              0
+  - name: japan_pit_basic_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_basic_deduction_article_86
+      - effective_from: '2025-01-01'
+        formula: >-
+          japan_pit_basic_deduction_article_86
+          + japan_pit_basic_deduction_special_addition
