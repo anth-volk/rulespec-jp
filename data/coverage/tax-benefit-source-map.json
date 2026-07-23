@@ -2,22 +2,113 @@
   "jurisdiction": "jp",
   "inclusive_start": "2017-04-01",
   "source_freeze": "2026-07-23",
-  "release_status": "experimental",
+  "release_status": "experimental-unsigned",
+  "wave_1_encoding_status": "complete",
+  "canonical_axiom_apply": false,
+  "combined_disposable_income_output": false,
+  "coverage_notes": [
+    "Ordinary domestic employment and public-pension income are executable; omitted income classes, loss offsets, and Wave 3 expenditure-, asset-, property-, or transaction-dependent deductions and credits must be supplied as zero.",
+    "Medical classification and fact-intensive statutory status decisions are explicit inputs. The model does not infer disability from diagnoses or adjudicate custody, co-residence, support, or agency approval from raw evidence.",
+    "No combined disposable-income output is emitted because inhabitant tax and non-uniform health and long-term-care premiums are explicit skips.",
+    "Independent oracle comparison and Japanese-language legal review remain release-quality gates, not unencoded Wave 1 policy surfaces."
+  ],
   "surfaces": [
-    {"id": "national-pit-rate-schedule", "wave": 1, "status": "encoded-2017-baseline", "remaining": "tax credits, special computations, later tax-year amendments, and independent oracle comparison"},
-    {"id": "reconstruction-special-income-tax", "wave": 1, "status": "encoded-2017-baseline", "remaining": "full definition of the statutory base tax outside the narrow PIT path"},
-    {"id": "employment-income-and-deduction", "wave": 1, "status": "encoded-2017-baseline", "remaining": "later tax-year amendments and independent oracle comparison"},
-    {"id": "public-pension-income-and-deduction", "wave": 1, "status": "encoded-2017-baseline", "remaining": "non-public-pension miscellaneous income, later tax-year amendments, and independent oracle comparison"},
-    {"id": "income-aggregation-and-taxable-base", "wave": 1, "status": "encoded-2017-narrow", "remaining": "all Article 22 income classes other than employment and public pension, loss offsets, and deductions other than Articles 74 and 86"},
-    {"id": "personal-and-family-deductions", "wave": 1, "status": "partial-2017-basic-and-social-insurance", "remaining": "medical, casualty, small-enterprise, insurance, charitable, disability, widow, student, spouse, and dependent deductions"},
-    {"id": "child-allowance", "wave": 1, "status": "source-identified"},
-    {"id": "child-rearing-allowance", "wave": 1, "status": "source-identified"},
-    {"id": "special-child-rearing-allowance", "wave": 1, "status": "source-identified"},
-    {"id": "disabled-child-welfare-allowance", "wave": 1, "status": "source-identified"},
-    {"id": "special-disability-allowance", "wave": 1, "status": "source-identified"},
-    {"id": "national-pension-contribution", "wave": 1, "status": "encoded-2017-amounts-only", "remaining": "exemption eligibility and later fiscal years"},
-    {"id": "employees-pension-employee-contribution", "wave": 1, "status": "source-identified"},
-    {"id": "employment-insurance-employee-contribution", "wave": 1, "status": "encoded-2017-rates-only", "remaining": "payroll base, sub-yen collection rounding, and later fiscal years"}
+    {
+      "id": "national-pit-residence-and-liability",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "ordinary domestic resident liability from 2017-04-01"
+    },
+    {
+      "id": "employment-income-and-deduction",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "2017 schedule, 2020 reform, 2025 reform, and enacted 2026-2028 transition rules"
+    },
+    {
+      "id": "public-pension-income-and-deduction",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "2017 rules and the 2020 modern schedule, including age and other-income interactions"
+    },
+    {
+      "id": "income-aggregation-and-taxable-base",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "employment plus public-pension income, the 2020 income-adjustment deduction, the Wave 1 deduction stack, zero floor, and JPY 1,000 truncation"
+    },
+    {
+      "id": "personal-and-family-deductions",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "basic, social-insurance, disability, widow, widower, single-parent, working-student, spouse, special-spouse, ordinary dependent, specified dependent, elderly dependent, and specific-relative special deductions through enacted 2028 rules"
+    },
+    {
+      "id": "national-pit-rate-schedule",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "all seven national progressive brackets"
+    },
+    {
+      "id": "common-input-national-tax-credits",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "2024 fixed income-tax credit; credits requiring Wave 3 expenditure, asset, property, transaction, or foreign-tax inputs remain in Wave 3"
+    },
+    {
+      "id": "reconstruction-and-defense-special-income-taxes",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "2.1% reconstruction tax through 2026 and the enacted 2027 split into 1.1% reconstruction plus 1% defense tax"
+    },
+    {
+      "id": "child-allowance",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "monthly amounts, child bands and ordering, ordinary and upper income limits, June 2022 restriction, and October 2024 universal expansion"
+    },
+    {
+      "id": "child-rearing-allowance",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "full and partial amounts, child additions, claimant and supporter limits, child-support treatment, and amendment waves through April 2026"
+    },
+    {
+      "id": "special-child-rearing-allowance",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "grade amounts and claimant/supporter income tests through April 2026"
+    },
+    {
+      "id": "disabled-child-welfare-allowance",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "amount and claimant/supporter income tests through April 2026"
+    },
+    {
+      "id": "special-disability-allowance",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "amount and claimant/supporter income tests through April 2026"
+    },
+    {
+      "id": "national-pension-contribution",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "monthly amounts through FY2026 and statutory, full, partial, student, and under-50 exemption or deferral routes"
+    },
+    {
+      "id": "employees-pension-employee-contribution",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "ordinary covered employees, all 32 remuneration bands, standard bonuses, statutory rate, employee share, and official rounding"
+    },
+    {
+      "id": "employment-insurance-employee-contribution",
+      "wave": 1,
+      "status": "encoded-wave1-complete",
+      "coverage": "covered wage base, all three national industry rates through FY2026, the October 2022 split, and per-payment rounding"
+    }
   ],
   "explicit_skips": [
     "individual-inhabitant-tax",

@@ -1,0 +1,42 @@
+- name: 2025 candidate in full band
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_age: 19
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_total_income: 850000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84-2#japan_pit_specific_relative_special_deduction_for_candidate: 630000
+- name: 2025 candidate upper terminal band
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_age: 22
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_total_income: 1230000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84-2#japan_pit_specific_relative_special_deduction_for_candidate: 30000
+- name: enacted 2026 lower threshold is exclusive
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_age: 20
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_total_income: 620000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84-2#japan_pit_specific_relative_special_deduction_for_candidate: 0
+- name: multiple relatives across bands
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_1_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_2_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_3_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_4_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_5_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_6_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_7_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_8_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84-2#input.japan_pit_specific_relative_band_9_count: 1
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/84-2#japan_pit_specific_relative_special_deduction: 1270000

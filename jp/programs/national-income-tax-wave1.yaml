@@ -1,0 +1,31 @@
+program: jp/national-income-tax-wave1
+period: '2017-04-01'
+outputs:
+  - japan_pit_standard_resident_liability_applies
+  - japan_employment_income_article_28
+  - japan_employment_income_deduction_article_28
+  - japan_public_pension_income
+  - japan_public_pension_deduction
+  - japan_pit_high_salary_income_adjustment_deduction
+  - japan_pit_employment_pension_income_adjustment_deduction
+  - japan_pit_general_income_article_22
+  - japan_pit_social_insurance_deduction_article_74
+  - japan_pit_basic_deduction
+  - japan_pit_spouse_deduction
+  - japan_pit_special_spouse_deduction
+  - japan_pit_dependent_deduction
+  - japan_pit_specific_relative_special_deduction
+  - japan_pit_disability_deduction
+  - japan_pit_widow_widower_or_single_parent_deduction
+  - japan_pit_working_student_deduction
+  - japan_pit_encoded_income_deductions
+  - japan_pit_taxable_general_income_before_rounding
+  - japan_pit_taxable_general_income
+  - japan_national_income_tax_article_89_base_tax
+  - japan_2024_fixed_income_tax_credit
+  - japan_national_income_tax_after_common_credits
+  - japan_reconstruction_special_income_tax
+  - japan_defense_special_income_tax
+  - japan_national_income_tax_including_national_surtaxes
+scope:
+  jurisdictions: [jp]

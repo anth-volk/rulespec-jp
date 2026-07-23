@@ -1,0 +1,13 @@
+- name: baseline
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: &no_dependents
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count: 0
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-9-2#japan_national_pension_one_quarter_exemption_applicant_income_limit: 1580000
+- name: 2021 reform
+  period: {period_kind: month, start: '2021-04-01', end: '2021-04-30'}
+  input: *no_dependents
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-9-2#japan_national_pension_one_quarter_exemption_applicant_income_limit: 1680000

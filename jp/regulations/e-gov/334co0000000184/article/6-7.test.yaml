@@ -1,0 +1,12 @@
+- name: 2017 no dependents
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count: 0
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-7#japan_national_pension_full_exemption_applicant_income_limit: 570000
+- name: 2021 reform two dependents
+  period: {period_kind: month, start: '2021-04-01', end: '2021-04-30'}
+  input:
+    jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count: 2
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-7#japan_national_pension_full_exemption_applicant_income_limit: 1370000

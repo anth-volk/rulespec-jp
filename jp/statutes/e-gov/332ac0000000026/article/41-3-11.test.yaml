@@ -1,0 +1,30 @@
+- name: high salary qualifying child adjustment
+  period: &period {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 9000001
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_pit_income_adjustment_has_qualifying_child_or_disability_condition: true
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 0
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 40
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 0
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#japan_pit_high_salary_income_adjustment_deduction: 50001
+- name: high salary without qualifying condition
+  period: *period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 10000000
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_pit_income_adjustment_has_qualifying_child_or_disability_condition: false
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 0
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 40
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 0
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#japan_pit_high_salary_income_adjustment_deduction: 0
+- name: combined employment and pension adjustment
+  period: *period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 650000
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_pit_income_adjustment_has_qualifying_child_or_disability_condition: false
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 1200000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 40
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 0
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#japan_pit_employment_pension_income_adjustment_deduction: 100000

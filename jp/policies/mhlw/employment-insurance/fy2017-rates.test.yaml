@@ -22,3 +22,51 @@
     jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
   output:
     jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.004
+- name: october_2022_midyear_change
+  period:
+    period_kind: month
+    start: '2022-10-01'
+    end: '2022-11-01'
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.005
+- name: reiwa_8_construction_rate
+  period: &fy2026_month
+    period_kind: month
+    start: '2026-04-01'
+    end: '2026-05-01'
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: true
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_rate: 0.006
+- name: withholding_exact_half_yen_rounds_down
+  period: *fy2026_month
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_covered_wages_paid: 100100
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_withheld_from_wages: true
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution_before_rounding: 500.5
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution: 500
+- name: cash_payment_exact_half_yen_rounds_up
+  period: *fy2026_month
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_covered_wages_paid: 100100
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_withheld_from_wages: false
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution: 501
+- name: withholding_above_half_yen_rounds_up
+  period: *fy2026_month
+  input:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_construction_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_agriculture_fisheries_or_sake_business: false
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_covered_wages_paid: 100101
+    jp:policies/mhlw/employment-insurance/fy2017-rates#input.japan_employment_insurance_is_withheld_from_wages: true
+  output:
+    jp:policies/mhlw/employment-insurance/fy2017-rates#japan_employment_insurance_employee_contribution: 501

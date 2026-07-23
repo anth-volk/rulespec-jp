@@ -1,0 +1,68 @@
+format: rulespec/v1
+imports:
+  - jp:policies/jps/national-pension/contribution-history
+  - jp:regulations/e-gov/334co0000000184/article/6-7
+  - jp:regulations/e-gov/334co0000000184/article/6-8-2
+  - jp:regulations/e-gov/334co0000000184/article/6-9
+  - jp:regulations/e-gov/334co0000000184/article/6-9-2
+module:
+  summary: >-
+    National Pension monthly contribution after statutory exemption,
+    application-based full/partial exemptions, student payment special
+    treatment, and the under-50 payment-deferral route. Approval and factual
+    statutory-status decisions remain explicit inputs; all income thresholds
+    and payable amounts are encoded.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/90
+    source_sha256: ab51e2f8a5b311612a8fa92edfc35e26456e121593d8ee29fad355d6c5993ac6
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_national_pension_monthly_contribution_after_exemptions_and_deferrals
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source: {corpus_citation_path: jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/89, excerpt: 期間に係る保険料は、既に納付されたものを除き、納付することを要しない}
+          - path: versions[0].formula
+            kind: formula
+            source: {corpus_citation_path: jp/statute/e-gov/334ac0000000141/as-of/2017-04-01/article/90-2, excerpt: その四分の三を納付することを要しない}
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if not japan_national_pension_is_category_one_insured:
+              0
+          else:
+              if japan_national_pension_has_statutory_full_exemption:
+                  0
+              else:
+                  if japan_national_pension_is_student:
+                      if japan_national_pension_student_deferral_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_student_or_payment_deferral_applicant_income_limit or japan_national_pension_student_or_deferral_non_income_condition):
+                          0
+                      else:
+                          japan_national_pension_full_monthly_contribution_amount
+                  else:
+                      if japan_national_pension_exemption_application_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_full_exemption_applicant_income_limit or japan_national_pension_applicant_non_income_exemption_condition) and japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions:
+                          0
+                      else:
+                          if japan_national_pension_exemption_application_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_three_quarter_exemption_applicant_income_limit or japan_national_pension_applicant_non_income_exemption_condition) and japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions:
+                              japan_national_pension_quarter_payment_monthly_amount
+                          else:
+                              if japan_national_pension_exemption_application_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_half_exemption_applicant_income_limit or japan_national_pension_applicant_non_income_exemption_condition) and japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions:
+                                  japan_national_pension_half_payment_monthly_amount
+                              else:
+                                  if japan_national_pension_exemption_application_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_one_quarter_exemption_applicant_income_limit or japan_national_pension_applicant_non_income_exemption_condition) and japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions:
+                                      japan_national_pension_three_quarter_payment_monthly_amount
+                                  else:
+                                      if japan_national_pension_under_50_deferral_approved and (japan_national_pension_applicant_adjusted_income <= japan_national_pension_student_or_payment_deferral_applicant_income_limit or japan_national_pension_student_or_deferral_non_income_condition) and japan_national_pension_spouse_meets_payment_deferral_conditions:
+                                          0
+                                      else:
+                                          japan_national_pension_full_monthly_contribution_amount

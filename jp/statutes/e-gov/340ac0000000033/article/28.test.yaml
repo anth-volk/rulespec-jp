@@ -103,3 +103,58 @@
   output:
     jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 7800001
     jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 2200000
+- name: 2020 minimum deduction boundary
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1625000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1074000
+- name: 2020 appendix special row
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1625001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1074000
+- name: 2020 cap boundary
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 8500000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 6550000
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_deduction_article_28: 1950000
+- name: 2025 raised minimum
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 1900000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1250000
+- name: 2026 zero boundary
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 740999
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 0
+- name: 2026 transition fixed row
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 2191000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1451000
+- name: 2026 normal table resumes
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 2200000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1460000
+- name: enacted 2028 minimum deduction
+  period: {period_kind: tax_year, start: '2028-01-01', end: '2028-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 690000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 0
+- name: enacted 2028 percentage formula at upper boundary
+  period: {period_kind: tax_year, start: '2028-01-01', end: '2028-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 2200000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28: 1460000

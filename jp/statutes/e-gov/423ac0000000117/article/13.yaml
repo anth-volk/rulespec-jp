@@ -1,10 +1,12 @@
 format: rulespec/v1
 imports:
-  - jp:statutes/e-gov/340ac0000000033/article/89
+  - jp:policies/nta/fixed-income-tax-credit/2024
 module:
   summary: >-
-    Reconstruction Funding Special Measures Act article 13 applies a 2.1%
-    special income tax to the individual's base income-tax amount.
+    Reconstruction Funding Special Measures Act article 13. The rate is 2.1%
+    through 2026 and the enacted 2027 reform reduces it to 1.1% while extending
+    the assessment period; the separate 1% defense surtax is encoded in its
+    own module.
   source_verification:
     corpus_citation_path: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13
     source_sha256: cf477c7e21dd8a5076edb466e262b0abb6c69d7365dcc34c7cc5d36df7ebc264
@@ -26,9 +28,16 @@ rules:
             source:
               corpus_citation_path: jp/statute/e-gov/423ac0000000117/as-of/2017-04-01/article/13
               excerpt: 個人に対して課する復興特別所得税の額は、その個人のその年分の基準所得税額に百分の二・一の税率を乗じて計算した金額とする。
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1
+              excerpt: "復興特別所得税について、その税率が１.１％（改正前：２.１％）に引き下げられ"
     versions:
       - effective_from: '2017-04-01'
         formula: '0.021'
+      - effective_from: '2027-01-01'
+        formula: '0.011'
   - name: japan_reconstruction_special_income_tax
     kind: derived
     entity: Person
@@ -37,7 +46,7 @@ rules:
     unit: JPY
     versions:
       - effective_from: '2017-04-01'
-        formula: floor(japan_national_income_tax_article_89_base_tax * japan_reconstruction_special_income_tax_rate)
+        formula: floor(japan_national_income_tax_after_common_credits * japan_reconstruction_special_income_tax_rate)
   - name: japan_national_income_tax_including_reconstruction_tax
     kind: derived
     entity: Person
@@ -46,4 +55,4 @@ rules:
     unit: JPY
     versions:
       - effective_from: '2017-04-01'
-        formula: japan_national_income_tax_article_89_base_tax + japan_reconstruction_special_income_tax
+        formula: japan_national_income_tax_after_common_credits + japan_reconstruction_special_income_tax

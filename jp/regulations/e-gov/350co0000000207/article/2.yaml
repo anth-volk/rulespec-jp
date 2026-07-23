@@ -1,0 +1,144 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Claimant and spouse/supporter income limits used by the Special
+    Child-Rearing Allowance from 平成29年4月, including ordinary, elderly, and
+    specified dependent additions.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2
+    source_sha256: 553ad82897fd35cda65622471d73d090d8dd030e8c62d6cb5ac67bdae62adaf2
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_special_child_rearing_allowance_claimant_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: ないときは、四百五十九万六千円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '4596000'}
+  - name: japan_disability_allowance_ordinary_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 一人につき三十八万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+  - name: japan_disability_allowance_elderly_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 一人につき四十八万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '480000'}
+  - name: japan_disability_allowance_specified_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 一人につき六十三万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '630000'}
+  - name: japan_disability_allowance_supporter_zero_dependent_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: ないときは、六百二十八万七千円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '6287000'}
+  - name: japan_disability_allowance_supporter_one_dependent_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 一人六、五三六、〇〇〇円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '6536000'}
+  - name: japan_disability_allowance_supporter_later_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 一人につき二一三、〇〇〇円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '213000'}
+  - name: japan_disability_allowance_supporter_elderly_extra
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/2, excerpt: 六〇、〇〇〇円を加算した額}
+    versions:
+      - {effective_from: '2017-04-01', formula: '60000'}
+  - name: japan_special_child_rearing_allowance_claimant_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_special_child_rearing_allowance_claimant_income_base
+          + japan_disability_allowance_ordinary_dependent_increment
+          * japan_special_child_rearing_allowance_claimant_ordinary_dependent_count
+          + japan_disability_allowance_elderly_dependent_increment
+          * japan_special_child_rearing_allowance_claimant_elderly_dependent_count
+          + japan_disability_allowance_specified_dependent_increment
+          * japan_special_child_rearing_allowance_claimant_specified_dependent_count
+  - name: japan_disability_allowance_supporter_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_disability_allowance_supporter_dependent_count <= 0:
+              japan_disability_allowance_supporter_zero_dependent_income_base
+          else:
+              if japan_disability_allowance_supporter_dependent_count == japan_disability_allowance_supporter_elderly_dependent_count:
+                  japan_disability_allowance_supporter_one_dependent_income_base + japan_disability_allowance_supporter_later_dependent_increment * max(0, japan_disability_allowance_supporter_dependent_count - 1) + japan_disability_allowance_supporter_elderly_extra * max(0, japan_disability_allowance_supporter_elderly_dependent_count - 1)
+              else:
+                  japan_disability_allowance_supporter_one_dependent_income_base + japan_disability_allowance_supporter_later_dependent_increment * max(0, japan_disability_allowance_supporter_dependent_count - 1) + japan_disability_allowance_supporter_elderly_extra * japan_disability_allowance_supporter_elderly_dependent_count

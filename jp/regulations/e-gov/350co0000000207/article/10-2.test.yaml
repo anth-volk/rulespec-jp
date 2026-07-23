@@ -1,0 +1,18 @@
+- name: eligible 2017 claimant
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: &eligible_inputs
+    jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_meets_nonfinancial_conditions: true
+    jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_claimant_adjusted_income: 0
+    jp:regulations/e-gov/350co0000000207/article/10-2#input.japan_special_disability_allowance_highest_supporter_adjusted_income: 0
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_ordinary_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_elderly_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/7#input.japan_individual_disability_allowance_claimant_specified_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count: 0
+  output:
+    jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly: 26810
+- name: 令和8 indexation
+  period: {period_kind: month, start: '2026-04-01', end: '2026-04-30'}
+  input: *eligible_inputs
+  output:
+    jp:regulations/e-gov/350co0000000207/article/10-2#japan_special_disability_allowance_monthly: 30450

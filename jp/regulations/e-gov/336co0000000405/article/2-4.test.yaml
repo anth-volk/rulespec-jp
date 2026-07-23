@@ -1,0 +1,56 @@
+- name: full award below 平成29 threshold
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions: true
+    jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 1
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income: 189999
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income: 0
+  output: {jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly: 42290}
+- name: equality enters partial award with statutory ten-yen increment
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions: true
+    jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 1
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income: 190000
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income: 0
+  output: {jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly: 42280}
+- name: claimant reaches cutoff
+  period: {period_kind: month, start: '2025-04-01', end: '2025-04-30'}
+  input:
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions: true
+    jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 1
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income: 2080000
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income: 0
+  output: {jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly: 0}
+- name: supporter reaches cutoff
+  period: {period_kind: month, start: '2025-04-01', end: '2025-04-30'}
+  input:
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_meets_family_conditions: true
+    jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 1
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_income_limit_person_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_specified_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_supporter_elderly_dependent_count: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_adjusted_prior_year_income: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_child_support_received: 0
+    jp:regulations/e-gov/336co0000000405/article/2-4#input.japan_child_rearing_allowance_highest_supporter_adjusted_income: 2360000
+  output: {jp:regulations/e-gov/336co0000000405/article/2-4#japan_child_rearing_allowance_monthly: 0}

@@ -1,0 +1,14 @@
+- name: no dependents
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count: 0
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count: 0
+  output:
+    jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit: 6220000
+- name: one ordinary and one elderly dependent
+  period: {period_kind: month, start: '2022-06-01', end: '2022-06-30'}
+  input:
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_ordinary_dependent_count: 1
+    jp:regulations/e-gov/346co0000000281/article/1#input.japan_child_allowance_elderly_dependent_count: 1
+  output:
+    jp:regulations/e-gov/346co0000000281/article/1#japan_child_allowance_ordinary_income_limit: 7040000

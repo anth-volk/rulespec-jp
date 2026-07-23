@@ -7,34 +7,57 @@ This repository is maintained under `anth-volk`. It is not an official Axiom
 Foundation jurisdiction, is not listed in an Axiom lane registry, and does not
 send issues, branches, pull requests, releases, or signing material upstream.
 
-## Current release state
+## Wave 1 status
 
-The repository is an experimental `v0.x` implementation. The first executable
-vertical slice covers:
+The planned Wave 1 policy surfaces are encoded through the latest enacted rules
+in the 2026-07-23 source freeze. The implementation remains an experimental,
+unsigned `v0.x` model pending an independent oracle comparison and
+Japanese-language legal review; it is not canonical Axiom material.
 
-- Income Tax Act article 28 and statutory Schedule 5: employment income and
-  the employment-income deduction, including the exact low-income rows and
-  JPY 4,000 table bands below JPY 6.6 million;
-- Income Tax Act article 35 and Special Taxation Measures Act article 41-15-3:
-  public-pension miscellaneous income, including the age-65 minimum-deduction
-  override;
-- a deliberately narrow national PIT base under Income Tax Act articles 22,
-  74, and 86 plus National Tax General Rules Act article 118: employment and
-  public-pension income, actual qualifying social-insurance payments, the
-  JPY 380,000 basic deduction, and JPY 1,000 tax-base truncation;
-- Income Tax Act article 89: the national progressive rate schedule;
-- Reconstruction Funding Special Measures Act article 13: the 2.1% special
-  reconstruction income tax;
-- the Japan Pension Service's five National Pension contribution amounts for
-  平成29年度; and
-- the three MHLW employee Employment Insurance rates for 平成29年度.
+Wave 1 includes:
 
-The narrow PIT path assumes that every omitted income class, loss offset,
-deduction, and credit is zero. It is not yet a general personal-income-tax
-calculator. The pension-contribution and employment-insurance modules are
-parameter slices, not complete contribution calculators. The complete Wave 1
-source inventory is present, but all remaining surfaces are explicitly
-statused in the coverage ledger.
+- ordinary domestic national income-tax residence and liability;
+- employment and public-pension income, including the 2020, 2025, and enacted
+  2026–2028 amendments that affect the supported path;
+- the income-adjustment deduction and aggregation of supported income;
+- basic, social-insurance, disability, widow/widower/single-parent,
+  working-student, spouse, special-spouse, dependent, and specific-relative
+  deductions;
+- the seven-bracket national income-tax schedule;
+- the 2024 fixed income-tax credit;
+- reconstruction special income tax and the enacted 2027 defense-tax split;
+- Child Allowance through the October 2024 expansion;
+- Child Rearing Allowance through April 2026;
+- Special Child Rearing Allowance, Disabled Child Welfare Allowance, and
+  Special Disability Allowance through April 2026;
+- National Pension contribution amounts through FY2026 and the statutory
+  exemption and deferral routes;
+- Employees' Pension worker contributions, including all 32 remuneration
+  bands, bonuses, rate, employee share, and official rounding; and
+- Employment Insurance worker contributions through FY2026, including the
+  October 2022 split, covered wages, industry rates, and per-payment rounding.
+
+Medical classifications and fact-intensive statutory decisions are explicit
+inputs. The model does not infer disability from a diagnosis or adjudicate
+custody, co-residence, financial support, or agency approval from raw evidence.
+
+The income-tax composition is the Wave 1 path for ordinary employment and
+public-pension income. Other income classes, loss offsets, and deductions or
+credits assigned to Wave 3 require additional data and must be supplied as
+zero when they are not modeled.
+
+## Deliberate exclusions
+
+No combined disposable-income output is published. Individual inhabitant tax,
+National Health Insurance premiums, employee health-insurance premiums, and
+long-term-care premiums are not nationally uniform enough to represent as one
+Japan-wide formula.
+
+Other explicit skips are Public Assistance cash amounts, municipal childcare
+and family benefits, local housing assistance, property and other local taxes,
+employer-specific benefits, corporate and business tax, and
+non-deterministic emergency payments. See
+`data/coverage/tax-benefit-source-map.json` for the authoritative ledger.
 
 ## Time and calendar contract
 
@@ -42,6 +65,7 @@ statused in the coverage ledger.
   earlier months are unsupported.
 - Tax Year 2017 may be evaluated as an annual liability only where the April 1
   consolidated law and NTA annual material establish the applicable rule.
+- The first complete calendar-year component scenario is 2018.
 - Gregorian ISO dates control ordering and execution.
 - Japanese era expressions are retained verbatim in provenance. For example,
   `平成29年4月1日` normalizes to `2017-04-01`, and `平成29年度` normalizes to
@@ -51,28 +75,37 @@ statused in the coverage ledger.
 
 - `jp/statutes`, `jp/regulations`, and `jp/policies` contain atomic RuleSpec.
 - `jp/programs` contains declarative composition requests only.
-- Every atomic module has a companion `.test.yaml`.
+- Every atomic module has a same-stem `.test.yaml` companion.
+- Every monetary parameter has an exact primary-source proof atom.
 - JPY uses zero minor units.
 - Original Japanese text is authoritative; English text is explanatory.
-- No combined disposable-income output is published while inhabitant tax and
-  non-uniform health and long-term-care premiums are out of scope.
 
 ## Validation
 
-Run the fork-only checks from this repository after building the forked engine:
+Build the forked engine, then run:
 
 ```bash
 cargo build --manifest-path ../axiom-rules-engine/Cargo.toml --locked
 AXIOM_RULES_ENGINE_BIN=../axiom-rules-engine/target/debug/axiom-rules-engine \
-  python3 -m pytest -q
+AXIOM_COMPOSE_BIN=../axiom-compose/.venv/bin/axiom-compose \
+  python3 -m pytest -q tests
 ```
 
-The `.axiom/toolchain.toml` pin identifies the fork-owned, unsigned
-`jp-wave1-2017-04-01-v0-4-0` experimental corpus object. It is deliberately not
-represented as an Axiom Foundation signed corpus release and cannot satisfy the
-protected canonical apply path.
+The repository also provides:
 
-`data/coverage/tax-benefit-source-map.json` is the authoritative implementation
-status ledger. A `v1.0.0` release remains gated on complete Wave 1 encoding,
-independent oracle comparison, fork-owned signed apply manifests, and a
-Japanese-language review.
+- `scripts/validate_corpus_proofs.py` to match every cited path and exact
+  excerpt against the full Japan corpus;
+- a strict monetary-proof-atom repository gate;
+- the official `axiom-encode test` runner;
+- an oracle-pending ratchet; and
+- `data/scenarios/wave1-2018-working-parent.yaml`, an end-to-end annual
+  component ledger for a working parent.
+
+The `.axiom/toolchain.toml` pin identifies the fork-owned, unsigned
+`jp-wave1-2017-04-01-v0-5-0` experimental corpus manifest. It is deliberately
+not represented as an Axiom Foundation signed corpus release and cannot satisfy
+the protected canonical apply path.
+
+Independent OECD TaxBEN comparison and Japanese-language legal review remain
+release-quality gates for a validated stable release. They do not change the
+machine-readable status of the planned Wave 1 policy surfaces.

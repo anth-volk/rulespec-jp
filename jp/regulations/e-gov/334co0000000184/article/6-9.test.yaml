@@ -1,0 +1,14 @@
+- name: baseline half and deferral limits
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: &no_dependents
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count: 0
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_half_exemption_applicant_income_limit: 1180000
+    jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_student_or_payment_deferral_applicant_income_limit: 1180000
+- name: 2021 reform
+  period: {period_kind: month, start: '2021-04-01', end: '2021-04-30'}
+  input: *no_dependents
+  output:
+    jp:regulations/e-gov/334co0000000184/article/6-9#japan_national_pension_half_exemption_applicant_income_limit: 1280000

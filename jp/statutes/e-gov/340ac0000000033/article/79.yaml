@@ -1,0 +1,59 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
+module:
+  summary: >-
+    Disability deductions for the resident taxpayer, spouse, and dependants.
+    Counts must be mutually exclusive across ordinary, special, and
+    cohabiting-special classifications.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/79
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_ordinary_disability_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/79, excerpt: 障害者一人につき二十七万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '270000'}
+  - name: japan_pit_special_disability_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/79, excerpt: 特別障害者である場合には、四十万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '400000'}
+  - name: japan_pit_cohabiting_special_disability_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/79, excerpt: 特別障害者一人につき七十五万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '750000'}
+  - name: japan_pit_disability_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_pit_standard_resident_liability_applies:
+              japan_pit_ordinary_disability_deduction_per_person * japan_pit_ordinary_disabled_person_count + japan_pit_special_disability_deduction_per_person * japan_pit_special_disabled_person_count + japan_pit_cohabiting_special_disability_deduction_per_person * japan_pit_cohabiting_special_disabled_person_count
+          else:
+              0

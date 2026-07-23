@@ -1,0 +1,102 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/28
+  - jp:statutes/e-gov/332ac0000000026/article/41-15-3
+module:
+  summary: >-
+    Income amount adjustment deductions from tax year 2020. The first
+    component applies to high employment receipts when the taxpayer, spouse,
+    or dependant meets a specified disability/age condition. The second
+    prevents the 2020 employment and public-pension deduction reforms from
+    double-counting up to JPY 100,000 where both income classes are present.
+  source_verification:
+    corpus_citation_path: jp/guidance/nta/income-tax/income-adjustment/no-1411
+    source_sha256: cad6d5d485ae55c267f1622da49359f64777e6afcfbd5c5d847a6e24fbc48213
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_income_adjustment_high_salary_threshold
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/income-adjustment/no-1411/block-4, excerpt: "給与等の収入金額が850万円を超える居住者"}}
+    versions: [{effective_from: '2020-01-01', formula: '8500000'}]
+  - name: japan_pit_income_adjustment_high_salary_cap
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/income-adjustment/no-1411/block-4, excerpt: "1,000万円超の場合は1,000万円"}}
+    versions: [{effective_from: '2020-01-01', formula: '10000000'}]
+  - name: japan_pit_income_adjustment_high_salary_rate
+    kind: parameter
+    dtype: Rate
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/income-adjustment/no-1411/block-4, excerpt: "850万円}×10％＝控除額"}}
+    versions: [{effective_from: '2020-01-01', formula: '0.10'}]
+  - name: japan_pit_income_adjustment_combined_income_cap
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/income-adjustment/no-1411/block-5, excerpt: "10万円超の場合は10万円"}}
+    versions: [{effective_from: '2020-01-01', formula: '100000'}]
+  - name: japan_pit_high_salary_income_adjustment_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          if japan_employment_gross_cash_earnings > japan_pit_income_adjustment_high_salary_threshold and japan_pit_income_adjustment_has_qualifying_child_or_disability_condition:
+              ceil((min(japan_employment_gross_cash_earnings, japan_pit_income_adjustment_high_salary_cap) - japan_pit_income_adjustment_high_salary_threshold) * japan_pit_income_adjustment_high_salary_rate)
+          else:
+              0
+  - name: japan_employment_income_after_high_salary_adjustment
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2020-01-01'
+        formula: max(0, japan_employment_income_article_28 - japan_pit_high_salary_income_adjustment_deduction)
+  - name: japan_pit_employment_pension_income_adjustment_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2020-01-01'
+        formula: >-
+          max(0,
+          min(japan_employment_income_after_high_salary_adjustment,
+          japan_pit_income_adjustment_combined_income_cap)
+          + min(japan_public_pension_income,
+          japan_pit_income_adjustment_combined_income_cap)
+          - japan_pit_income_adjustment_combined_income_cap)
+  - name: japan_employment_income_after_income_adjustment
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2020-01-01'
+        formula: >-
+          max(0, japan_employment_income_after_high_salary_adjustment
+          - japan_pit_employment_pension_income_adjustment_deduction)

@@ -1,0 +1,79 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Claimant income limit shared by the Disabled Child Welfare Allowance and
+    Special Disability Allowance, including the 令和7年8月 base increase.
+  source_verification:
+    corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7
+    source_sha256: 553ad82897fd35cda65622471d73d090d8dd030e8c62d6cb5ac67bdae62adaf2
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_individual_disability_allowance_claimant_income_base
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7, excerpt: ないときは、三百六十万四千円}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2025-08-01/article/7, excerpt: ないとき三百六十六万千円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '3604000'}
+      - {effective_from: '2025-08-01', formula: '3661000'}
+  - name: japan_individual_disability_allowance_ordinary_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7, excerpt: 一人につき三十八万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+  - name: japan_individual_disability_allowance_elderly_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7, excerpt: 一人につき四十八万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '480000'}
+  - name: japan_individual_disability_allowance_specified_dependent_increment
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/regulation/e-gov/350co0000000207/as-of/2017-04-01/article/7, excerpt: 一人につき六十三万円}
+    versions:
+      - {effective_from: '2017-04-01', formula: '630000'}
+  - name: japan_individual_disability_allowance_claimant_income_limit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_individual_disability_allowance_claimant_income_base
+          + japan_individual_disability_allowance_ordinary_dependent_increment
+          * japan_individual_disability_allowance_claimant_ordinary_dependent_count
+          + japan_individual_disability_allowance_elderly_dependent_increment
+          * japan_individual_disability_allowance_claimant_elderly_dependent_count
+          + japan_individual_disability_allowance_specified_dependent_increment
+          * japan_individual_disability_allowance_claimant_specified_dependent_count

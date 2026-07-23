@@ -1,0 +1,163 @@
+format: rulespec/v1
+imports:
+  - jp:regulations/e-gov/346co0000000281/article/1
+  - jp:regulations/e-gov/346co0000000281/article/7
+module:
+  summary: >-
+    Monthly Child Allowance for individual recipients from 平成29年4月,
+    including the 令和4年6月 upper income limit and the universal 令和6年10月
+    expansion through high-school age with a 30,000-yen third-child amount.
+    Eligibility, child ordering, age bands, and the assessed income produced
+    under Enforcement Order articles 2 and 3 are explicit factual inputs.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6
+    source_sha256: 860134e1e91a749ac43c1719265fc1c4c793a3a2a9f8b3dcbca958f0e6dd3298
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_child_allowance_under_three_base_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6, excerpt: 一万五千円に当該三歳に満たない児童の数を乗じて得た額}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2024-10-01/article/6, excerpt: 三歳未満児童算定額」は一万五千円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '15000'}
+      - {effective_from: '2024-10-01', formula: '15000'}
+  - name: japan_child_allowance_age_three_or_older_base_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6, excerpt: 一万円に当該三歳以上小学校修了前の児童の数を乗じて得た額}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2024-10-01/article/6, excerpt: 三歳以上児童算定額」は一万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '10000'}
+      - {effective_from: '2024-10-01', formula: '10000'}
+  - name: japan_child_allowance_pre_reform_primary_age_third_child_bonus
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/article/6, excerpt: 一万五千円に当該三歳以上小学校修了前の児童の数を乗じて得た額}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '5000'}
+  - name: japan_child_allowance_post_reform_third_child_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2024-10-01/article/6, excerpt: 第三子以降算定額」は三万円}}
+    versions:
+      - {effective_from: '2024-10-01', formula: '30000'}
+  - name: japan_child_allowance_special_benefit_per_child
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/346ac0000000073/as-of/2017-04-01/supplementary/1/article/2, excerpt: 五千円に次項において準用する第七条第一項}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '5000'}
+  - name: japan_child_allowance_eligible_child_count
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Month
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_allowance_under_three_first_or_second_count
+          + japan_child_allowance_under_three_third_or_later_count
+          + japan_child_allowance_primary_age_first_or_second_count
+          + japan_child_allowance_primary_age_third_or_later_count
+          + japan_child_allowance_junior_high_first_or_second_count
+          + japan_child_allowance_junior_high_third_or_later_count
+      - effective_from: '2024-10-01'
+        formula: >-
+          japan_child_allowance_under_three_first_or_second_count
+          + japan_child_allowance_under_three_third_or_later_count
+          + japan_child_allowance_primary_age_first_or_second_count
+          + japan_child_allowance_primary_age_third_or_later_count
+          + japan_child_allowance_junior_high_first_or_second_count
+          + japan_child_allowance_junior_high_third_or_later_count
+          + japan_child_allowance_high_school_first_or_second_count
+          + japan_child_allowance_high_school_third_or_later_count
+  - name: japan_child_allowance_regular_monthly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: >-
+          japan_child_allowance_under_three_base_amount
+          * (japan_child_allowance_under_three_first_or_second_count
+          + japan_child_allowance_under_three_third_or_later_count)
+          + japan_child_allowance_age_three_or_older_base_amount
+          * (japan_child_allowance_primary_age_first_or_second_count
+          + japan_child_allowance_primary_age_third_or_later_count
+          + japan_child_allowance_junior_high_first_or_second_count
+          + japan_child_allowance_junior_high_third_or_later_count)
+          + japan_child_allowance_pre_reform_primary_age_third_child_bonus
+          * japan_child_allowance_primary_age_third_or_later_count
+      - effective_from: '2024-10-01'
+        formula: >-
+          japan_child_allowance_under_three_base_amount
+          * japan_child_allowance_under_three_first_or_second_count
+          + japan_child_allowance_age_three_or_older_base_amount
+          * (japan_child_allowance_primary_age_first_or_second_count
+          + japan_child_allowance_junior_high_first_or_second_count
+          + japan_child_allowance_high_school_first_or_second_count)
+          + japan_child_allowance_post_reform_third_child_amount
+          * (japan_child_allowance_under_three_third_or_later_count
+          + japan_child_allowance_primary_age_third_or_later_count
+          + japan_child_allowance_junior_high_third_or_later_count
+          + japan_child_allowance_high_school_third_or_later_count)
+  - name: japan_child_allowance_monthly
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if not japan_child_allowance_meets_nonfinancial_conditions:
+              0
+          else:
+              if japan_child_allowance_assessed_income < japan_child_allowance_ordinary_income_limit:
+                  japan_child_allowance_regular_monthly_amount
+              else:
+                  japan_child_allowance_special_benefit_per_child * japan_child_allowance_eligible_child_count
+      - effective_from: '2022-06-01'
+        formula: |-
+          if not japan_child_allowance_meets_nonfinancial_conditions:
+              0
+          else:
+              if japan_child_allowance_assessed_income < japan_child_allowance_ordinary_income_limit:
+                  japan_child_allowance_regular_monthly_amount
+              else:
+                  if japan_child_allowance_assessed_income < japan_child_allowance_special_benefit_upper_income_limit:
+                      japan_child_allowance_special_benefit_per_child * japan_child_allowance_eligible_child_count
+                  else:
+                      0
+      - effective_from: '2024-10-01'
+        formula: |-
+          if not japan_child_allowance_meets_nonfinancial_conditions:
+              0
+          else:
+              japan_child_allowance_regular_monthly_amount

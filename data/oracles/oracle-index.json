@@ -1,11 +1,28 @@
 {
   "jurisdiction": "jp",
-  "status": "pending-executable-access",
-  "primary_candidate": "OECD TaxBEN",
-  "fallback_conformance_sources": [
-    "National Tax Agency 2017 income tax guide",
-    "National Tax Agency 2017 withholding guide",
-    "responsible-agency worked examples"
-  ],
-  "validated_release_blocked": true
+  "wave_1_encoding_status": "complete",
+  "official_source_conformance": {
+    "status": "passed",
+    "primary_sources": [
+      "e-Gov Law Search acts and regulations",
+      "National Tax Agency guidance and annual tables",
+      "Japan Pension Service guidance",
+      "Ministry of Health, Labour and Welfare rate notices",
+      "Children and Families Agency material"
+    ],
+    "proof_citation_paths": 126,
+    "exact_proof_excerpts": 404,
+    "monetary_proof_obligations": 370
+  },
+  "independent_oracle": {
+    "status": "pending-executable-access",
+    "primary_candidate": "OECD TaxBEN",
+    "reason": "Executable access and a verified Japan variable mapping are not available in this fork-only environment."
+  },
+  "japanese_language_legal_review": {
+    "status": "pending-independent-reviewer"
+  },
+  "stable_validated_release_blocked": true,
+  "experimental_unsigned_release_allowed": true,
+  "canonical_axiom_apply": false
 }

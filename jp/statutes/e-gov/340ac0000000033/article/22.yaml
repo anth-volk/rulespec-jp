@@ -2,12 +2,13 @@ format: rulespec/v1
 imports:
   - jp:statutes/e-gov/340ac0000000033/article/28
   - jp:statutes/e-gov/332ac0000000026/article/41-15-3
+  - jp:statutes/e-gov/332ac0000000026/article/41-3-11
 module:
   summary: >-
-    Narrow 2017 implementation of Income Tax Act article 22 general-income
-    aggregation. It includes employment income and public-pension miscellaneous
-    income only; every other article 22 income category and all loss offsets
-    are explicitly outside this tranche and therefore assumed to be zero.
+    Wave 1 implementation of Income Tax Act article 22 general-income
+    aggregation. It includes employment income, public-pension miscellaneous
+    income, and the 2020 income-amount adjustment. Every other article 22
+    income category and all loss offsets remain explicit zero assumptions.
   source_verification:
     corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/22
     source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
@@ -40,3 +41,14 @@ rules:
     versions:
       - effective_from: '2017-04-01'
         formula: japan_employment_income_article_28 + japan_public_pension_income_2017_rules
+      - effective_from: '2020-01-01'
+        formula: japan_employment_income_after_income_adjustment + japan_public_pension_income
+  - name: japan_pit_general_income_article_22
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_general_income_article_22_narrow_2017

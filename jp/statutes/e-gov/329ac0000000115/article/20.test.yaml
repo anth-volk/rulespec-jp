@@ -1,0 +1,36 @@
+- name: lowest band below first boundary
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 92999
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 88000
+- name: second band starts at boundary
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 93000
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 98000
+- name: irregular 380000 band upper edge
+  period: {period_kind: month, start: '2019-04-01', end: '2019-04-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 394999
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 380000
+- name: pre-reform upper cap
+  period: {period_kind: month, start: '2020-08-01', end: '2020-08-31'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 800000
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 620000
+- name: post-reform grade 31 last yen
+  period: {period_kind: month, start: '2020-09-01', end: '2020-09-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 634999
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 620000
+- name: post-reform grade 32 boundary
+  period: {period_kind: month, start: '2020-09-01', end: '2020-09-30'}
+  input:
+    jp:statutes/e-gov/329ac0000000115/article/20#input.japan_employees_pension_monthly_remuneration: 635000
+  output:
+    jp:statutes/e-gov/329ac0000000115/article/20#japan_employees_pension_standard_monthly_remuneration: 650000

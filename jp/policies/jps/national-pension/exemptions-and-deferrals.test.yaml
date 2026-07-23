@@ -1,0 +1,67 @@
+- name: full exemption by income
+  period: &period {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: &common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_category_one_insured: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_has_statutory_full_exemption: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_student: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_deferral_approved: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_exemption_application_approved: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 570000
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_non_income_exemption_condition: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_or_deferral_non_income_condition: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_one_quarter_exemption_conditions: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_under_50_deferral_approved: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_meets_payment_deferral_conditions: false
+    jp:regulations/e-gov/334co0000000184/article/6-7#input.japan_national_pension_income_test_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_ordinary_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_elderly_dependent_count: 0
+    jp:regulations/e-gov/334co0000000184/article/6-8-2#input.japan_national_pension_specified_dependent_count: 0
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 0
+- name: three-quarter exemption leaves quarter payment
+  period: *period
+  input:
+    <<: *common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 600000
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions: false
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 4120
+- name: half exemption
+  period: *period
+  input:
+    <<: *common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 1000000
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions: false
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 8250
+- name: one-quarter exemption
+  period: *period
+  input:
+    <<: *common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 1400000
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_full_exemption_conditions: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_three_quarter_exemption_conditions: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_spouse_and_household_head_meet_half_exemption_conditions: false
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 12370
+- name: student payment deferral
+  period: *period
+  input:
+    <<: *common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_is_student: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_student_deferral_approved: true
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 1180000
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 0
+- name: no exemption
+  period: *period
+  input:
+    <<: *common
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_exemption_application_approved: false
+    jp:policies/jps/national-pension/exemptions-and-deferrals#input.japan_national_pension_applicant_adjusted_income: 2000000
+  output:
+    jp:policies/jps/national-pension/exemptions-and-deferrals#japan_national_pension_monthly_contribution_after_exemptions_and_deferrals: 16490

@@ -2,14 +2,21 @@ format: rulespec/v1
 imports:
   - jp:statutes/e-gov/340ac0000000033/article/22
   - jp:statutes/e-gov/340ac0000000033/article/74
-  - jp:statutes/e-gov/340ac0000000033/article/86
+  - jp:statutes/e-gov/332ac0000000026/article/41-16-2
+  - jp:statutes/e-gov/340ac0000000033/article/79
+  - jp:statutes/e-gov/340ac0000000033/article/81
+  - jp:statutes/e-gov/340ac0000000033/article/82
+  - jp:statutes/e-gov/340ac0000000033/article/83
+  - jp:statutes/e-gov/340ac0000000033/article/83-2
+  - jp:statutes/e-gov/340ac0000000033/article/84
+  - jp:statutes/e-gov/340ac0000000033/article/84-2
 module:
   summary: >-
-    National Tax General Rules Act article 118 rounding, applied to the narrow
-    2017 national-PIT base encoded in this repository. The base includes only
-    employment income, public-pension income, the article 74 social-insurance
-    deduction, and the article 86 basic deduction; all omitted income classes,
-    losses, and deductions are assumed to be zero.
+    National Tax General Rules Act article 118 rounding, applied to the Wave 1
+    national-PIT base. Income is limited to employment and public-pension
+    income, but the deduction stack includes basic, spouse, special spouse,
+    dependent, specific-relative, disability, widow/single-parent,
+    working-student, and social-insurance deductions.
   source_verification:
     corpus_citation_path: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118
     source_sha256: 5c85ca257581aa6ed0016a982c8d78401800a0f8e39dbafc74f01b9b5a5a0652
@@ -43,7 +50,16 @@ rules:
     unit: JPY
     versions:
       - effective_from: '2017-04-01'
-        formula: japan_pit_social_insurance_deduction_article_74 + japan_pit_basic_deduction_article_86
+        formula: japan_pit_social_insurance_deduction_article_74 + japan_pit_basic_deduction + japan_pit_disability_deduction + japan_pit_widow_widower_or_single_parent_deduction + japan_pit_working_student_deduction + japan_pit_spouse_deduction + japan_pit_special_spouse_deduction + japan_pit_dependent_deduction + japan_pit_specific_relative_special_deduction
+  - name: japan_pit_encoded_income_deductions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_encoded_income_deductions_narrow_2017
   - name: japan_pit_taxable_general_income_before_rounding_narrow_2017
     kind: derived
     entity: Person
@@ -52,7 +68,16 @@ rules:
     unit: JPY
     versions:
       - effective_from: '2017-04-01'
-        formula: max(0, japan_pit_general_income_article_22_narrow_2017 - japan_pit_encoded_income_deductions_narrow_2017)
+        formula: max(0, japan_pit_general_income_article_22 - japan_pit_encoded_income_deductions)
+  - name: japan_pit_taxable_general_income_before_rounding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_taxable_general_income_before_rounding_narrow_2017
   - name: japan_pit_taxable_general_income
     kind: derived
     entity: Person

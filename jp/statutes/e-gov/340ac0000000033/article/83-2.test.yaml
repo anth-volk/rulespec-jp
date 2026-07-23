@@ -1,0 +1,54 @@
+- name: 2017 first special-spouse band
+  period: {period_kind: tax_year, start: '2017-04-01', end: '2017-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 10000000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 390000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 380000
+- name: 2017 terminal special-spouse band
+  period: {period_kind: tax_year, start: '2017-04-01', end: '2017-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 8000000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 750000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 30000
+- name: 2018 middle taxpayer tier and stepped spouse income
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 9250000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 950000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 210000
+- name: 2020 high taxpayer tier exact NTA matrix
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 9750000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 1200000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 60000
+- name: 2025 lower boundary is exclusive
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 9000000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 580000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 0
+- name: enacted 2026 lower boundary and unchanged full band
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_taxpayer_total_income: 9000000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 620001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83-2#japan_pit_special_spouse_deduction: 380000

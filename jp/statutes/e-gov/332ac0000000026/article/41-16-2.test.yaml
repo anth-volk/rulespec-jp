@@ -1,0 +1,56 @@
+- name: before special addition
+  period: {period_kind: tax_year, start: '2024-01-01', end: '2024-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 1000000
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 480000
+- name: 2025 lowest income full enhancement
+  period: &y2025 {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 1320000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 950000
+- name: 2025 middle enhancement
+  period: *y2025
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 4000000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 680000
+- name: nonresident receives no special addition
+  period: *y2025
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 1000000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: false
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 0
+- name: enacted 2026 lower and lower-middle incomes receive 1040000
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 3360000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 1040000
+- name: enacted 2026 middle band returns to statutory amount
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 4000000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 620000
+- name: enacted 2026 upper-middle temporary amount
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 6000000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 670000
+- name: enacted 2028 low-income permanent schedule
+  period: {period_kind: tax_year, start: '2028-01-01', end: '2028-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/86#input.japan_pit_total_income_amount: 1320000
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-16-2#japan_pit_basic_deduction: 990000

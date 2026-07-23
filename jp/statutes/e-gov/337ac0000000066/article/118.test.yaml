@@ -5,20 +5,84 @@
     start: '2017-04-01'
     end: '2018-01-01'
   input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
     jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 650999
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 1200000
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
     jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 100000
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_ordinary_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_cohabiting_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: false
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 0
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 0
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count: 0
   output:
     jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income: 0
 - name: rounds_positive_tax_base_down_to_thousand_yen
   period: *initial_period
   input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
     jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 5000000
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 3500000
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
     jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 450123
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_ordinary_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_cohabiting_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: false
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 5710000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 2250000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 5710000
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count: 0
   output:
     jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions_narrow_2017: 830123
     jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income_before_rounding_narrow_2017: 4879877
     jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income: 4879000
+- name: 2018 full Wave 1 personal deduction stack
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 5000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 0
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 40
+    jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 700000
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_ordinary_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/79#input.japan_pit_cohabiting_special_disabled_person_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_special_widow: false
+    jp:statutes/e-gov/340ac0000000033/article/81#input.japan_pit_is_widow_or_widower: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_meets_working_student_nonincome_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_total_income_amount: 3560000
+    jp:statutes/e-gov/340ac0000000033/article/82#input.japan_pit_non_labor_income_amount: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 3560000
+    jp:statutes/e-gov/340ac0000000033/article/83-2#input.japan_pit_spouse_meets_special_deduction_non_income_conditions: false
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_ordinary_dependent_count: 1
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_specified_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_elderly_dependent_count: 0
+    jp:statutes/e-gov/340ac0000000033/article/84#input.japan_pit_cohabiting_elderly_dependent_count: 0
+  output:
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions: 1840000
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income: 1620000

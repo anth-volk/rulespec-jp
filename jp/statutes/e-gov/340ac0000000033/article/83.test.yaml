@@ -1,0 +1,50 @@
+- name: 2017 regular spouse deduction has no taxpayer-income taper
+  period: {period_kind: tax_year, start: '2017-04-01', end: '2017-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 380000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 12000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83#japan_pit_spouse_deduction: 380000
+- name: 2018 elderly spouse middle taxpayer tier
+  period: {period_kind: tax_year, start: '2018-01-01', end: '2018-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 380000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 9250000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83#japan_pit_spouse_deduction: 320000
+- name: 2025 spouse threshold is inclusive
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 580000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 9000000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83#japan_pit_spouse_deduction: 380000
+- name: enacted 2026 spouse threshold
+  period: {period_kind: tax_year, start: '2026-01-01', end: '2026-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 620000
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 9500001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83#japan_pit_spouse_deduction: 130000
+- name: taxpayer above eligibility ceiling gets no spouse deduction
+  period: {period_kind: tax_year, start: '2025-01-01', end: '2025-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/5#input.japan_pit_is_resident_under_article_2: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_meets_non_income_conditions: true
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_total_income: 0
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_spouse_is_elderly: false
+    jp:statutes/e-gov/340ac0000000033/article/83#input.japan_pit_taxpayer_total_income: 10000001
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/83#japan_pit_spouse_deduction: 0

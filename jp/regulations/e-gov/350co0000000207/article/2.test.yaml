@@ -1,0 +1,20 @@
+- name: claimant with ordinary and elderly dependents
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input:
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count: 1
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count: 1
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count: 0
+  output:
+    jp:regulations/e-gov/350co0000000207/article/2#japan_special_child_rearing_allowance_claimant_income_limit: 5456000
+- name: supporter with two elderly dependents
+  period: {period_kind: month, start: '2025-04-01', end: '2025-04-30'}
+  input:
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_ordinary_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_elderly_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_special_child_rearing_allowance_claimant_specified_dependent_count: 0
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_dependent_count: 2
+    jp:regulations/e-gov/350co0000000207/article/2#input.japan_disability_allowance_supporter_elderly_dependent_count: 2
+  output:
+    jp:regulations/e-gov/350co0000000207/article/2#japan_disability_allowance_supporter_income_limit: 6809000

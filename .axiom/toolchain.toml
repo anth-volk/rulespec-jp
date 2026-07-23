@@ -1,4 +1,4 @@
 [toolchain]
-axiom_corpus_release = "jp-wave1-2017-04-01-v0-4-0"
-axiom_corpus_release_content_sha256 = "2dbb72acf5fb755c4bd77753e43447b67f6d42c0fef9bf37f0259b487eb0fa27"
+axiom_corpus_release = "jp-wave1-2017-04-01-v0-5-0"
+axiom_corpus_release_content_sha256 = "e610136398036d538b7e8cbd521c2dc1f5034ee4b34a613345438209c3bd1af3"
 validation_waiver_set_sha256 = "ac106aeaf4b7ab301fbc581bad58910df454854374bb59980dd79e7804df301d"

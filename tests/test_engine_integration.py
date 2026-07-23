@@ -11,6 +11,17 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 ENGINE_ENV = "AXIOM_RULES_ENGINE_BIN"
+RULESPEC_MODULES = sorted(
+    str(path.relative_to(ROOT))
+    for content_root in (
+        ROOT / "jp/statutes",
+        ROOT / "jp/regulations",
+        ROOT / "jp/policies",
+    )
+    if content_root.exists()
+    for path in content_root.rglob("*.yaml")
+    if not path.name.endswith(".test.yaml")
+)
 
 
 def _engine() -> Path:
@@ -39,19 +50,7 @@ def _run(engine: Path, *args: str, input_payload: dict | None = None) -> dict:
 
 @pytest.mark.parametrize(
     "relative_module",
-    [
-        "jp/policies/jps/national-pension/contribution-history.yaml",
-        "jp/policies/mhlw/employment-insurance/fy2017-rates.yaml",
-        "jp/statutes/e-gov/332ac0000000026/article/41-15-3.yaml",
-        "jp/statutes/e-gov/337ac0000000066/article/118.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/22.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/28.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/35.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/74.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/86.yaml",
-        "jp/statutes/e-gov/340ac0000000033/article/89.yaml",
-        "jp/statutes/e-gov/423ac0000000117/article/13.yaml",
-    ],
+    RULESPEC_MODULES,
 )
 def test_companion_cases_execute_with_forked_engine(tmp_path, relative_module):
     engine = _engine()
@@ -115,9 +114,9 @@ def test_toolchain_pins_exact_experimental_manifest_and_waiver_bytes():
     import tomllib
 
     toolchain = tomllib.loads((ROOT / ".axiom/toolchain.toml").read_text())["toolchain"]
-    assert toolchain["axiom_corpus_release"] == "jp-wave1-2017-04-01-v0-4-0"
+    assert toolchain["axiom_corpus_release"] == "jp-wave1-2017-04-01-v0-5-0"
     assert toolchain["axiom_corpus_release_content_sha256"] == (
-        "2dbb72acf5fb755c4bd77753e43447b67f6d42c0fef9bf37f0259b487eb0fa27"
+        "e610136398036d538b7e8cbd521c2dc1f5034ee4b34a613345438209c3bd1af3"
     )
     waiver = (ROOT / "known-validation-gaps.yaml").read_bytes()
     assert hashlib.sha256(waiver).hexdigest() == toolchain["validation_waiver_set_sha256"]

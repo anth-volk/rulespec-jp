@@ -1,8 +1,12 @@
 format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
 module:
   summary: >-
-    Income Tax Act article 86 basic deduction for residents under the law
-    consolidated on 2017-04-01.
+    Income Tax Act article 86 statutory basic deduction for residents from
+    平成29年分 onward, including the enacted 令和8年 statutory increase. The
+    separate temporary enhancements are encoded under Special Taxation
+    Measures Act article 41-16-2.
   source_verification:
     corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/86
     source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
@@ -13,7 +17,7 @@ units:
     kind: currency
     minor_units: 0
 rules:
-  - name: japan_pit_basic_deduction_amount_article_86
+  - name: japan_pit_basic_deduction_full_amount_article_86
     kind: parameter
     dtype: Money
     unit: JPY
@@ -25,9 +29,82 @@ rules:
             source:
               corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/86
               excerpt: 三十八万円を控除する
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86
+              excerpt: 四十八万円
+          - path: versions[2].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2025-12-01/article/86
+              excerpt: 五十八万円
+          - path: versions[3].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1
+              excerpt: "所得税法第86条の規定による基礎控除額62万円"
     versions:
       - effective_from: '2017-04-01'
         formula: '380000'
+      - effective_from: '2020-01-01'
+        formula: '480000'
+      - effective_from: '2025-01-01'
+        formula: '580000'
+      - effective_from: '2026-01-01'
+        formula: '620000'
+  - name: japan_pit_basic_deduction_first_taper_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86, excerpt: 三十二万円}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '320000'}
+  - name: japan_pit_basic_deduction_second_taper_amount
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86, excerpt: 十六万円}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '160000'}
+  - name: japan_pit_basic_deduction_full_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86, excerpt: 合計所得金額が二千四百万円以下}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2025-12-01/article/86, excerpt: 合計所得金額が二千三百五十万円以下}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '24000000'}
+      - {effective_from: '2025-01-01', formula: '23500000'}
+  - name: japan_pit_basic_deduction_first_taper_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86, excerpt: 二千四百五十万円以下}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '24500000'}
+  - name: japan_pit_basic_deduction_second_taper_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2020-01-01/article/86, excerpt: 二千五百万円以下}}
+    versions:
+      - {effective_from: '2020-01-01', formula: '25000000'}
   - name: japan_pit_basic_deduction_article_86
     kind: derived
     entity: Person
@@ -36,4 +113,23 @@ rules:
     unit: JPY
     versions:
       - effective_from: '2017-04-01'
-        formula: japan_pit_basic_deduction_amount_article_86
+        formula: |-
+          if japan_pit_standard_resident_liability_applies:
+              japan_pit_basic_deduction_full_amount_article_86
+          else:
+              0
+      - effective_from: '2020-01-01'
+        formula: |-
+          if not japan_pit_standard_resident_liability_applies:
+              0
+          else:
+              if japan_pit_total_income_amount <= japan_pit_basic_deduction_full_income_limit:
+                  japan_pit_basic_deduction_full_amount_article_86
+              else:
+                  if japan_pit_total_income_amount <= japan_pit_basic_deduction_first_taper_income_limit:
+                      japan_pit_basic_deduction_first_taper_amount
+                  else:
+                      if japan_pit_total_income_amount <= japan_pit_basic_deduction_second_taper_income_limit:
+                          japan_pit_basic_deduction_second_taper_amount
+                      else:
+                          0

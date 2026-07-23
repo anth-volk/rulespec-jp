@@ -1,0 +1,16 @@
+- name: one child in 平成29年度
+  period: {period_kind: month, start: '2017-04-01', end: '2017-04-30'}
+  input: {jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 1}
+  output: {jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_full_monthly_amount: 42290}
+- name: three children before addition unification
+  period: {period_kind: month, start: '2024-04-01', end: '2024-04-30'}
+  input: {jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 3}
+  output: {jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_full_monthly_amount: 62700}
+- name: three children after addition unification
+  period: {period_kind: month, start: '2024-11-01', end: '2024-11-30'}
+  input: {jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 3}
+  output: {jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_full_monthly_amount: 67000}
+- name: 令和8年度 indexation
+  period: {period_kind: month, start: '2026-04-01', end: '2026-04-30'}
+  input: {jp:regulations/e-gov/336co0000000405/article/2-2#input.japan_child_rearing_allowance_qualifying_child_count: 2}
+  output: {jp:regulations/e-gov/336co0000000405/article/2-2#japan_child_rearing_allowance_full_monthly_amount: 59400}

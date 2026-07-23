@@ -1,0 +1,327 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Employees' Pension standard monthly remuneration bands from 平成29年4月,
+    including the 令和2年9月 addition of grade 32 by Cabinet Order No. 246.
+    The remuneration-month amount used to assign a band remains an explicit
+    factual input because articles 21 through 24 determine it from payroll
+    circumstances.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20
+    source_sha256: ee144fcc1c622b3d067afdb944ee1505321ff5663988250b50279c02547714d2
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_employees_pension_standard_remuneration_band_01
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一級八八、〇〇〇円九三、〇〇〇円未満}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '88000'}]
+  - name: japan_employees_pension_standard_remuneration_band_02
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二級九八、〇〇〇円九三、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '98000'}]
+  - name: japan_employees_pension_standard_remuneration_band_03
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第三級一〇四、〇〇〇円一〇一、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '104000'}]
+  - name: japan_employees_pension_standard_remuneration_band_04
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第四級一一〇、〇〇〇円一〇七、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '110000'}]
+  - name: japan_employees_pension_standard_remuneration_band_05
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第五級一一八、〇〇〇円一一四、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '118000'}]
+  - name: japan_employees_pension_standard_remuneration_band_06
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第六級一二六、〇〇〇円一二二、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '126000'}]
+  - name: japan_employees_pension_standard_remuneration_band_07
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第七級一三四、〇〇〇円一三〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '134000'}]
+  - name: japan_employees_pension_standard_remuneration_band_08
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第八級一四二、〇〇〇円一三八、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '142000'}]
+  - name: japan_employees_pension_standard_remuneration_band_09
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第九級一五〇、〇〇〇円一四六、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '150000'}]
+  - name: japan_employees_pension_standard_remuneration_band_10
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一〇級一六〇、〇〇〇円一五五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '160000'}]
+  - name: japan_employees_pension_standard_remuneration_band_11
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一一級一七〇、〇〇〇円一六五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '170000'}]
+  - name: japan_employees_pension_standard_remuneration_band_12
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一二級一八〇、〇〇〇円一七五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '180000'}]
+  - name: japan_employees_pension_standard_remuneration_band_13
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一三級一九〇、〇〇〇円一八五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '190000'}]
+  - name: japan_employees_pension_standard_remuneration_band_14
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一四級二〇〇、〇〇〇円一九五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '200000'}]
+  - name: japan_employees_pension_standard_remuneration_band_15
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一五級二二〇、〇〇〇円二一〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '220000'}]
+  - name: japan_employees_pension_standard_remuneration_band_16
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一六級二四〇、〇〇〇円二三〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '240000'}]
+  - name: japan_employees_pension_standard_remuneration_band_17
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一七級二六〇、〇〇〇円二五〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '260000'}]
+  - name: japan_employees_pension_standard_remuneration_band_18
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一八級二八〇、〇〇〇円二七〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '280000'}]
+  - name: japan_employees_pension_standard_remuneration_band_19
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第一九級三〇〇、〇〇〇円二九〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '300000'}]
+  - name: japan_employees_pension_standard_remuneration_band_20
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二〇級三二〇、〇〇〇円三一〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '320000'}]
+  - name: japan_employees_pension_standard_remuneration_band_21
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二一級三四〇、〇〇〇円三三〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '340000'}]
+  - name: japan_employees_pension_standard_remuneration_band_22
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二二級三六〇、〇〇〇円三五〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '360000'}]
+  - name: japan_employees_pension_standard_remuneration_band_23
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二三級三八〇、〇〇〇円三七〇、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '380000'}]
+  - name: japan_employees_pension_standard_remuneration_band_24
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二四級四一〇、〇〇〇円三九五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '410000'}]
+  - name: japan_employees_pension_standard_remuneration_band_25
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二五級四四〇、〇〇〇円四二五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '440000'}]
+  - name: japan_employees_pension_standard_remuneration_band_26
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二六級四七〇、〇〇〇円四五五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '470000'}]
+  - name: japan_employees_pension_standard_remuneration_band_27
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二七級五〇〇、〇〇〇円四八五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '500000'}]
+  - name: japan_employees_pension_standard_remuneration_band_28
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二八級五三〇、〇〇〇円五一五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '530000'}]
+  - name: japan_employees_pension_standard_remuneration_band_29
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第二九級五六〇、〇〇〇円五四五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '560000'}]
+  - name: japan_employees_pension_standard_remuneration_band_30
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第三〇級五九〇、〇〇〇円五七五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '590000'}]
+  - name: japan_employees_pension_standard_remuneration_band_31
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 第三一級六二〇、〇〇〇円六〇五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2017-04-01', formula: '620000'}]
+  - name: japan_employees_pension_standard_remuneration_band_32
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata: {proof: {atoms: [{path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/regulation/e-gov/502co0000000246/as-of/2020-09-01/article/1, excerpt: 第三二級六五〇、〇〇〇円六三五、〇〇〇円以上}}]}}
+    versions: [{effective_from: '2020-09-01', formula: '650000'}]
+  - name: japan_employees_pension_standard_monthly_remuneration_through_grade_31
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: formula, source: {corpus_citation_path: jp/statute/e-gov/329ac0000000115/as-of/2017-04-01/article/20, excerpt: 被保険者の報酬月額に基づき、次の等級区分}}
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_01 + japan_employees_pension_standard_remuneration_band_02) / 2:
+              japan_employees_pension_standard_remuneration_band_01
+          else:
+              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_02 + japan_employees_pension_standard_remuneration_band_03) / 2:
+                  japan_employees_pension_standard_remuneration_band_02
+              else:
+                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_03 + japan_employees_pension_standard_remuneration_band_04) / 2:
+                      japan_employees_pension_standard_remuneration_band_03
+                  else:
+                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_04 + japan_employees_pension_standard_remuneration_band_05) / 2:
+                          japan_employees_pension_standard_remuneration_band_04
+                      else:
+                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_05 + japan_employees_pension_standard_remuneration_band_06) / 2:
+                              japan_employees_pension_standard_remuneration_band_05
+                          else:
+                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_06 + japan_employees_pension_standard_remuneration_band_07) / 2:
+                                  japan_employees_pension_standard_remuneration_band_06
+                              else:
+                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_07 + japan_employees_pension_standard_remuneration_band_08) / 2:
+                                      japan_employees_pension_standard_remuneration_band_07
+                                  else:
+                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_08 + japan_employees_pension_standard_remuneration_band_09) / 2:
+                                          japan_employees_pension_standard_remuneration_band_08
+                                      else:
+                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_09 + japan_employees_pension_standard_remuneration_band_10) / 2:
+                                              japan_employees_pension_standard_remuneration_band_09
+                                          else:
+                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_10 + japan_employees_pension_standard_remuneration_band_11) / 2:
+                                                  japan_employees_pension_standard_remuneration_band_10
+                                              else:
+                                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_11 + japan_employees_pension_standard_remuneration_band_12) / 2:
+                                                      japan_employees_pension_standard_remuneration_band_11
+                                                  else:
+                                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_12 + japan_employees_pension_standard_remuneration_band_13) / 2:
+                                                          japan_employees_pension_standard_remuneration_band_12
+                                                      else:
+                                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_13 + japan_employees_pension_standard_remuneration_band_14) / 2:
+                                                              japan_employees_pension_standard_remuneration_band_13
+                                                          else:
+                                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_14 + japan_employees_pension_standard_remuneration_band_15) / 2:
+                                                                  japan_employees_pension_standard_remuneration_band_14
+                                                              else:
+                                                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_15 + japan_employees_pension_standard_remuneration_band_16) / 2:
+                                                                      japan_employees_pension_standard_remuneration_band_15
+                                                                  else:
+                                                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_16 + japan_employees_pension_standard_remuneration_band_17) / 2:
+                                                                          japan_employees_pension_standard_remuneration_band_16
+                                                                      else:
+                                                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_17 + japan_employees_pension_standard_remuneration_band_18) / 2:
+                                                                              japan_employees_pension_standard_remuneration_band_17
+                                                                          else:
+                                                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_18 + japan_employees_pension_standard_remuneration_band_19) / 2:
+                                                                                  japan_employees_pension_standard_remuneration_band_18
+                                                                              else:
+                                                                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_19 + japan_employees_pension_standard_remuneration_band_20) / 2:
+                                                                                      japan_employees_pension_standard_remuneration_band_19
+                                                                                  else:
+                                                                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_20 + japan_employees_pension_standard_remuneration_band_21) / 2:
+                                                                                          japan_employees_pension_standard_remuneration_band_20
+                                                                                      else:
+                                                                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_21 + japan_employees_pension_standard_remuneration_band_22) / 2:
+                                                                                              japan_employees_pension_standard_remuneration_band_21
+                                                                                          else:
+                                                                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_22 + japan_employees_pension_standard_remuneration_band_23) / 2:
+                                                                                                  japan_employees_pension_standard_remuneration_band_22
+                                                                                              else:
+                                                                                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_23 + japan_employees_pension_standard_remuneration_band_24) / 2:
+                                                                                                      japan_employees_pension_standard_remuneration_band_23
+                                                                                                  else:
+                                                                                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_24 + japan_employees_pension_standard_remuneration_band_25) / 2:
+                                                                                                          japan_employees_pension_standard_remuneration_band_24
+                                                                                                      else:
+                                                                                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_25 + japan_employees_pension_standard_remuneration_band_26) / 2:
+                                                                                                              japan_employees_pension_standard_remuneration_band_25
+                                                                                                          else:
+                                                                                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_26 + japan_employees_pension_standard_remuneration_band_27) / 2:
+                                                                                                                  japan_employees_pension_standard_remuneration_band_26
+                                                                                                              else:
+                                                                                                                  if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_27 + japan_employees_pension_standard_remuneration_band_28) / 2:
+                                                                                                                      japan_employees_pension_standard_remuneration_band_27
+                                                                                                                  else:
+                                                                                                                      if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_28 + japan_employees_pension_standard_remuneration_band_29) / 2:
+                                                                                                                          japan_employees_pension_standard_remuneration_band_28
+                                                                                                                      else:
+                                                                                                                          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_29 + japan_employees_pension_standard_remuneration_band_30) / 2:
+                                                                                                                              japan_employees_pension_standard_remuneration_band_29
+                                                                                                                          else:
+                                                                                                                              if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_30 + japan_employees_pension_standard_remuneration_band_31) / 2:
+                                                                                                                                  japan_employees_pension_standard_remuneration_band_30
+                                                                                                                              else:
+                                                                                                                                  japan_employees_pension_standard_remuneration_band_31
+  - name: japan_employees_pension_standard_monthly_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_employees_pension_standard_monthly_remuneration_through_grade_31
+      - effective_from: '2020-09-01'
+        formula: |-
+          if japan_employees_pension_monthly_remuneration < (japan_employees_pension_standard_remuneration_band_31 + japan_employees_pension_standard_remuneration_band_32) / 2:
+              japan_employees_pension_standard_monthly_remuneration_through_grade_31
+          else:
+              japan_employees_pension_standard_remuneration_band_32

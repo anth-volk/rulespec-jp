@@ -18,3 +18,13 @@
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
   output:
     jp:statutes/e-gov/340ac0000000033/article/22#japan_pit_general_income_article_22_narrow_2017: 5710000
+- name: 2020 aggregate uses income-amount adjustments
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 10000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 1100000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 8050000
+    jp:statutes/e-gov/332ac0000000026/article/41-3-11#input.japan_pit_income_adjustment_has_qualifying_child_or_disability_condition: true
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/22#japan_pit_general_income_article_22: 7900000

@@ -1,35 +1,85 @@
 {
-  "as_of": "2026-07-23",
+  "as_of": "2026-07-24",
   "jurisdiction": "jp",
   "inclusive_start": "2017-04-01",
-  "release": "jp-wave1-2017-04-01-v0-4-0",
+  "source_freeze": "2026-07-23",
+  "release": "jp-wave1-2017-04-01-v0-5-0",
+  "release_status": "experimental-unsigned",
+  "wave_1_encoding_status": "complete",
   "checks": {
     "repository_pytest": {
       "status": "passed",
-      "tests": 22
+      "tests": 53,
+      "includes": [
+        "repository layout",
+        "same-stem executable cases",
+        "composition integration",
+        "complete 2018 annual component scenario"
+      ]
     },
     "axiom_encode_test": {
       "status": "passed",
-      "companion_files": 11,
-      "cases": 53,
-      "compiled_programs": 11
+      "companion_files": 41,
+      "cases": 181,
+      "compiled_programs": 41
     },
-    "axiom_compose_then_engine_compile": {
+    "complete_2018_component_scenario": {
       "status": "passed",
-      "program": "jp/programs/national-income-tax-2017.yaml",
-      "derived_outputs": 19
+      "scenario": "data/scenarios/wave1-2018-working-parent.yaml",
+      "scope": "national income tax, reconstruction tax, Employees' Pension employee contribution, Employment Insurance employee contribution, and Child Allowance",
+      "combined_disposable_income_output": false
+    },
+    "money_proof_atoms": {
+      "status": "passed",
+      "obligations": 370,
+      "missing": 0
+    },
+    "direct_corpus_proofs": {
+      "status": "passed",
+      "citation_paths": 126,
+      "exact_excerpts": 404,
+      "missing_paths": 0,
+      "missing_excerpts": 0
+    },
+    "corpus_release_manifest": {
+      "status": "passed",
+      "source_snapshots": 725,
+      "artifacts": 9,
+      "manifest_sha256": "e610136398036d538b7e8cbd521c2dc1f5034ee4b34a613345438209c3bd1af3",
+      "coverage": {
+        "statute_provisions": 481379,
+        "regulation_provisions": 340095,
+        "guidance_provisions": 131
+      }
     },
     "corpus_full_pytest": {
       "status": "passed",
-      "passed": 4091,
+      "passed": 4096,
       "skipped": 74,
-      "deselected": 208
+      "deselected": 208,
+      "warnings": 37
     },
-    "corpus_ruff": {"status": "passed"},
-    "corpus_mypy": {"status": "passed"},
+    "corpus_citation_path_grammar": {
+      "status": "passed",
+      "focused_tests": 19,
+      "streaming_validation": true,
+      "block_n_baseline": 19769
+    },
+    "corpus_ruff": {
+      "status": "passed"
+    },
+    "corpus_mypy": {
+      "status": "passed",
+      "source_files": 91
+    },
+    "corpus_towncrier": {
+      "status": "passed"
+    },
     "oracle_coverage_pending_ratchet": {
       "status": "passed",
-      "declared": 84,
+      "declared": 360,
+      "applied": 360,
+      "stale": 0,
       "problems": 0
     },
     "protected_proof_validate": {
@@ -38,12 +88,17 @@
     },
     "independent_oracle": {
       "status": "pending",
-      "reason": "OECD TaxBEN executable access and Japan variable mapping remain unconfirmed."
+      "reason": "OECD TaxBEN executable access and a verified Japan variable mapping remain unavailable in this fork-only environment."
     },
-    "gitnexus_impact_and_change_detection": {
-      "status": "unavailable",
-      "fallback": "Manual repository search, exact staged diff review, and full tests."
+    "japanese_language_legal_review": {
+      "status": "pending",
+      "reason": "No independent Japanese-language legal reviewer has signed off on the experimental model."
+    },
+    "hosted_fork_ci": {
+      "status": "pending-current-commit",
+      "reason": "The completed local changes have not yet been committed and pushed to the two forks."
     }
   },
-  "canonical_axiom_apply": false
+  "canonical_axiom_apply": false,
+  "combined_disposable_income_output": false
 }

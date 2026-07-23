@@ -61,3 +61,27 @@
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
   output:
     jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income_2017_rules: 5760000
+- name: 2020 NTA age 65 example
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 3500000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 5000000
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income: 2350000
+- name: 2020 under 65 higher other-income tier
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 1000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 64
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 20000001
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income: 600000
+- name: 2020 top pension receipts
+  period: {period_kind: tax_year, start: '2020-01-01', end: '2020-12-31'}
+  input:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 10000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_other_income_excluding_public_pension: 0
+  output:
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income: 8045000

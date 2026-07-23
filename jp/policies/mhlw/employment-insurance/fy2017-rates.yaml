@@ -1,9 +1,9 @@
 format: rulespec/v1
 module:
   summary: >-
-    Employee Employment Insurance contribution rates for 平成29年度. This
-    parameter slice identifies the applicable employee rate; payroll
-    aggregation and sub-yen collection rounding remain unencoded.
+    Employee Employment Insurance contribution rates from 平成29年度 through
+    令和8年度, including the 2022-10-01 mid-year change, and the standard
+    per-payment contribution and rounding rules.
   source_verification:
     corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
     source_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
@@ -19,15 +19,55 @@ rules:
     dtype: Rate
     metadata:
       proof:
-        atoms:
+        atoms: &employment_rate_atoms
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
               excerpt: 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
+          - path: versions[1].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '（30年度） 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000'}
+          - path: versions[2].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000'}
+          - path: versions[3].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '（２年度） 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000'}
+          - path: versions[4].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000'}
+          - path: versions[5].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '一般の事業 3/1,000 6.5/1,000 3/1,000 3.5/1,000 9.5/1,000'}
+          - path: versions[6].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '一般の事業 ５/1,000 8.5/1,000 ５/1,000 3.5/1,000 13.5/1,000'}
+          - path: versions[7].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2023/document-1, excerpt: '一般の事業 6/1,000 9.5/1,000 6/1,000 3.5/1,000 15.5/1,000'}
+          - path: versions[8].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2024/document-1, excerpt: '一般の事業 6/1,000 9.5/1,000 6/1,000 3.5/1,000 15.5/1,000'}
+          - path: versions[9].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2025/document-1, excerpt: '一般の事業 5.5/1,000 9/1,000 5.5/1,000 3.5/1,000 14.5/1,000'}
+          - path: versions[10].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2026/document-1, excerpt: '一般の事業 5/1,000 8.5/1,000 5/1,000 3.5/1,000 13.5/1,000'}
     versions:
       - effective_from: '2017-04-01'
         formula: '0.003'
+      - {effective_from: '2018-04-01', formula: '0.003'}
+      - {effective_from: '2019-04-01', formula: '0.003'}
+      - {effective_from: '2020-04-01', formula: '0.003'}
+      - {effective_from: '2021-04-01', formula: '0.003'}
+      - {effective_from: '2022-04-01', formula: '0.003'}
+      - {effective_from: '2022-10-01', formula: '0.005'}
+      - {effective_from: '2023-04-01', formula: '0.006'}
+      - {effective_from: '2024-04-01', formula: '0.006'}
+      - {effective_from: '2025-04-01', formula: '0.0055'}
+      - {effective_from: '2026-04-01', formula: '0.005'}
   - name: japan_employment_insurance_agriculture_fisheries_sake_employee_rate
     kind: parameter
     dtype: Rate
@@ -36,12 +76,50 @@ rules:
         atoms:
           - path: versions[0].formula
             kind: parameter
-            source:
-              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
-              excerpt: 農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1, excerpt: '農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000'}
+          - path: versions[1].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '（30年度） 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000'}
+          - path: versions[2].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000'}
+          - path: versions[3].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '（２年度） 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000'}
+          - path: versions[4].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000'}
+          - path: versions[5].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '農林水産・ 清酒製造の事業 4/1,000 7.5/1,000 4/1,000 3.5/1,000 11.5/1,000'}
+          - path: versions[6].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '農林水産・ 清酒製造の事業 ６/1,000 9.5/1,000 ６/1,000 3.5/1,000 15.5/1,000'}
+          - path: versions[7].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2023/document-1, excerpt: '農林水産・ 清酒製造の事業 7/1,000 10.5/1,000 7/1,000 3.5/1,000 17.5/1,000'}
+          - path: versions[8].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2024/document-1, excerpt: '農林水産・ 清酒製造の事業 7/1,000 10.5/1,000 7/1,000 3.5/1,000 17.5/1,000'}
+          - path: versions[9].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2025/document-1, excerpt: '農林水産・ 清酒製造の事業 6.5/1,000 10/1,000 6.5/1,000 3.5/1,000 16.5/1,000'}
+          - path: versions[10].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2026/document-1, excerpt: '農林水産・ 清酒製造の事業 6/1,000 9.5/1,000 6/1,000 3.5/1,000 15.5/1,000'}
     versions:
       - effective_from: '2017-04-01'
         formula: '0.004'
+      - {effective_from: '2018-04-01', formula: '0.004'}
+      - {effective_from: '2019-04-01', formula: '0.004'}
+      - {effective_from: '2020-04-01', formula: '0.004'}
+      - {effective_from: '2021-04-01', formula: '0.004'}
+      - {effective_from: '2022-04-01', formula: '0.004'}
+      - {effective_from: '2022-10-01', formula: '0.006'}
+      - {effective_from: '2023-04-01', formula: '0.007'}
+      - {effective_from: '2024-04-01', formula: '0.007'}
+      - {effective_from: '2025-04-01', formula: '0.0065'}
+      - {effective_from: '2026-04-01', formula: '0.006'}
   - name: japan_employment_insurance_construction_business_employee_rate
     kind: parameter
     dtype: Rate
@@ -50,12 +128,50 @@ rules:
         atoms:
           - path: versions[0].formula
             kind: parameter
-            source:
-              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1
-              excerpt: 建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2017/document-1, excerpt: '建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000'}
+          - path: versions[1].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '（30年度） 4/１,000 8/1,000 4/1,000 4/1,000 12/1,000'}
+          - path: versions[2].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2019/document-1, excerpt: '建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000'}
+          - path: versions[3].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '（２年度） 4/１,000 8/1,000 4/1,000 4/1,000 12/1,000'}
+          - path: versions[4].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2021/document-1, excerpt: '建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000'}
+          - path: versions[5].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '建設の事業 4/1,000 8.5/1,000 4/1,000 4.5/1,000 12.5/1,000'}
+          - path: versions[6].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2022/document-1, excerpt: '建設の事業 ６/1,000 10.5/1,000 ６/1,000 4.5/1,000 16.5/1,000'}
+          - path: versions[7].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2023/document-1, excerpt: '建設の事業 7/1,000 11.5/1,000 7/1,000 4.5/1,000 18.5/1,000'}
+          - path: versions[8].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2024/document-1, excerpt: '建設の事業 7/1,000 11.5/1,000 7/1,000 4.5/1,000 18.5/1,000'}
+          - path: versions[9].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2025/document-1, excerpt: '建設の事業 6.5/1,000 11/1,000 6.5/1,000 4.5/1,000 17.5/1,000'}
+          - path: versions[10].formula
+            kind: parameter
+            source: {corpus_citation_path: jp/guidance/mhlw/employment-insurance/rates/fy2026/document-1, excerpt: '建設の事業 6/1,000 10.5/1,000 6/1,000 4.5/1,000 16.5/1,000'}
     versions:
       - effective_from: '2017-04-01'
         formula: '0.004'
+      - {effective_from: '2018-04-01', formula: '0.004'}
+      - {effective_from: '2019-04-01', formula: '0.004'}
+      - {effective_from: '2020-04-01', formula: '0.004'}
+      - {effective_from: '2021-04-01', formula: '0.004'}
+      - {effective_from: '2022-04-01', formula: '0.004'}
+      - {effective_from: '2022-10-01', formula: '0.006'}
+      - {effective_from: '2023-04-01', formula: '0.007'}
+      - {effective_from: '2024-04-01', formula: '0.007'}
+      - {effective_from: '2025-04-01', formula: '0.0065'}
+      - {effective_from: '2026-04-01', formula: '0.006'}
   - name: japan_employment_insurance_employee_rate
     kind: derived
     entity: Person
@@ -71,3 +187,33 @@ rules:
                   japan_employment_insurance_agriculture_fisheries_sake_employee_rate
               else:
                   japan_employment_insurance_general_business_employee_rate
+  - name: japan_employment_insurance_employee_contribution_before_rounding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_employment_insurance_covered_wages_paid * japan_employment_insurance_employee_rate
+  - name: japan_employment_insurance_employee_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: jp/guidance/mhlw/employment-insurance/rounding/block-2
+              excerpt: 50銭以下の場合は切り捨て、50銭1厘以上の場合は切り上げること
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_employment_insurance_is_withheld_from_wages:
+              floor(japan_employment_insurance_employee_contribution_before_rounding + 0.4995)
+          else:
+              floor(japan_employment_insurance_employee_contribution_before_rounding + 0.5)

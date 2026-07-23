@@ -1,0 +1,98 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/5
+module:
+  summary: >-
+    Dependent deductions by ordinary, specified, elderly, and cohabiting
+    elderly category. Qualifying counts are caller-supplied after applying the
+    encoded dependent-income limit; under-16 dependants are tracked but have
+    no national income-tax deduction.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/84
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - {name: JPY, kind: currency, minor_units: 0}
+rules:
+  - name: japan_pit_dependent_income_limit
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/2, excerpt: 合計所得金額が三十八万円以下である者}}
+          - {path: "versions[1].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/dependants/no-1180/block-5, excerpt: 合計所得金額 が48万円以下}}
+          - {path: "versions[2].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/dependants/no-1180/block-5, excerpt: 金額は「58万円以下」です}}
+          - {path: "versions[3].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/reform/2026/document-1, excerpt: "扶養親族 同一生計配偶者 ひとり親の生計を一にする子 62 万円以下"}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+      - {effective_from: '2020-01-01', formula: '480000'}
+      - {effective_from: '2025-01-01', formula: '580000'}
+      - {effective_from: '2026-01-01', formula: '620000'}
+  - name: japan_pit_ordinary_dependent_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/84, excerpt: 扶養親族一人につき三十八万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '380000'}
+  - name: japan_pit_specified_dependent_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/84, excerpt: 特定扶養親族である場合には六十三万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '630000'}
+  - name: japan_pit_elderly_dependent_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/84, excerpt: 老人扶養親族である場合には四十八万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '480000'}
+  - name: japan_pit_cohabiting_elderly_dependent_deduction_per_person
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - {path: "versions[0].formula", kind: parameter, source: {corpus_citation_path: jp/guidance/nta/income-tax/dependants/no-1180/block-4, excerpt: 同居老親等 58万円}}
+    versions:
+      - {effective_from: '2017-04-01', formula: '580000'}
+  - name: japan_pit_dependent_deduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_pit_standard_resident_liability_applies:
+              japan_pit_ordinary_dependent_deduction_per_person * japan_pit_ordinary_dependent_count + japan_pit_specified_dependent_deduction_per_person * japan_pit_specified_dependent_count + japan_pit_elderly_dependent_deduction_per_person * japan_pit_elderly_dependent_count + japan_pit_cohabiting_elderly_dependent_deduction_per_person * japan_pit_cohabiting_elderly_dependent_count
+          else:
+              0
+  - name: japan_pit_dependent_income_qualifies_flag
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Year
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_pit_candidate_dependent_total_income <= japan_pit_dependent_income_limit:
+              1
+          else:
+              0
