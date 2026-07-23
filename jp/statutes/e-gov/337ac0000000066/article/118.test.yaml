@@ -1,0 +1,24 @@
+- name: deductions_exceed_encoded_income
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 650999
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 1200000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+    jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 100000
+  output:
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income: 0
+- name: rounds_positive_tax_base_down_to_thousand_yen
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 5000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 3500000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+    jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 450123
+  output:
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions_narrow_2017: 830123
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income_before_rounding_narrow_2017: 4879877
+    jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income: 4879000

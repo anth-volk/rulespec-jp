@@ -1,0 +1,20 @@
+- name: no_employment_or_pension_income
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 0
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 0
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/22#japan_pit_general_income_article_22_narrow_2017: 0
+- name: employment_and_age_65_public_pension
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/28#input.japan_employment_gross_cash_earnings: 5000000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_gross_receipts: 3500000
+    jp:statutes/e-gov/332ac0000000026/article/41-15-3#input.japan_public_pension_recipient_age_at_statutory_test_date: 65
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/22#japan_pit_general_income_article_22_narrow_2017: 5710000

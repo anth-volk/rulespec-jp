@@ -3,6 +3,14 @@ period: '2017-04-01'
 outputs:
   - japan_employment_income_article_28
   - japan_employment_income_deduction_article_28
+  - japan_public_pension_income_2017_rules
+  - japan_public_pension_deduction_2017_rules
+  - japan_pit_general_income_article_22_narrow_2017
+  - japan_pit_social_insurance_deduction_article_74
+  - japan_pit_basic_deduction_article_86
+  - japan_pit_encoded_income_deductions_narrow_2017
+  - japan_pit_taxable_general_income_before_rounding_narrow_2017
+  - japan_pit_taxable_general_income
   - japan_national_income_tax_article_89_base_tax
   - japan_reconstruction_special_income_tax
   - japan_national_income_tax_including_reconstruction_tax

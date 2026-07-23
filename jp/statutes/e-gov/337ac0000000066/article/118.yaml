@@ -1,0 +1,72 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/22
+  - jp:statutes/e-gov/340ac0000000033/article/74
+  - jp:statutes/e-gov/340ac0000000033/article/86
+module:
+  summary: >-
+    National Tax General Rules Act article 118 rounding, applied to the narrow
+    2017 national-PIT base encoded in this repository. The base includes only
+    employment income, public-pension income, the article 74 social-insurance
+    deduction, and the article 86 basic deduction; all omitted income classes,
+    losses, and deductions are assumed to be zero.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118
+    source_sha256: 5c85ca257581aa6ed0016a982c8d78401800a0f8e39dbafc74f01b9b5a5a0652
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_national_tax_base_rounding_unit_article_118
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118
+              excerpt: その額に千円未満の端数があるとき
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1000'
+  - name: japan_pit_encoded_income_deductions_narrow_2017
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_pit_social_insurance_deduction_article_74 + japan_pit_basic_deduction_article_86
+  - name: japan_pit_taxable_general_income_before_rounding_narrow_2017
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_pit_general_income_article_22_narrow_2017 - japan_pit_encoded_income_deductions_narrow_2017)
+  - name: japan_pit_taxable_general_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118
+              excerpt: その端数金額又はその全額を切り捨てる
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(japan_pit_taxable_general_income_before_rounding_narrow_2017 / japan_national_tax_base_rounding_unit_article_118) * japan_national_tax_base_rounding_unit_article_118

@@ -1,27 +1,27 @@
 {
-  "as_of": "2026-07-22",
+  "as_of": "2026-07-23",
   "jurisdiction": "jp",
   "inclusive_start": "2017-04-01",
-  "release": "jp-wave1-2017-04-01-v0-3-0",
+  "release": "jp-wave1-2017-04-01-v0-4-0",
   "checks": {
     "repository_pytest": {
       "status": "passed",
-      "tests": 16
+      "tests": 22
     },
     "axiom_encode_test": {
       "status": "passed",
-      "companion_files": 5,
-      "cases": 30,
-      "compiled_programs": 5
+      "companion_files": 11,
+      "cases": 53,
+      "compiled_programs": 11
     },
     "axiom_compose_then_engine_compile": {
       "status": "passed",
       "program": "jp/programs/national-income-tax-2017.yaml",
-      "derived_outputs": 5
+      "derived_outputs": 19
     },
     "corpus_full_pytest": {
       "status": "passed",
-      "passed": 4090,
+      "passed": 4091,
       "skipped": 74,
       "deselected": 208
     },
@@ -29,12 +29,12 @@
     "corpus_mypy": {"status": "passed"},
     "oracle_coverage_pending_ratchet": {
       "status": "passed",
-      "declared": 58,
+      "declared": 84,
       "problems": 0
     },
     "protected_proof_validate": {
       "status": "blocked-as-designed",
-      "reason": "The unsigned experimental corpus is not attached to Axiom's protected signing broker."
+      "reason": "The fork-owned experimental corpus object is explicitly unsigned and cannot satisfy Axiom's protected canonical release verifier; no protected signing broker is attached."
     },
     "independent_oracle": {
       "status": "pending",

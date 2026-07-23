@@ -1,7 +1,7 @@
 jurisdiction: jp
 inclusive_start: '2017-04-01'
 inclusive_start_original: 平成二十九年四月一日
-source_freeze: '2026-07-22'
+source_freeze: '2026-07-23'
 calendar_contract:
   execution_calendar: gregorian
   original_calendar_preserved: true
@@ -22,6 +22,12 @@ sources:
     snapshot_as_of: '2017-04-01'
     snapshot_sha256: d9a1fa7290b36d691e082332cce1536fd5d716f27ad9ed041f2ea9390b02ab91
     citation_root: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01
+  - law_id: 337AC0000000066
+    title: 国税通則法
+    law_number: 昭和三十七年法律第六十六号
+    snapshot_as_of: '2017-04-01'
+    snapshot_sha256: 5c85ca257581aa6ed0016a982c8d78401800a0f8e39dbafc74f01b9b5a5a0652
+    citation_root: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01
   - law_id: 423AC0000000117
     title: 東日本大震災からの復興のための施策を実施するために必要な財源の確保に関する特別措置法
     snapshot_as_of: '2017-04-01'
@@ -78,7 +84,21 @@ agency_sources:
     normalized_end: '2018-03-31'
     snapshot_sha256: 439200e157c653e3184e7638da9f4711a8e898c82c6ac34e8009d50ab1d51bff
     citation_root: jp/guidance/mhlw/employment-insurance/rates/fy2017
+  - source_id: jp-nta-public-pension-tax-no-1600
+    title: No.1600 公的年金等の課税関係
+    source_authority: National Tax Agency
+    source_url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1600.htm
+    source_as_of: '2026-07-23'
+    original_historical_period: 平成17年分から令和元年分まで
+    validation_tax_year: 2017
+    snapshot_sha256: bef235a5c81323ecb26440ff6156508a89f8b07c9c7aecffdc2ec731ca910523
+    citation_root: jp/guidance/nta/income-tax/public-pension/no-1600
 proof_provisions:
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/22
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - 給与所得の金額、譲渡所得の金額
+      - 及び雑所得の金額
   - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/28
     snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
     excerpts:
@@ -102,6 +122,34 @@ proof_provisions:
       - １，６２２，０００ | １，６２４，０００ | ９７２，０００
       - １，６２４，０００ | １，６２８，０００ | ９７４，０００
       - １，６２８，０００ | １，６３２，０００ | ９７６，８００
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/35
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - 一五十万円
+      - 当該残額が三百六十万円以下である場合
+      - 当該残額の百分の二十五に相当する金額
+      - 当該残額が三百六十万円を超え、七百二十万円以下である場合
+      - 九十万円と当該残額から三百六十万円を控除した金額の百分の十五に相当する金額との合計額
+      - 百四十四万円と当該残額から七百二十万円を控除した金額の百分の五に相当する金額との合計額
+      - 当該合計額が七十万円に満たないときは、七十万円とする
+  - citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+    snapshot_sha256: d9a1fa7290b36d691e082332cce1536fd5d716f27ad9ed041f2ea9390b02ab91
+    excerpts:
+      - 年齢が六十五歳以上である個人
+      - 同法第三十五条第四項中「七十万円」とあるのは、「百二十万円」とする
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/74
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - その支払つた金額又はその控除される金額を
+  - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/86
+    snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+    excerpts:
+      - 三十八万円を控除する
+  - citation_path: jp/statute/e-gov/337ac0000000066/as-of/2017-04-01/article/118
+    snapshot_sha256: 5c85ca257581aa6ed0016a982c8d78401800a0f8e39dbafc74f01b9b5a5a0652
+    excerpts:
+      - その額に千円未満の端数があるとき
+      - その端数金額又はその全額を切り捨てる
   - citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/89
     snapshot_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
     excerpts:
@@ -126,3 +174,9 @@ proof_provisions:
       - 一般の事業 3/1,000 6/1,000 3/1,000 3/1,000 9/1,000
       - 農林水産・ 清酒製造の事業 4/1,000 7/1,000 4/1,000 3/1,000 11/1,000
       - 建設の事業 4/1,000 8/1,000 4/1,000 4/1,000 12/1,000
+  - citation_path: jp/guidance/nta/income-tax/public-pension/no-1600/historical-public-pension-calculation
+    snapshot_sha256: bef235a5c81323ecb26440ff6156508a89f8b07c9c7aecffdc2ec731ca910523
+    excerpts:
+      - 公的年金等に係る雑所得の速算表(平成17年分から令和元年分まで)
+      - 3,500,000円×75％-375,000円＝2,250,000円
+      - 所法35、121、203の2、203の3、所令82の2、措法41の15の3、復興財確法28

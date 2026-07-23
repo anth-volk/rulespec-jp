@@ -1,0 +1,33 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Income Tax Act article 74 social-insurance deduction for the law
+    consolidated on 2017-04-01. The factual input is the qualifying amount
+    actually paid by the resident or withheld from pay during the year.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/74
+    source_sha256: 328d5dfb252bc80b801a1245c1c0017bc716ff10808849428b05053add14986e
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_pit_social_insurance_deduction_article_74
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: jp/statute/e-gov/340ac0000000033/as-of/2017-04-01/article/74
+              excerpt: その支払つた金額又はその控除される金額を
+    versions:
+      - effective_from: '2017-04-01'
+        formula: japan_social_insurance_contributions_paid_or_withheld

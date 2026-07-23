@@ -1,0 +1,16 @@
+- name: no_qualifying_payment
+  period: &initial_period
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 0
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/74#japan_pit_social_insurance_deduction_article_74: 0
+- name: qualifying_payment_is_fully_deductible
+  period: *initial_period
+  input:
+    jp:statutes/e-gov/340ac0000000033/article/74#input.japan_social_insurance_contributions_paid_or_withheld: 450000
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/74#japan_pit_social_insurance_deduction_article_74: 450000

@@ -15,6 +15,13 @@ vertical slice covers:
 - Income Tax Act article 28 and statutory Schedule 5: employment income and
   the employment-income deduction, including the exact low-income rows and
   JPY 4,000 table bands below JPY 6.6 million;
+- Income Tax Act article 35 and Special Taxation Measures Act article 41-15-3:
+  public-pension miscellaneous income, including the age-65 minimum-deduction
+  override;
+- a deliberately narrow national PIT base under Income Tax Act articles 22,
+  74, and 86 plus National Tax General Rules Act article 118: employment and
+  public-pension income, actual qualifying social-insurance payments, the
+  JPY 380,000 basic deduction, and JPY 1,000 tax-base truncation;
 - Income Tax Act article 89: the national progressive rate schedule;
 - Reconstruction Funding Special Measures Act article 13: the 2.1% special
   reconstruction income tax;
@@ -22,9 +29,12 @@ vertical slice covers:
   平成29年度; and
 - the three MHLW employee Employment Insurance rates for 平成29年度.
 
-The pension and employment-insurance modules are parameter slices, not complete
-contribution calculators. The complete Wave 1 source inventory is present, but
-all remaining surfaces are explicitly statused in the coverage ledger.
+The narrow PIT path assumes that every omitted income class, loss offset,
+deduction, and credit is zero. It is not yet a general personal-income-tax
+calculator. The pension-contribution and employment-insurance modules are
+parameter slices, not complete contribution calculators. The complete Wave 1
+source inventory is present, but all remaining surfaces are explicitly
+statused in the coverage ledger.
 
 ## Time and calendar contract
 
@@ -58,7 +68,7 @@ AXIOM_RULES_ENGINE_BIN=../axiom-rules-engine/target/debug/axiom-rules-engine \
 ```
 
 The `.axiom/toolchain.toml` pin identifies the fork-owned, unsigned
-`jp-wave1-2017-04-01-v0-3-0` experimental corpus object. It is deliberately not
+`jp-wave1-2017-04-01-v0-4-0` experimental corpus object. It is deliberately not
 represented as an Axiom Foundation signed corpus release and cannot satisfy the
 protected canonical apply path.
 

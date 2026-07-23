@@ -6,7 +6,7 @@
 # an entry that is no longer unmapped must be removed.
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
-ceiling: 58
+ceiling: 84
 entries:
 - legal_id: jp:policies/jps/national-pension/contribution-history#japan_national_pension_additional_monthly_contribution
   source: manual
@@ -70,6 +70,36 @@ entries:
   source: manual
   since: '2026-07-22'
   note: Employment Insurance parameter awaits an independent-model mapping.
+- legal_id: jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_age_65_minimum_deduction
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_age_special_rule_threshold
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_deduction_2017_rules
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_effective_minimum_deduction_2017_rules
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/332ac0000000026/article/41-15-3#japan_public_pension_income_2017_rules
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/337ac0000000066/article/118#japan_national_tax_base_rounding_unit_article_118
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_encoded_income_deductions_narrow_2017
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/337ac0000000066/article/118#japan_pit_taxable_general_income_before_rounding_narrow_2017
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/22#japan_pit_general_income_article_22_narrow_2017
+  source: manual
+  since: '2026-07-23'
 - legal_id: jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_article_28
   source: manual
   since: '2026-07-22'
@@ -151,6 +181,54 @@ entries:
 - legal_id: jp:statutes/e-gov/340ac0000000033/article/28#japan_employment_income_third_deduction_rate
   source: manual
   since: '2026-07-22'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_calculated_deduction_before_minimum
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_first_residual_rate
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_first_residual_upper_threshold
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_fixed_deduction_component
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_minimum_deduction
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_residual_receipts
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_second_residual_fixed_component
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_second_residual_rate
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_second_residual_upper_threshold
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_third_residual_fixed_component
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_article_35_third_residual_rate
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_deduction_article_35_before_age_special_rule
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/35#japan_public_pension_income_article_35_before_age_special_rule
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/74#japan_pit_social_insurance_deduction_article_74
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_amount_article_86
+  source: manual
+  since: '2026-07-23'
+- legal_id: jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86
+  source: manual
+  since: '2026-07-23'
 - legal_id: jp:statutes/e-gov/340ac0000000033/article/89#japan_national_income_tax_article_89_base_tax
   source: manual
   since: '2026-07-22'

@@ -1,0 +1,79 @@
+format: rulespec/v1
+imports:
+  - jp:statutes/e-gov/340ac0000000033/article/35
+module:
+  summary: >-
+    Special Taxation Measures Act article 41-15-3 public-pension minimum
+    deduction for the 2017 baseline. People aged 65 or older at December 31,
+    or at death or departure when the statute substitutes that date, receive
+    a JPY 1.2 million minimum instead of article 35's JPY 700,000 minimum.
+  source_verification:
+    corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+    source_sha256: d9a1fa7290b36d691e082332cce1536fd5d716f27ad9ed041f2ea9390b02ab91
+  proof_validation:
+    required: true
+units:
+  - name: JPY
+    kind: currency
+    minor_units: 0
+rules:
+  - name: japan_public_pension_age_special_rule_threshold
+    kind: parameter
+    dtype: Integer
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+              excerpt: 年齢が六十五歳以上である個人
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '65'
+  - name: japan_public_pension_age_65_minimum_deduction
+    kind: parameter
+    dtype: Money
+    unit: JPY
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: jp/statute/e-gov/332ac0000000026/as-of/2017-04-01/article/41-15-3
+              excerpt: 同法第三十五条第四項中「七十万円」とあるのは、「百二十万円」とする
+    versions:
+      - effective_from: '2017-04-01'
+        formula: '1200000'
+  - name: japan_public_pension_effective_minimum_deduction_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: |-
+          if japan_public_pension_recipient_age_at_statutory_test_date >= japan_public_pension_age_special_rule_threshold:
+              japan_public_pension_age_65_minimum_deduction
+          else:
+              japan_public_pension_article_35_minimum_deduction
+  - name: japan_public_pension_income_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: floor(max(0, japan_public_pension_gross_receipts - max(japan_public_pension_effective_minimum_deduction_2017_rules, japan_public_pension_article_35_calculated_deduction_before_minimum)))
+  - name: japan_public_pension_deduction_2017_rules
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: JPY
+    versions:
+      - effective_from: '2017-04-01'
+        formula: max(0, japan_public_pension_gross_receipts - japan_public_pension_income_2017_rules)

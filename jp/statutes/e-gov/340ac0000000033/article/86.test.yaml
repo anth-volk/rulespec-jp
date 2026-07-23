@@ -1,0 +1,8 @@
+- name: resident_basic_deduction
+  period:
+    period_kind: custom
+    name: supported_start_date_assessment_window
+    start: '2017-04-01'
+    end: '2018-01-01'
+  output:
+    jp:statutes/e-gov/340ac0000000033/article/86#japan_pit_basic_deduction_article_86: 380000
