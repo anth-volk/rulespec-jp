@@ -95,8 +95,12 @@
       "reason": "No independent Japanese-language legal reviewer has signed off on the experimental model."
     },
     "hosted_fork_ci": {
-      "status": "pending-current-commit",
-      "reason": "The completed local changes have not yet been committed and pushed to the two forks."
+      "status": "passed",
+      "corpus_commit": "07526356",
+      "corpus_run": "https://github.com/anth-volk/axiom-corpus/actions/runs/30053330038",
+      "rulespec_commit": "c8d0e9a",
+      "rulespec_run": "https://github.com/anth-volk/rulespec-jp/actions/runs/30053328612",
+      "note": "The fork corpus production-coverage job is skipped by design because production credentials are unavailable to pull-request CI; all applicable jobs passed."
     }
   },
   "canonical_axiom_apply": false,
